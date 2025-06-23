@@ -1,0 +1,20 @@
+# Requirements for LLM providers in generate_rtl_benchmark.py
+
+# Core dependencies
+langchain>=0.1.0
+langchain-core>=0.1.0
+
+# OpenAI provider
+langchain-openai>=0.1.0
+
+# Anthropic provider  
+langchain-anthropic>=0.1.0
+
+# Google provider
+langchain-google-genai>=0.1.0
+
+# Ollama provider
+langchain-community>=0.1.0
+
+# Other utilities
+tqdm>=4.64.0 
