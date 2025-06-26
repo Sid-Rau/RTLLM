@@ -1,4 +1,4 @@
-module counter_12(
+module counter_12 (
     input wire rst_n,
     input wire clk,
     input wire valid_count,

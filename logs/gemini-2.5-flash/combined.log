@@ -1,0 +1,939 @@
+====================================================================================================
+COMBINED RTL BENCHMARK TEST RESULTS
+====================================================================================================
+Test Date: 2025-06-26 04:29:24
+Total Test Runs: 5
+RTL Directories Tested: t2, t5, t3, t1, t4
+Total Modules Tested: 50
+
+SUMMARY STATISTICS
+----------------------------------------
+Passed: 161
+Failed: 65
+Compile Errors: 19
+Simulation Errors: 0
+Timeouts: 5
+Success Rate: 64.4%
+
+OVERALL STATISTICS ACROSS ALL RUNS
+------------------------------------------------------------
+Total runs:         250
+Total passed:       161
+Total failed:       65
+Total compile err:  19
+Total sim err:      0
+Total timeouts:     5
+Overall pass rate:  64.4%
+Functional modules: 35 / 50
+Syntax correct:     48 / 50
+
+PER-MODULE STATISTICS
+------------------------------------------------------------
+Module                     Functional    Syntax    Passed    Failed   Compile    Sim    Timeout 
+-------------------------------------------------------------------------------------------------
+JC_counter                      ✓          ✓        5/5        0         0        0        0    
+LFSR                            ✓          ✓        5/5        0         0        0        0    
+LIFObuffer                      ✓          ✓        5/5        0         0        0        0    
+RAM                             ✓          ✓        5/5        0         0        0        0    
+ROM                             ✓          ✓        5/5        0         0        0        0    
+accu                            ✓          ✓        5/5        0         0        0        0    
+adder_16bit                     ✓          ✓        5/5        0         0        0        0    
+adder_32bit                     ✓          ✓        4/5        0         1        0        0    
+adder_8bit                      ✓          ✓        5/5        0         0        0        0    
+adder_bcd                       ✓          ✓        5/5        0         0        0        0    
+adder_pipe_64bit                ✓          ✓        3/5        1         1        0        0    
+calendar                        ✓          ✓        5/5        0         0        0        0    
+comparator_3bit                 ✓          ✓        5/5        0         0        0        0    
+comparator_4bit                 ✓          ✓        5/5        0         0        0        0    
+counter_12                      ✓          ✓        5/5        0         0        0        0    
+edge_detect                     ✓          ✓        5/5        0         0        0        0    
+fixed_point_adder               ✓          ✓        5/5        0         0        0        0    
+fixed_point_substractor         ✓          ✓        5/5        0         0        0        0    
+float_multi                     ✓          ✓        4/5        1         0        0        0    
+freq_div                        ✓          ✓        5/5        0         0        0        0    
+fsm                             ✓          ✓        2/5        3         0        0        0    
+instr_reg                       ✓          ✓        5/5        0         0        0        0    
+multi_16bit                     ✓          ✓        5/5        0         0        0        0    
+multi_8bit                      ✓          ✓        3/5        0         2        0        0    
+multi_booth_8bit                ✓          ✓        4/5        1         0        0        0    
+multi_pipe_4bit                 ✓          ✓        4/5        1         0        0        0    
+multi_pipe_8bit                 ✓          ✓        2/5        2         1        0        0    
+pe                              ✓          ✓        5/5        0         0        0        0    
+right_shifter                   ✓          ✓        5/5        0         0        0        0    
+sequence_detector               ✓          ✓        5/5        0         0        0        0    
+square_wave                     ✓          ✓        5/5        0         0        0        0    
+sub_64bit                       ✓          ✓        5/5        0         0        0        0    
+synchronizer                    ✓          ✓        5/5        0         0        0        0    
+up_down_counter                 ✓          ✓        5/5        0         0        0        0    
+width_8to16                     ✓          ✓        5/5        0         0        0        0    
+alu                             ✗          ✓        0/5        4         1        0        0    
+barrel_shifter                  ✗          ✓        0/5        5         0        0        0    
+clkgenerator                    ✗          ✓        0/5        5         0        0        0    
+div_16bit                       ✗          ✓        0/5        5         0        0        0    
+freq_divbyeven                  ✗          ✓        0/5        5         0        0        0    
+freq_divbyfrac                  ✗          ✓        0/5        5         0        0        0    
+freq_divbyodd                   ✗          ✓        0/5        5         0        0        0    
+parallel2serial                 ✗          ✓        0/5        5         0        0        0    
+pulse_detect                    ✗          ✓        0/5        5         0        0        0    
+radix2_div                      ✗          ✓        0/5        2         3        0        0    
+serial2parallel                 ✗          ✓        0/5        0         0        0        5    
+signal_generator                ✗          ✓        0/5        5         0        0        0    
+traffic_light                   ✗          ✓        0/5        5         0        0        0    
+asyn_fifo                       ✗          ✗        0/5        0         5        0        0    
+ring_counter                    ✗          ✗        0/5        0         5        0        0    
+
+DETAILED RESULTS BY MODULE
+================================================================================
+MODULE: JC_counter
+----------------------------------------
+  Attempt 1 (from t2): Status: test_passed
+  Attempt 2 (from t5): Status: test_passed
+  Attempt 3 (from t3): Status: test_passed
+  Attempt 4 (from t1): Status: test_passed
+  Attempt 5 (from t4): Status: test_passed
+
+MODULE: LFSR
+----------------------------------------
+  Attempt 1 (from t2): Status: test_passed
+  Attempt 2 (from t5): Status: test_passed
+  Attempt 3 (from t3): Status: test_passed
+  Attempt 4 (from t1): Status: test_passed
+  Attempt 5 (from t4): Status: test_passed
+
+MODULE: LIFObuffer
+----------------------------------------
+  Attempt 1 (from t2): Status: test_passed
+  Attempt 2 (from t5): Status: test_passed
+  Attempt 3 (from t3): Status: test_passed
+  Attempt 4 (from t1): Status: test_passed
+  Attempt 5 (from t4): Status: test_passed
+
+MODULE: RAM
+----------------------------------------
+  Attempt 1 (from t2): Status: test_passed
+  Attempt 2 (from t5): Status: test_passed
+  Attempt 3 (from t3): Status: test_passed
+  Attempt 4 (from t1): Status: test_passed
+  Attempt 5 (from t4): Status: test_passed
+
+MODULE: ROM
+----------------------------------------
+  Attempt 1 (from t2): Status: test_passed
+  Attempt 2 (from t5): Status: test_passed
+  Attempt 3 (from t3): Status: test_passed
+  Attempt 4 (from t1): Status: test_passed
+  Attempt 5 (from t4): Status: test_passed
+
+MODULE: accu
+----------------------------------------
+  Attempt 1 (from t2): Status: test_passed
+  Attempt 2 (from t5): Status: test_passed
+  Attempt 3 (from t3): Status: test_passed
+  Attempt 4 (from t1): Status: test_passed
+  Attempt 5 (from t4): Status: test_passed
+
+MODULE: adder_16bit
+----------------------------------------
+  Attempt 1 (from t2): Status: test_passed
+  Attempt 2 (from t5): Status: test_passed
+  Attempt 3 (from t3): Status: test_passed
+  Attempt 4 (from t1): Status: test_passed
+  Attempt 5 (from t4): Status: test_passed
+
+MODULE: adder_32bit
+----------------------------------------
+  Attempt 1 (from t2): Status: compile_error
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:51: warning: Port 4 (C_out) of cla_4bit expects 4 bits, got 1.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:51:        : Padding 3 high bits of the port.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:60: warning: Port 4 (C_out) of cla_4bit expects 4 bits, got 1.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:60:        : Padding 3 high bits of the port.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:69: warning: Port 4 (C_out) of cla_4bit expects 4 bits, got 1.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:69:        : Padding 3 high bits of the port.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:78: warning: Port 4 (C_out) of cla_4bit expects 4 bits, got 1.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:78:        : Padding 3 high bits of the port.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:87: warning: Port 4 (C_out) of cla_4bit expects 4 bits, got 1.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:87:        : Padding 3 high bits of the port.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:98: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:98: error: Unable to elaborate r-value: (P_local['sd1])^(C_inter['sd0]['sd0])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:99: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:99: error: Unable to elaborate r-value: (P_local['sd2])^(C_inter['sd0]['sd1])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:100: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:100: error: Unable to elaborate r-value: (P_local['sd3])^(C_inter['sd0]['sd2])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:102: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:102: error: Unable to elaborate r-value: (P_local['sd4])^(C_inter['sd0]['sd3])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:103: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:103: error: Unable to elaborate r-value: (P_local['sd5])^(C_inter['sd1]['sd0])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:104: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:104: error: Unable to elaborate r-value: (P_local['sd6])^(C_inter['sd1]['sd1])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:105: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:105: error: Unable to elaborate r-value: (P_local['sd7])^(C_inter['sd1]['sd2])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:107: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:107: error: Unable to elaborate r-value: (P_local['sd8])^(C_inter['sd1]['sd3])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:108: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:108: error: Unable to elaborate r-value: (P_local['sd9])^(C_inter['sd2]['sd0])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:109: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:109: error: Unable to elaborate r-value: (P_local['sd10])^(C_inter['sd2]['sd1])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:110: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:110: error: Unable to elaborate r-value: (P_local['sd11])^(C_inter['sd2]['sd2])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:112: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:112: error: Unable to elaborate r-value: (P_local['sd12])^(C_inter['sd2]['sd3])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:113: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:113: error: Unable to elaborate r-value: (P_local['sd13])^(C_inter['sd3]['sd0])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:114: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:114: error: Unable to elaborate r-value: (P_local['sd14])^(C_inter['sd3]['sd1])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:115: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:115: error: Unable to elaborate r-value: (P_local['sd15])^(C_inter['sd3]['sd2])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:51: warning: Port 4 (C_out) of cla_4bit expects 4 bits, got 1.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:51:        : Padding 3 high bits of the port.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:60: warning: Port 4 (C_out) of cla_4bit expects 4 bits, got 1.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:60:        : Padding 3 high bits of the port.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:69: warning: Port 4 (C_out) of cla_4bit expects 4 bits, got 1.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:69:        : Padding 3 high bits of the port.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:78: warning: Port 4 (C_out) of cla_4bit expects 4 bits, got 1.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:78:        : Padding 3 high bits of the port.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:87: warning: Port 4 (C_out) of cla_4bit expects 4 bits, got 1.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:87:        : Padding 3 high bits of the port.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:98: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:98: error: Unable to elaborate r-value: (P_local['sd1])^(C_inter['sd0]['sd0])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:99: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:99: error: Unable to elaborate r-value: (P_local['sd2])^(C_inter['sd0]['sd1])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:100: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:100: error: Unable to elaborate r-value: (P_local['sd3])^(C_inter['sd0]['sd2])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:102: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:102: error: Unable to elaborate r-value: (P_local['sd4])^(C_inter['sd0]['sd3])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:103: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:103: error: Unable to elaborate r-value: (P_local['sd5])^(C_inter['sd1]['sd0])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:104: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:104: error: Unable to elaborate r-value: (P_local['sd6])^(C_inter['sd1]['sd1])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:105: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:105: error: Unable to elaborate r-value: (P_local['sd7])^(C_inter['sd1]['sd2])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:107: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:107: error: Unable to elaborate r-value: (P_local['sd8])^(C_inter['sd1]['sd3])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:108: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:108: error: Unable to elaborate r-value: (P_local['sd9])^(C_inter['sd2]['sd0])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:109: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:109: error: Unable to elaborate r-value: (P_local['sd10])^(C_inter['sd2]['sd1])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:110: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:110: error: Unable to elaborate r-value: (P_local['sd11])^(C_inter['sd2]['sd2])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:112: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:112: error: Unable to elaborate r-value: (P_local['sd12])^(C_inter['sd2]['sd3])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:113: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:113: error: Unable to elaborate r-value: (P_local['sd13])^(C_inter['sd3]['sd0])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:114: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:114: error: Unable to elaborate r-value: (P_local['sd14])^(C_inter['sd3]['sd1])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:115: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:115: error: Unable to elaborate r-value: (P_local['sd15])^(C_inter['sd3]['sd2])
+60 error(s) during elaboration.
+  Attempt 2 (from t5): Status: test_passed
+  Attempt 3 (from t3): Status: test_passed
+  Attempt 4 (from t1): Status: test_passed
+  Attempt 5 (from t4): Status: test_passed
+
+MODULE: adder_8bit
+----------------------------------------
+  Attempt 1 (from t2): Status: test_passed
+  Attempt 2 (from t5): Status: test_passed
+  Attempt 3 (from t3): Status: test_passed
+  Attempt 4 (from t1): Status: test_passed
+  Attempt 5 (from t4): Status: test_passed
+
+MODULE: adder_bcd
+----------------------------------------
+  Attempt 1 (from t2): Status: test_passed
+  Attempt 2 (from t5): Status: test_passed
+  Attempt 3 (from t3): Status: test_passed
+  Attempt 4 (from t1): Status: test_passed
+  Attempt 5 (from t4): Status: test_passed
+
+MODULE: adder_pipe_64bit
+----------------------------------------
+  Attempt 1 (from t2): Status: test_passed
+  Attempt 2 (from t5): Status: test_passed
+  Attempt 3 (from t3): Status: test_passed
+  Attempt 4 (from t1): Status: test_failed
+    Simulation Output: =========== Test completed with         100 / 100 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Adder/adder_pipe_64bit/testbench.v:47: $finish called at 3200 (1s)
+  Attempt 5 (from t4): Status: compile_error
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t4/adder_pipe_64bit.sv:105: error: result_r Unable to assign to unresolved wires.
+1 error(s) during elaboration.
+
+MODULE: alu
+----------------------------------------
+  Attempt 1 (from t2): Status: test_failed
+    Simulation Output: WARNING: /home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/alu/testbench.v:43: $readmemh(reference.dat): Not enough words in the file for the requested range [0:31].
+===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/alu/testbench.v:86: $finish called at 175000 (1ps)
+  Attempt 2 (from t5): Status: test_failed
+    Simulation Output: WARNING: /home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/alu/testbench.v:43: $readmemh(reference.dat): Not enough words in the file for the requested range [0:31].
+===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/alu/testbench.v:86: $finish called at 175000 (1ps)
+  Attempt 3 (from t3): Status: compile_error
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t3/alu.sv:53: error: add_sub_res is not a valid l-value in test_alu.uut.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t3/alu.sv:44:      : add_sub_res is declared here as wire.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t3/alu.sv:59: error: add_sub_res is not a valid l-value in test_alu.uut.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t3/alu.sv:44:      : add_sub_res is declared here as wire.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t3/alu.sv:65: error: add_sub_res is not a valid l-value in test_alu.uut.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t3/alu.sv:44:      : add_sub_res is declared here as wire.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t3/alu.sv:71: error: add_sub_res is not a valid l-value in test_alu.uut.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t3/alu.sv:44:      : add_sub_res is declared here as wire.
+4 error(s) during elaboration.
+  Attempt 4 (from t1): Status: test_failed
+    Simulation Output: WARNING: /home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/alu/testbench.v:43: $readmemh(reference.dat): Not enough words in the file for the requested range [0:31].
+===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/alu/testbench.v:86: $finish called at 175000 (1ps)
+  Attempt 5 (from t4): Status: test_failed
+    Simulation Output: WARNING: /home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/alu/testbench.v:43: $readmemh(reference.dat): Not enough words in the file for the requested range [0:31].
+===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/alu/testbench.v:86: $finish called at 175000 (1ps)
+
+MODULE: asyn_fifo
+----------------------------------------
+  Attempt 1 (from t2): Status: compile_error
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/FIFO/asyn_fifo/testbench.v:102: sorry: break statements not supported.
+  Attempt 2 (from t5): Status: compile_error
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/FIFO/asyn_fifo/testbench.v:102: sorry: break statements not supported.
+  Attempt 3 (from t3): Status: compile_error
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/FIFO/asyn_fifo/testbench.v:102: sorry: break statements not supported.
+  Attempt 4 (from t1): Status: compile_error
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/FIFO/asyn_fifo/testbench.v:102: sorry: break statements not supported.
+  Attempt 5 (from t4): Status: compile_error
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/FIFO/asyn_fifo/testbench.v:102: sorry: break statements not supported.
+
+MODULE: barrel_shifter
+----------------------------------------
+  Attempt 1 (from t2): Status: test_failed
+    Simulation Output: =========== Test completed with           1 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/barrel_shifter/testbench.v:31: $finish called at 80 (1s)
+  Attempt 2 (from t5): Status: test_failed
+    Simulation Output: =========== Test completed with           1 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/barrel_shifter/testbench.v:31: $finish called at 80 (1s)
+  Attempt 3 (from t3): Status: test_failed
+    Simulation Output: =========== Test completed with           1 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/barrel_shifter/testbench.v:31: $finish called at 80 (1s)
+  Attempt 4 (from t1): Status: test_failed
+    Simulation Output: =========== Test completed with           1 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/barrel_shifter/testbench.v:31: $finish called at 80 (1s)
+  Attempt 5 (from t4): Status: test_failed
+    Simulation Output: =========== Test completed with           1 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/barrel_shifter/testbench.v:31: $finish called at 80 (1s)
+
+MODULE: calendar
+----------------------------------------
+  Attempt 1 (from t2): Status: test_passed
+  Attempt 2 (from t5): Status: test_passed
+  Attempt 3 (from t3): Status: test_passed
+  Attempt 4 (from t1): Status: test_passed
+  Attempt 5 (from t4): Status: test_passed
+
+MODULE: clkgenerator
+----------------------------------------
+  Attempt 1 (from t2): Status: test_failed
+    Simulation Output: =========== Test completed with          20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/clkgenerator/testbench.v:29: $finish called at 100 (1s)
+  Attempt 2 (from t5): Status: test_failed
+    Simulation Output: =========== Test completed with          20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/clkgenerator/testbench.v:29: $finish called at 100 (1s)
+  Attempt 3 (from t3): Status: test_failed
+    Simulation Output: =========== Test completed with          20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/clkgenerator/testbench.v:29: $finish called at 100 (1s)
+  Attempt 4 (from t1): Status: test_failed
+    Simulation Output: =========== Test completed with          20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/clkgenerator/testbench.v:29: $finish called at 100 (1s)
+  Attempt 5 (from t4): Status: test_failed
+    Simulation Output: =========== Test completed with          20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/clkgenerator/testbench.v:29: $finish called at 100 (1s)
+
+MODULE: comparator_3bit
+----------------------------------------
+  Attempt 1 (from t2): Status: test_passed
+  Attempt 2 (from t5): Status: test_passed
+  Attempt 3 (from t3): Status: test_passed
+  Attempt 4 (from t1): Status: test_passed
+  Attempt 5 (from t4): Status: test_passed
+
+MODULE: comparator_4bit
+----------------------------------------
+  Attempt 1 (from t2): Status: test_passed
+  Attempt 2 (from t5): Status: test_passed
+  Attempt 3 (from t3): Status: test_passed
+  Attempt 4 (from t1): Status: test_passed
+  Attempt 5 (from t4): Status: test_passed
+
+MODULE: counter_12
+----------------------------------------
+  Attempt 1 (from t2): Status: test_passed
+  Attempt 2 (from t5): Status: test_passed
+  Attempt 3 (from t3): Status: test_passed
+  Attempt 4 (from t1): Status: test_passed
+  Attempt 5 (from t4): Status: test_passed
+
+MODULE: div_16bit
+----------------------------------------
+  Attempt 1 (from t2): Status: test_failed
+    Simulation Output: ===========Test completed with          99 /100 failures===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Divider/div_16bit/testbench.v:31: $finish called at 1000000 (1ps)
+  Attempt 2 (from t5): Status: test_failed
+    Simulation Output: ===========Test completed with          29 /100 failures===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Divider/div_16bit/testbench.v:31: $finish called at 1000000 (1ps)
+  Attempt 3 (from t3): Status: test_failed
+    Simulation Output: ===========Test completed with          81 /100 failures===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Divider/div_16bit/testbench.v:31: $finish called at 1000000 (1ps)
+  Attempt 4 (from t1): Status: test_failed
+    Simulation Output: ===========Test completed with          29 /100 failures===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Divider/div_16bit/testbench.v:31: $finish called at 1000000 (1ps)
+  Attempt 5 (from t4): Status: test_failed
+    Simulation Output: ===========Test completed with          29 /100 failures===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Divider/div_16bit/testbench.v:31: $finish called at 1000000 (1ps)
+
+MODULE: edge_detect
+----------------------------------------
+  Attempt 1 (from t2): Status: test_passed
+  Attempt 2 (from t5): Status: test_passed
+  Attempt 3 (from t3): Status: test_passed
+  Attempt 4 (from t1): Status: test_passed
+  Attempt 5 (from t4): Status: test_passed
+
+MODULE: fixed_point_adder
+----------------------------------------
+  Attempt 1 (from t2): Status: test_passed
+  Attempt 2 (from t5): Status: test_passed
+  Attempt 3 (from t3): Status: test_passed
+  Attempt 4 (from t1): Status: test_passed
+  Attempt 5 (from t4): Status: test_passed
+
+MODULE: fixed_point_substractor
+----------------------------------------
+  Attempt 1 (from t2): Status: test_passed
+  Attempt 2 (from t5): Status: test_passed
+  Attempt 3 (from t3): Status: test_passed
+  Attempt 4 (from t1): Status: test_passed
+  Attempt 5 (from t4): Status: test_passed
+
+MODULE: float_multi
+----------------------------------------
+  Attempt 1 (from t2): Status: test_passed
+  Attempt 2 (from t5): Status: test_failed
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t5/float_multi.sv:76: warning: Extra digits given for sized hex constant.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t5/float_multi.sv:77: warning: Extra digits given for sized hex constant.
+    Simulation Output: =========== Test completed with           1/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Other/float_multi/testbench.v:35: $finish called at 243 (1s)
+  Attempt 3 (from t3): Status: test_passed
+  Attempt 4 (from t1): Status: test_passed
+  Attempt 5 (from t4): Status: test_passed
+
+MODULE: freq_div
+----------------------------------------
+  Attempt 1 (from t2): Status: test_passed
+  Attempt 2 (from t5): Status: test_passed
+  Attempt 3 (from t3): Status: test_passed
+  Attempt 4 (from t1): Status: test_passed
+  Attempt 5 (from t4): Status: test_passed
+
+MODULE: freq_divbyeven
+----------------------------------------
+  Attempt 1 (from t2): Status: test_failed
+    Simulation Output: Failed at          3: clk=0, clk_div=1 (expected           0)
+Failed at          4: clk=1, clk_div=1 (expected           0)
+Failed at          9: clk=0, clk_div=0 (expected           1)
+Failed at         10: clk=1, clk_div=0 (expected           1)
+Failed at         15: clk=0, clk_div=1 (expected           0)
+Failed at         16: clk=1, clk_div=1 (expected           0)
+=========== Test completed with           6/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyeven/testbench.v:27: $finish called at 110000 (1ps)
+  Attempt 2 (from t5): Status: test_failed
+    Simulation Output: Failed at          7: clk=0, clk_div=0 (expected           1)
+Failed at          8: clk=1, clk_div=0 (expected           1)
+Failed at         13: clk=0, clk_div=1 (expected           0)
+Failed at         14: clk=1, clk_div=1 (expected           0)
+Failed at         15: clk=0, clk_div=1 (expected           0)
+Failed at         16: clk=1, clk_div=1 (expected           0)
+Failed at         19: clk=0, clk_div=0 (expected           1)
+=========== Test completed with           7/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyeven/testbench.v:27: $finish called at 110000 (1ps)
+  Attempt 3 (from t3): Status: test_failed
+    Simulation Output: Failed at          5: clk=0, clk_div=1 (expected           0)
+Failed at          6: clk=1, clk_div=1 (expected           0)
+Failed at          9: clk=0, clk_div=0 (expected           1)
+Failed at         10: clk=1, clk_div=0 (expected           1)
+Failed at         11: clk=0, clk_div=0 (expected           1)
+Failed at         12: clk=1, clk_div=0 (expected           1)
+Failed at         13: clk=0, clk_div=1 (expected           0)
+Failed at         14: clk=1, clk_div=1 (expected           0)
+Failed at         15: clk=0, clk_div=1 (expected           0)
+Failed at         16: clk=1, clk_div=1 (expected           0)
+Failed at         19: clk=0, clk_div=0 (expected           1)
+=========== Test completed with          11/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyeven/testbench.v:27: $finish called at 110000 (1ps)
+  Attempt 4 (from t1): Status: test_failed
+    Simulation Output: Failed at          5: clk=0, clk_div=1 (expected           0)
+Failed at          6: clk=1, clk_div=1 (expected           0)
+Failed at          9: clk=0, clk_div=0 (expected           1)
+Failed at         10: clk=1, clk_div=0 (expected           1)
+Failed at         11: clk=0, clk_div=0 (expected           1)
+Failed at         12: clk=1, clk_div=0 (expected           1)
+Failed at         13: clk=0, clk_div=1 (expected           0)
+Failed at         14: clk=1, clk_div=1 (expected           0)
+Failed at         15: clk=0, clk_div=1 (expected           0)
+Failed at         16: clk=1, clk_div=1 (expected           0)
+Failed at         19: clk=0, clk_div=0 (expected           1)
+=========== Test completed with          11/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyeven/testbench.v:27: $finish called at 110000 (1ps)
+  Attempt 5 (from t4): Status: test_failed
+    Simulation Output: Failed at          3: clk=0, clk_div=1 (expected           0)
+Failed at          4: clk=1, clk_div=1 (expected           0)
+Failed at          9: clk=0, clk_div=0 (expected           1)
+Failed at         10: clk=1, clk_div=0 (expected           1)
+Failed at         15: clk=0, clk_div=1 (expected           0)
+Failed at         16: clk=1, clk_div=1 (expected           0)
+=========== Test completed with           6/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyeven/testbench.v:27: $finish called at 110000 (1ps)
+
+MODULE: freq_divbyfrac
+----------------------------------------
+  Attempt 1 (from t2): Status: test_failed
+    Simulation Output: Failed at          3: clk=0, clk_div=1 (expected           0)
+Failed at          4: clk=1, clk_div=1 (expected           0)
+Failed at          5: clk=0, clk_div=1 (expected           0)
+Failed at          6: clk=1, clk_div=1 (expected           0)
+Failed at          8: clk=1, clk_div=0 (expected           1)
+Failed at          9: clk=0, clk_div=0 (expected           1)
+Failed at         17: clk=0, clk_div=1 (expected           0)
+Failed at         18: clk=1, clk_div=1 (expected           0)
+Failed at         19: clk=0, clk_div=1 (expected           0)
+=========== Test completed with           9/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyfrac/testbench.v:27: $finish called at 130000 (1ps)
+  Attempt 2 (from t5): Status: test_failed
+    Simulation Output: Failed at          3: clk=0, clk_div=1 (expected           0)
+Failed at          4: clk=1, clk_div=1 (expected           0)
+Failed at          5: clk=0, clk_div=1 (expected           0)
+Failed at          7: clk=0, clk_div=0 (expected           1)
+Failed at         10: clk=1, clk_div=1 (expected           0)
+Failed at         11: clk=0, clk_div=1 (expected           0)
+Failed at         14: clk=1, clk_div=0 (expected           1)
+Failed at         15: clk=0, clk_div=0 (expected           1)
+Failed at         17: clk=0, clk_div=1 (expected           0)
+Failed at         18: clk=1, clk_div=1 (expected           0)
+Failed at         19: clk=0, clk_div=1 (expected           0)
+=========== Test completed with          11/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyfrac/testbench.v:27: $finish called at 130000 (1ps)
+  Attempt 3 (from t3): Status: test_failed
+    Simulation Output: Failed at          0: clk=1, clk_div=0 (expected           1)
+Failed at          1: clk=0, clk_div=0 (expected           1)
+Failed at          2: clk=1, clk_div=0 (expected           1)
+Failed at          7: clk=0, clk_div=0 (expected           1)
+Failed at          8: clk=1, clk_div=0 (expected           1)
+Failed at          9: clk=0, clk_div=0 (expected           1)
+Failed at         12: clk=1, clk_div=1 (expected           0)
+Failed at         13: clk=0, clk_div=1 (expected           0)
+Failed at         17: clk=0, clk_div=1 (expected           0)
+Failed at         18: clk=1, clk_div=1 (expected           0)
+Failed at         19: clk=0, clk_div=1 (expected           0)
+=========== Test completed with          11/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyfrac/testbench.v:27: $finish called at 130000 (1ps)
+  Attempt 4 (from t1): Status: test_failed
+    Simulation Output: Failed at          0: clk=1, clk_div=0 (expected           1)
+Failed at          1: clk=0, clk_div=0 (expected           1)
+Failed at          2: clk=1, clk_div=0 (expected           1)
+Failed at          6: clk=1, clk_div=1 (expected           0)
+Failed at         10: clk=1, clk_div=1 (expected           0)
+Failed at         11: clk=0, clk_div=1 (expected           0)
+Failed at         12: clk=1, clk_div=1 (expected           0)
+Failed at         13: clk=0, clk_div=1 (expected           0)
+Failed at         17: clk=0, clk_div=1 (expected           0)
+=========== Test completed with           9/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyfrac/testbench.v:27: $finish called at 130000 (1ps)
+  Attempt 5 (from t4): Status: test_failed
+    Simulation Output: Failed at          0: clk=1, clk_div=0 (expected           1)
+Failed at          1: clk=0, clk_div=0 (expected           1)
+Failed at          3: clk=0, clk_div=1 (expected           0)
+Failed at          4: clk=1, clk_div=1 (expected           0)
+Failed at          5: clk=0, clk_div=1 (expected           0)
+Failed at          6: clk=1, clk_div=1 (expected           0)
+Failed at         10: clk=1, clk_div=1 (expected           0)
+Failed at         11: clk=0, clk_div=1 (expected           0)
+Failed at         14: clk=1, clk_div=0 (expected           1)
+Failed at         15: clk=0, clk_div=0 (expected           1)
+Failed at         17: clk=0, clk_div=1 (expected           0)
+Failed at         18: clk=1, clk_div=1 (expected           0)
+Failed at         19: clk=0, clk_div=1 (expected           0)
+=========== Test completed with          13/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyfrac/testbench.v:27: $finish called at 130000 (1ps)
+
+MODULE: freq_divbyodd
+----------------------------------------
+  Attempt 1 (from t2): Status: test_failed
+    Simulation Output: Failed at          1: clk=1, clk_div=0 (expected           1)
+Failed at          2: clk=0, clk_div=0 (expected           1)
+Failed at          3: clk=1, clk_div=0 (expected           1)
+Failed at          4: clk=0, clk_div=0 (expected           1)
+Failed at          6: clk=0, clk_div=1 (expected           0)
+Failed at          7: clk=1, clk_div=1 (expected           0)
+Failed at          8: clk=0, clk_div=1 (expected           0)
+Failed at          9: clk=1, clk_div=1 (expected           0)
+Failed at         10: clk=0, clk_div=1 (expected           0)
+=========== Test completed with           9/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyodd/testbench.v:27: $finish called at 130000 (1ps)
+  Attempt 2 (from t5): Status: test_failed
+    Simulation Output: Failed at          1: clk=1, clk_div=0 (expected           1)
+Failed at          2: clk=0, clk_div=0 (expected           1)
+Failed at          3: clk=1, clk_div=0 (expected           1)
+Failed at          4: clk=0, clk_div=0 (expected           1)
+Failed at          6: clk=0, clk_div=1 (expected           0)
+Failed at          7: clk=1, clk_div=1 (expected           0)
+Failed at          8: clk=0, clk_div=1 (expected           0)
+Failed at          9: clk=1, clk_div=1 (expected           0)
+Failed at         10: clk=0, clk_div=1 (expected           0)
+=========== Test completed with           9/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyodd/testbench.v:27: $finish called at 130000 (1ps)
+  Attempt 3 (from t3): Status: test_failed
+    Simulation Output: Failed at          1: clk=1, clk_div=0 (expected           1)
+Failed at          2: clk=0, clk_div=0 (expected           1)
+Failed at          3: clk=1, clk_div=0 (expected           1)
+Failed at          4: clk=0, clk_div=0 (expected           1)
+Failed at          6: clk=0, clk_div=1 (expected           0)
+Failed at          7: clk=1, clk_div=1 (expected           0)
+Failed at          8: clk=0, clk_div=1 (expected           0)
+Failed at          9: clk=1, clk_div=1 (expected           0)
+Failed at         10: clk=0, clk_div=1 (expected           0)
+=========== Test completed with           9/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyodd/testbench.v:27: $finish called at 130000 (1ps)
+  Attempt 4 (from t1): Status: test_failed
+    Simulation Output: Failed at          1: clk=1, clk_div=0 (expected           1)
+Failed at          2: clk=0, clk_div=0 (expected           1)
+Failed at          3: clk=1, clk_div=0 (expected           1)
+Failed at          4: clk=0, clk_div=0 (expected           1)
+Failed at          6: clk=0, clk_div=1 (expected           0)
+Failed at          7: clk=1, clk_div=1 (expected           0)
+Failed at          8: clk=0, clk_div=1 (expected           0)
+Failed at          9: clk=1, clk_div=1 (expected           0)
+Failed at         10: clk=0, clk_div=1 (expected           0)
+=========== Test completed with           9/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyodd/testbench.v:27: $finish called at 130000 (1ps)
+  Attempt 5 (from t4): Status: test_failed
+    Simulation Output: Failed at          1: clk=1, clk_div=0 (expected           1)
+Failed at          2: clk=0, clk_div=0 (expected           1)
+Failed at          3: clk=1, clk_div=0 (expected           1)
+Failed at          4: clk=0, clk_div=0 (expected           1)
+Failed at          6: clk=0, clk_div=1 (expected           0)
+Failed at          7: clk=1, clk_div=1 (expected           0)
+Failed at          8: clk=0, clk_div=1 (expected           0)
+Failed at          9: clk=1, clk_div=1 (expected           0)
+Failed at         10: clk=0, clk_div=1 (expected           0)
+=========== Test completed with           9/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyodd/testbench.v:27: $finish called at 130000 (1ps)
+
+MODULE: fsm
+----------------------------------------
+  Attempt 1 (from t2): Status: test_failed
+    Simulation Output: ===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Control/Finite State Machine/fsm/testbench.v:65: $finish called at 158 (1ns)
+  Attempt 2 (from t5): Status: test_failed
+    Simulation Output: ===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Control/Finite State Machine/fsm/testbench.v:65: $finish called at 158 (1ns)
+  Attempt 3 (from t3): Status: test_passed
+  Attempt 4 (from t1): Status: test_failed
+    Simulation Output: ===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Control/Finite State Machine/fsm/testbench.v:65: $finish called at 158 (1ns)
+  Attempt 5 (from t4): Status: test_passed
+
+MODULE: instr_reg
+----------------------------------------
+  Attempt 1 (from t2): Status: test_passed
+  Attempt 2 (from t5): Status: test_passed
+  Attempt 3 (from t3): Status: test_passed
+  Attempt 4 (from t1): Status: test_passed
+  Attempt 5 (from t4): Status: test_passed
+
+MODULE: multi_16bit
+----------------------------------------
+  Attempt 1 (from t2): Status: test_passed
+  Attempt 2 (from t5): Status: test_passed
+  Attempt 3 (from t3): Status: test_passed
+  Attempt 4 (from t1): Status: test_passed
+  Attempt 5 (from t4): Status: test_passed
+
+MODULE: multi_8bit
+----------------------------------------
+  Attempt 1 (from t2): Status: compile_error
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/multi_8bit.sv:21: error: product is not a valid l-value in testbench.uut.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/multi_8bit.sv:4:      : product is declared here as wire.
+1 error(s) during elaboration.
+  Attempt 2 (from t5): Status: test_passed
+  Attempt 3 (from t3): Status: compile_error
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t3/multi_8bit.sv:24: error: product is not a valid l-value in testbench.uut.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t3/multi_8bit.sv:4:      : product is declared here as wire.
+1 error(s) during elaboration.
+  Attempt 4 (from t1): Status: test_passed
+  Attempt 5 (from t4): Status: test_passed
+
+MODULE: multi_booth_8bit
+----------------------------------------
+  Attempt 1 (from t2): Status: test_passed
+  Attempt 2 (from t5): Status: test_passed
+  Attempt 3 (from t3): Status: test_failed
+    Simulation Output: =========== Failed ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Multiplier/multi_booth_8bit/testbench.v:71: $finish called at 1900 (1ns)
+  Attempt 4 (from t1): Status: test_passed
+  Attempt 5 (from t4): Status: test_passed
+
+MODULE: multi_pipe_4bit
+----------------------------------------
+  Attempt 1 (from t2): Status: test_passed
+  Attempt 2 (from t5): Status: test_failed
+    Simulation Output: ===========Test completed with          89 / 100 failures===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Multiplier/multi_pipe_4bit/testbench.v:55: $finish called at 3010 (1ns)
+  Attempt 3 (from t3): Status: test_passed
+  Attempt 4 (from t1): Status: test_passed
+  Attempt 5 (from t4): Status: test_passed
+
+MODULE: multi_pipe_8bit
+----------------------------------------
+  Attempt 1 (from t2): Status: test_failed
+    Simulation Output: ===========Test completed with          97 /100 failures===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Multiplier/multi_pipe_8bit/testbench.v:79: $finish called at 80220 (1ns)
+  Attempt 2 (from t5): Status: test_passed
+  Attempt 3 (from t3): Status: compile_error
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t3/multi_pipe_8bit.sv:44: register ``i'' unknown in tb_multi_pipe.u1.
+1 error(s) during elaboration.
+  Attempt 4 (from t1): Status: test_failed
+    Simulation Output: ===========Test completed with         100 /100 failures===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Multiplier/multi_pipe_8bit/testbench.v:79: $finish called at 80220 (1ns)
+  Attempt 5 (from t4): Status: test_passed
+
+MODULE: parallel2serial
+----------------------------------------
+  Attempt 1 (from t2): Status: test_failed
+    Simulation Output: ===========Test completed with          90 /100 failures===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/parallel2serial/testbench.v:63: $finish called at 10005 (1ns)
+  Attempt 2 (from t5): Status: test_failed
+    Simulation Output: ===========Test completed with          90 /100 failures===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/parallel2serial/testbench.v:63: $finish called at 10005 (1ns)
+  Attempt 3 (from t3): Status: test_failed
+    Simulation Output: ===========Test completed with          90 /100 failures===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/parallel2serial/testbench.v:63: $finish called at 10005 (1ns)
+  Attempt 4 (from t1): Status: test_failed
+    Simulation Output: ===========Test completed with          90 /100 failures===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/parallel2serial/testbench.v:63: $finish called at 10005 (1ns)
+  Attempt 5 (from t4): Status: test_failed
+    Simulation Output: ===========Test completed with          90 /100 failures===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/parallel2serial/testbench.v:63: $finish called at 10005 (1ns)
+
+MODULE: pe
+----------------------------------------
+  Attempt 1 (from t2): Status: test_passed
+  Attempt 2 (from t5): Status: test_passed
+  Attempt 3 (from t3): Status: test_passed
+  Attempt 4 (from t1): Status: test_passed
+  Attempt 5 (from t4): Status: test_passed
+
+MODULE: pulse_detect
+----------------------------------------
+  Attempt 1 (from t2): Status: test_failed
+    Simulation Output: ===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/pulse_detect/testbench.v:43: $finish called at 148 (1ns)
+  Attempt 2 (from t5): Status: test_failed
+    Simulation Output: ===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/pulse_detect/testbench.v:43: $finish called at 148 (1ns)
+  Attempt 3 (from t3): Status: test_failed
+    Simulation Output: ===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/pulse_detect/testbench.v:43: $finish called at 148 (1ns)
+  Attempt 4 (from t1): Status: test_failed
+    Simulation Output: ===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/pulse_detect/testbench.v:43: $finish called at 148 (1ns)
+  Attempt 5 (from t4): Status: test_failed
+    Simulation Output: ===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/pulse_detect/testbench.v:43: $finish called at 148 (1ns)
+
+MODULE: radix2_div
+----------------------------------------
+  Attempt 1 (from t2): Status: compile_error
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/radix2_div.sv:59: syntax error
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/radix2_div.sv:59: error: Malformed statement
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/radix2_div.sv:60: syntax error
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/radix2_div.sv:60: error: Malformed statement
+  Attempt 2 (from t5): Status: test_failed
+    Simulation Output: Error: dividend=100, divisor= 10, expected=000a, got=0000
+Error: dividend=156, divisor= 10, expected=00f6, got=0000
+Error: dividend=100, divisor=246, expected=00f6, got=0000
+Error: dividend=156, divisor=246, expected=000a, got=0000
+Error: dividend=123, divisor=123, expected=0001, got=0000
+Error: dividend=123, divisor=251, expected=7b00, got=8000
+Error: dividend=255, divisor=  7, expected=0324, got=8000
+===========Failed===========          7
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Divider/radix2_div/testbench.v:87: $finish called at 825000 (1ps)
+  Attempt 3 (from t3): Status: compile_error
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t3/radix2_div.sv:69: syntax error
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t3/radix2_div.sv:69: error: Malformed statement
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t3/radix2_div.sv:70: syntax error
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t3/radix2_div.sv:70: error: Malformed statement
+  Attempt 4 (from t1): Status: compile_error
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Divider/radix2_div/testbench.v:53: error: res_ready Unable to assign to unresolved wires.
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Divider/radix2_div/testbench.v:76: error: res_ready Unable to assign to unresolved wires.
+2 error(s) during elaboration.
+  Attempt 5 (from t4): Status: test_failed
+    Simulation Output: Error: dividend=100, divisor= 10, expected=000a, got=147f
+Error: dividend=156, divisor= 10, expected=00f6, got=ec81
+Error: dividend=100, divisor=246, expected=00f6, got=0000
+Error: dividend=156, divisor=246, expected=000a, got=ec7f
+Error: dividend=123, divisor=123, expected=0001, got=147f
+Error: dividend=123, divisor=251, expected=7b00, got=0000
+Error: dividend=255, divisor=  7, expected=0324, got=0e7f
+===========Failed===========          7
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Divider/radix2_div/testbench.v:87: $finish called at 825000 (1ps)
+
+MODULE: right_shifter
+----------------------------------------
+  Attempt 1 (from t2): Status: test_passed
+  Attempt 2 (from t5): Status: test_passed
+  Attempt 3 (from t3): Status: test_passed
+  Attempt 4 (from t1): Status: test_passed
+  Attempt 5 (from t4): Status: test_passed
+
+MODULE: ring_counter
+----------------------------------------
+  Attempt 1 (from t2): Status: compile_error
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Control/Counter/ring_counter/testbench.v:20: sorry: Assignment to an entire array or to an array slice is not yet supported.
+Elaboration failed
+  Attempt 2 (from t5): Status: compile_error
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Control/Counter/ring_counter/testbench.v:20: sorry: Assignment to an entire array or to an array slice is not yet supported.
+Elaboration failed
+  Attempt 3 (from t3): Status: compile_error
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Control/Counter/ring_counter/testbench.v:20: sorry: Assignment to an entire array or to an array slice is not yet supported.
+Elaboration failed
+  Attempt 4 (from t1): Status: compile_error
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Control/Counter/ring_counter/testbench.v:20: sorry: Assignment to an entire array or to an array slice is not yet supported.
+Elaboration failed
+  Attempt 5 (from t4): Status: compile_error
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Control/Counter/ring_counter/testbench.v:20: sorry: Assignment to an entire array or to an array slice is not yet supported.
+Elaboration failed
+
+MODULE: sequence_detector
+----------------------------------------
+  Attempt 1 (from t2): Status: test_passed
+  Attempt 2 (from t5): Status: test_passed
+  Attempt 3 (from t3): Status: test_passed
+  Attempt 4 (from t1): Status: test_passed
+  Attempt 5 (from t4): Status: test_passed
+
+MODULE: serial2parallel
+----------------------------------------
+  Attempt 1 (from t2): Status: timeout
+    Simulation Error: Simulation timed out after 1 seconds
+  Attempt 2 (from t5): Status: timeout
+    Simulation Error: Simulation timed out after 1 seconds
+  Attempt 3 (from t3): Status: timeout
+    Simulation Error: Simulation timed out after 1 seconds
+  Attempt 4 (from t1): Status: timeout
+    Simulation Error: Simulation timed out after 1 seconds
+  Attempt 5 (from t4): Status: timeout
+    Simulation Error: Simulation timed out after 1 seconds
+
+MODULE: signal_generator
+----------------------------------------
+  Attempt 1 (from t2): Status: test_failed
+    Simulation Output: ===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Signal generation/signal_generator/testbench.v:39: $finish called at 1010 (1s)
+  Attempt 2 (from t5): Status: test_failed
+    Simulation Output: ===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Signal generation/signal_generator/testbench.v:39: $finish called at 1010 (1s)
+  Attempt 3 (from t3): Status: test_failed
+    Simulation Output: ===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Signal generation/signal_generator/testbench.v:39: $finish called at 1010 (1s)
+  Attempt 4 (from t1): Status: test_failed
+    Simulation Output: ===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Signal generation/signal_generator/testbench.v:39: $finish called at 1010 (1s)
+  Attempt 5 (from t4): Status: test_failed
+    Simulation Output: ===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Signal generation/signal_generator/testbench.v:39: $finish called at 1010 (1s)
+
+MODULE: square_wave
+----------------------------------------
+  Attempt 1 (from t2): Status: test_passed
+  Attempt 2 (from t5): Status: test_passed
+  Attempt 3 (from t3): Status: test_passed
+  Attempt 4 (from t1): Status: test_passed
+  Attempt 5 (from t4): Status: test_passed
+
+MODULE: sub_64bit
+----------------------------------------
+  Attempt 1 (from t2): Status: test_passed
+  Attempt 2 (from t5): Status: test_passed
+  Attempt 3 (from t3): Status: test_passed
+  Attempt 4 (from t1): Status: test_passed
+  Attempt 5 (from t4): Status: test_passed
+
+MODULE: synchronizer
+----------------------------------------
+  Attempt 1 (from t2): Status: test_passed
+  Attempt 2 (from t5): Status: test_passed
+  Attempt 3 (from t3): Status: test_passed
+  Attempt 4 (from t1): Status: test_passed
+  Attempt 5 (from t4): Status: test_passed
+
+MODULE: traffic_light
+----------------------------------------
+  Attempt 1 (from t2): Status: test_failed
+    Simulation Output: At time                   40, clock =   7, red = 1, yellow = 0, green = 0
+At time                  140, clock =  10, red = 0, yellow = 0, green = 1
+At time                  740, clock =  10, red = 0, yellow = 0, green = 1
+At time                  890, clock =   2, red = 1, yellow = 0, green = 0
+At time                  920, clock =   0, red = 1, yellow = 0, green = 0
+At time                  930, clock =   0, red = 1, yellow = 0, green = 0
+===========Failed===========          2
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/traffic_light/testbench.v:78: $finish called at 930 (1ns)
+  Attempt 2 (from t5): Status: test_failed
+    Simulation Output: At time                   40, clock =  10, red = 1, yellow = 0, green = 0
+At time                  140, clock =   0, red = 1, yellow = 0, green = 0
+At time                  740, clock =   2, red = 0, yellow = 0, green = 1
+At time                  890, clock =   6, red = 1, yellow = 0, green = 0
+At time                  920, clock =   3, red = 1, yellow = 0, green = 0
+At time                  930, clock =   2, red = 1, yellow = 0, green = 0
+===========Failed===========          3
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/traffic_light/testbench.v:78: $finish called at 930 (1ns)
+  Attempt 3 (from t3): Status: test_failed
+    Simulation Output: At time                   40, clock =   7, red = 1, yellow = 0, green = 0
+At time                  140, clock =  58, red = 0, yellow = 0, green = 1
+At time                  740, clock =   4, red = 0, yellow = 0, green = 1
+At time                  890, clock =   0, red = 1, yellow = 0, green = 0
+At time                  920, clock =  58, red = 0, yellow = 0, green = 1
+At time                  930, clock =  10, red = 0, yellow = 0, green = 1
+===========Failed===========          1
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/traffic_light/testbench.v:78: $finish called at 930 (1ns)
+  Attempt 4 (from t1): Status: test_failed
+    Simulation Output: At time                   40, clock =   7, red = 1, yellow = 0, green = 0
+At time                  140, clock = 253, red = 0, yellow = 0, green = 1
+At time                  740, clock = 193, red = 0, yellow = 0, green = 1
+At time                  890, clock = 178, red = 0, yellow = 0, green = 1
+At time                  920, clock = 175, red = 0, yellow = 0, green = 1
+At time                  930, clock =  10, red = 0, yellow = 0, green = 1
+===========Failed===========          1
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/traffic_light/testbench.v:78: $finish called at 930 (1ns)
+  Attempt 5 (from t4): Status: test_failed
+    Simulation Output: At time                   40, clock =  10, red = 1, yellow = 0, green = 0
+At time                  140, clock =   0, red = 1, yellow = 0, green = 0
+At time                  740, clock =   3, red = 0, yellow = 0, green = 1
+At time                  890, clock =   9, red = 1, yellow = 0, green = 0
+At time                  920, clock =   6, red = 1, yellow = 0, green = 0
+At time                  930, clock =   5, red = 1, yellow = 0, green = 0
+===========Failed===========          3
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/traffic_light/testbench.v:78: $finish called at 930 (1ns)
+
+MODULE: up_down_counter
+----------------------------------------
+  Attempt 1 (from t2): Status: test_passed
+  Attempt 2 (from t5): Status: test_passed
+  Attempt 3 (from t3): Status: test_passed
+  Attempt 4 (from t1): Status: test_passed
+  Attempt 5 (from t4): Status: test_passed
+
+MODULE: width_8to16
+----------------------------------------
+  Attempt 1 (from t2): Status: test_passed
+  Attempt 2 (from t5): Status: test_passed
+  Attempt 3 (from t3): Status: test_passed
+  Attempt 4 (from t1): Status: test_passed
+  Attempt 5 (from t4): Status: test_passed
+
+====================================================================================================
+END OF COMBINED TEST RESULTS
+====================================================================================================

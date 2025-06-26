@@ -1,4 +1,4 @@
-module multi_booth_8bit(
+module multi_booth_8bit (
     input clk,
     input reset,
     input [7:0] a,
@@ -18,7 +18,8 @@ module multi_booth_8bit(
             p <= 16'b0;
             ctr <= 5'b0;
             rdy <= 1'b0;
-        end else begin
+        end
+        else begin
             if (ctr < 16) begin
                 case (multiplier[1:0])
                     2'b01: p <= p + multiplicand;
@@ -29,7 +30,8 @@ module multi_booth_8bit(
                 multiplier <= multiplier >> 1;
                 ctr <= ctr + 1;
                 rdy <= 1'b0;
-            end else begin
+            end
+            else begin
                 rdy <= 1'b1;
             end
         end

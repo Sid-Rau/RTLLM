@@ -7,7 +7,7 @@ module pulse_detect(
     reg [1:0] state;
 
     always @(posedge clk or negedge rst_n) begin
-        if (~rst_n) begin
+        if (!rst_n) begin
             state <= 2'b00;
             data_out <= 0;
         end else begin
@@ -19,7 +19,7 @@ module pulse_detect(
                     end
                 end
                 2'b01: begin
-                    if (~data_in) begin
+                    if (!data_in) begin
                         state <= 2'b10;
                         data_out <= 0;
                     end

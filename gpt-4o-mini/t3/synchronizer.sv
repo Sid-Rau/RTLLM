@@ -1,4 +1,4 @@
-module synchronizer(
+module synchronizer (
     input clk_a,
     input clk_b,
     input arstn,
@@ -35,10 +35,8 @@ module synchronizer(
     always @(posedge clk_b or negedge brstn) begin
         if (!brstn) begin
             dataout <= 4'b0;
-        end else begin
-            if (en_clap_two) begin
-                dataout <= data_reg;
-            end
+        end else if (en_clap_two) begin
+            dataout <= data_reg;
         end
     end
 endmodule

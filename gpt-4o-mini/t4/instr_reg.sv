@@ -1,11 +1,11 @@
-module instr_reg(
+module instr_reg (
     input clk,
     input rst,
     input [1:0] fetch,
     input [7:0] data,
-    output reg [2:0] ins,
-    output reg [4:0] ad1,
-    output reg [7:0] ad2
+    output [2:0] ins,
+    output [4:0] ad1,
+    output [7:0] ad2
 );
     reg [7:0] ins_p1;
     reg [7:0] ins_p2;
@@ -23,9 +23,8 @@ module instr_reg(
         end
     end
 
-    always @* begin
-        ins = ins_p1[7:5];
-        ad1 = ins_p1[4:0];
-        ad2 = ins_p2;
-    end
+    assign ins = ins_p1[7:5];
+    assign ad1 = ins_p1[4:0];
+    assign ad2 = ins_p2;
+
 endmodule

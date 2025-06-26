@@ -25,7 +25,7 @@ module width_8to16 (
                     valid_out <= 1'b1;
                     flag <= 1'b0;
                 end
-            end else begin
+            end else if (flag) begin
                 valid_out <= 1'b0;
             end
         end

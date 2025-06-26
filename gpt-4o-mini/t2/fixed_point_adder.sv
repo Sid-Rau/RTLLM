@@ -5,7 +5,7 @@ module fixed_point_adder #(parameter Q = 16, parameter N = 32) (
 );
     reg [N-1:0] res;
 
-    always @(*) begin
+    always @* begin
         if (a[N-1] == b[N-1]) begin
             res = a + b;
             res[N-1] = a[N-1];
@@ -13,15 +13,12 @@ module fixed_point_adder #(parameter Q = 16, parameter N = 32) (
             if (a[N-1] == 0 && a > b) begin
                 res = a - b;
                 res[N-1] = 0;
-            end else if (b[N-1] == 0 && b > a) begin
-                res = b - a;
-                res[N-1] = 0;
-            end else if (a[N-1] == 1 && b > a) begin
+            end else if (b > a) begin
                 res = b - a;
                 res[N-1] = (res == 0) ? 0 : 1;
             end else begin
                 res = a - b;
-                res[N-1] = (res == 0) ? 0 : 1;
+                res[N-1] = 0;
             end
         end
     end

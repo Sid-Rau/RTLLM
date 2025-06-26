@@ -1,0 +1,233 @@
+================================================================================
+RTL BENCHMARK TEST RESULTS
+================================================================================
+Test Date: 2025-06-26 04:29:17
+RTL Directory: /home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2
+Total Modules Tested: 50
+
+SUMMARY STATISTICS
+----------------------------------------
+Passed: 31
+Failed: 13
+Compile Errors: 5
+Simulation Errors: 0
+Timeouts: 1
+Success Rate: 62.0%
+
+DETAILED RESULTS
+----------------------------------------
+
+TEST PASSED (31 modules):
+------------------------------
+  adder_8bit
+  sub_64bit
+  multi_pipe_4bit
+  ROM
+  counter_12
+  freq_div
+  pe
+  JC_counter
+  edge_detect
+  width_8to16
+  sequence_detector
+  comparator_4bit
+  LIFObuffer
+  accu
+  square_wave
+  RAM
+  multi_16bit
+  multi_booth_8bit
+  float_multi
+  right_shifter
+  fixed_point_substractor
+  LFSR
+  calendar
+  adder_pipe_64bit
+  up_down_counter
+  instr_reg
+  adder_16bit
+  fixed_point_adder
+  comparator_3bit
+  adder_bcd
+  synchronizer
+
+TEST FAILED (13 modules):
+------------------------------
+  div_16bit
+    Simulation Output: ===========Test completed with          99 /100 failures===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Divider/div_16bit/testbench.v:31: $finish called at 1000000 (1ps)
+  barrel_shifter
+    Simulation Output: =========== Test completed with           1 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/barrel_shifter/testbench.v:31: $finish called at 80 (1s)
+  fsm
+    Simulation Output: ===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Control/Finite State Machine/fsm/testbench.v:65: $finish called at 158 (1ns)
+  freq_divbyfrac
+    Simulation Output: Failed at          3: clk=0, clk_div=1 (expected           0)
+Failed at          4: clk=1, clk_div=1 (expected           0)
+Failed at          5: clk=0, clk_div=1 (expected           0)
+Failed at          6: clk=1, clk_div=1 (expected           0)
+Failed at          8: clk=1, clk_div=0 (expected           1)
+Failed at          9: clk=0, clk_div=0 (expected           1)
+Failed at         17: clk=0, clk_div=1 (expected           0)
+Failed at         18: clk=1, clk_div=1 (expected           0)
+Failed at         19: clk=0, clk_div=1 (expected           0)
+=========== Test completed with           9/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyfrac/testbench.v:27: $finish called at 130000 (1ps)
+  parallel2serial
+    Simulation Output: ===========Test completed with          90 /100 failures===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/parallel2serial/testbench.v:63: $finish called at 10005 (1ns)
+  freq_divbyodd
+    Simulation Output: Failed at          1: clk=1, clk_div=0 (expected           1)
+Failed at          2: clk=0, clk_div=0 (expected           1)
+Failed at          3: clk=1, clk_div=0 (expected           1)
+Failed at          4: clk=0, clk_div=0 (expected           1)
+Failed at          6: clk=0, clk_div=1 (expected           0)
+Failed at          7: clk=1, clk_div=1 (expected           0)
+Failed at          8: clk=0, clk_div=1 (expected           0)
+Failed at          9: clk=1, clk_div=1 (expected           0)
+Failed at         10: clk=0, clk_div=1 (expected           0)
+=========== Test completed with           9/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyodd/testbench.v:27: $finish called at 130000 (1ps)
+  signal_generator
+    Simulation Output: ===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Signal generation/signal_generator/testbench.v:39: $finish called at 1010 (1s)
+  pulse_detect
+    Simulation Output: ===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/pulse_detect/testbench.v:43: $finish called at 148 (1ns)
+  multi_pipe_8bit
+    Simulation Output: ===========Test completed with          97 /100 failures===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Multiplier/multi_pipe_8bit/testbench.v:79: $finish called at 80220 (1ns)
+  freq_divbyeven
+    Simulation Output: Failed at          3: clk=0, clk_div=1 (expected           0)
+Failed at          4: clk=1, clk_div=1 (expected           0)
+Failed at          9: clk=0, clk_div=0 (expected           1)
+Failed at         10: clk=1, clk_div=0 (expected           1)
+Failed at         15: clk=0, clk_div=1 (expected           0)
+Failed at         16: clk=1, clk_div=1 (expected           0)
+=========== Test completed with           6/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyeven/testbench.v:27: $finish called at 110000 (1ps)
+  traffic_light
+    Simulation Output: At time                   40, clock =   7, red = 1, yellow = 0, green = 0
+At time                  140, clock =  10, red = 0, yellow = 0, green = 1
+At time                  740, clock =  10, red = 0, yellow = 0, green = 1
+At time                  890, clock =   2, red = 1, yellow = 0, green = 0
+At time                  920, clock =   0, red = 1, yellow = 0, green = 0
+At time                  930, clock =   0, red = 1, yellow = 0, green = 0
+===========Failed===========          2
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/traffic_light/testbench.v:78: $finish called at 930 (1ns)
+  alu
+    Simulation Output: WARNING: /home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/alu/testbench.v:43: $readmemh(reference.dat): Not enough words in the file for the requested range [0:31].
+===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/alu/testbench.v:86: $finish called at 175000 (1ps)
+  clkgenerator
+    Simulation Output: =========== Test completed with          20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/clkgenerator/testbench.v:29: $finish called at 100 (1s)
+
+COMPILE ERROR (5 modules):
+------------------------------
+  asyn_fifo
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/FIFO/asyn_fifo/testbench.v:102: sorry: break statements not supported.
+  radix2_div
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/radix2_div.sv:59: syntax error
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/radix2_div.sv:59: error: Malformed statement
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/radix2_div.sv:60: syntax error
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/radix2_div.sv:60: error: Malformed statement
+  ring_counter
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Control/Counter/ring_counter/testbench.v:20: sorry: Assignment to an entire array or to an array slice is not yet supported.
+Elaboration failed
+  multi_8bit
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/multi_8bit.sv:21: error: product is not a valid l-value in testbench.uut.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/multi_8bit.sv:4:      : product is declared here as wire.
+1 error(s) during elaboration.
+  adder_32bit
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:51: warning: Port 4 (C_out) of cla_4bit expects 4 bits, got 1.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:51:        : Padding 3 high bits of the port.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:60: warning: Port 4 (C_out) of cla_4bit expects 4 bits, got 1.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:60:        : Padding 3 high bits of the port.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:69: warning: Port 4 (C_out) of cla_4bit expects 4 bits, got 1.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:69:        : Padding 3 high bits of the port.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:78: warning: Port 4 (C_out) of cla_4bit expects 4 bits, got 1.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:78:        : Padding 3 high bits of the port.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:87: warning: Port 4 (C_out) of cla_4bit expects 4 bits, got 1.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:87:        : Padding 3 high bits of the port.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:98: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:98: error: Unable to elaborate r-value: (P_local['sd1])^(C_inter['sd0]['sd0])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:99: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:99: error: Unable to elaborate r-value: (P_local['sd2])^(C_inter['sd0]['sd1])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:100: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:100: error: Unable to elaborate r-value: (P_local['sd3])^(C_inter['sd0]['sd2])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:102: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:102: error: Unable to elaborate r-value: (P_local['sd4])^(C_inter['sd0]['sd3])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:103: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:103: error: Unable to elaborate r-value: (P_local['sd5])^(C_inter['sd1]['sd0])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:104: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:104: error: Unable to elaborate r-value: (P_local['sd6])^(C_inter['sd1]['sd1])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:105: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:105: error: Unable to elaborate r-value: (P_local['sd7])^(C_inter['sd1]['sd2])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:107: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:107: error: Unable to elaborate r-value: (P_local['sd8])^(C_inter['sd1]['sd3])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:108: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:108: error: Unable to elaborate r-value: (P_local['sd9])^(C_inter['sd2]['sd0])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:109: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:109: error: Unable to elaborate r-value: (P_local['sd10])^(C_inter['sd2]['sd1])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:110: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:110: error: Unable to elaborate r-value: (P_local['sd11])^(C_inter['sd2]['sd2])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:112: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:112: error: Unable to elaborate r-value: (P_local['sd12])^(C_inter['sd2]['sd3])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:113: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:113: error: Unable to elaborate r-value: (P_local['sd13])^(C_inter['sd3]['sd0])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:114: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:114: error: Unable to elaborate r-value: (P_local['sd14])^(C_inter['sd3]['sd1])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:115: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:115: error: Unable to elaborate r-value: (P_local['sd15])^(C_inter['sd3]['sd2])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:51: warning: Port 4 (C_out) of cla_4bit expects 4 bits, got 1.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:51:        : Padding 3 high bits of the port.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:60: warning: Port 4 (C_out) of cla_4bit expects 4 bits, got 1.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:60:        : Padding 3 high bits of the port.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:69: warning: Port 4 (C_out) of cla_4bit expects 4 bits, got 1.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:69:        : Padding 3 high bits of the port.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:78: warning: Port 4 (C_out) of cla_4bit expects 4 bits, got 1.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:78:        : Padding 3 high bits of the port.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:87: warning: Port 4 (C_out) of cla_4bit expects 4 bits, got 1.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:87:        : Padding 3 high bits of the port.
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:98: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:98: error: Unable to elaborate r-value: (P_local['sd1])^(C_inter['sd0]['sd0])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:99: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:99: error: Unable to elaborate r-value: (P_local['sd2])^(C_inter['sd0]['sd1])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:100: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:100: error: Unable to elaborate r-value: (P_local['sd3])^(C_inter['sd0]['sd2])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:102: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:102: error: Unable to elaborate r-value: (P_local['sd4])^(C_inter['sd0]['sd3])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:103: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:103: error: Unable to elaborate r-value: (P_local['sd5])^(C_inter['sd1]['sd0])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:104: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:104: error: Unable to elaborate r-value: (P_local['sd6])^(C_inter['sd1]['sd1])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:105: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:105: error: Unable to elaborate r-value: (P_local['sd7])^(C_inter['sd1]['sd2])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:107: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:107: error: Unable to elaborate r-value: (P_local['sd8])^(C_inter['sd1]['sd3])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:108: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:108: error: Unable to elaborate r-value: (P_local['sd9])^(C_inter['sd2]['sd0])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:109: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:109: error: Unable to elaborate r-value: (P_local['sd10])^(C_inter['sd2]['sd1])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:110: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:110: error: Unable to elaborate r-value: (P_local['sd11])^(C_inter['sd2]['sd2])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:112: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:112: error: Unable to elaborate r-value: (P_local['sd12])^(C_inter['sd2]['sd3])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:113: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:113: error: Unable to elaborate r-value: (P_local['sd13])^(C_inter['sd3]['sd0])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:114: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:114: error: Unable to elaborate r-value: (P_local['sd14])^(C_inter['sd3]['sd1])
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:115: error: the number of indices (2) is greater than the number of dimensions (1).
+/home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t2/adder_32bit.sv:115: error: Unable to elaborate r-value: (P_local['sd15])^(C_inter['sd3]['sd2])
+60 error(s) during elaboration.
+
+TIMEOUT (1 modules):
+------------------------------
+  serial2parallel
+    Simulation Error: Simulation timed out after 1 seconds
+
+================================================================================
+END OF TEST RESULTS
+================================================================================

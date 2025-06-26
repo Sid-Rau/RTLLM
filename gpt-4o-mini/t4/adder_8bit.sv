@@ -1,9 +1,9 @@
 module adder_8bit (
-    input  [7:0] a,
-    input  [7:0] b,
-    input        cin,
+    input [7:0] a,
+    input [7:0] b,
+    input cin,
     output [7:0] sum,
-    output       cout
+    output cout
 );
     wire [7:0] carry;
 

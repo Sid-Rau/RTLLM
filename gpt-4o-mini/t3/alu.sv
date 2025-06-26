@@ -13,9 +13,9 @@ module alu (
     assign r = res;
     assign zero = (res == 32'b0);
     assign negative = res[31];
-    assign carry = (aluc == 6'b100000) ? (a + b < a) : 1'b0;
-    assign overflow = ((aluc == 6'b100000 || aluc == 6'b100010) && ((a[31] == b[31]) && (res[31] != a[31])));
-    assign flag = (aluc == 6'b101010) ? (a < b) : (aluc == 6'b101011) ? (a < b) : 1'b0;
+    assign carry = (aluc == 6'b100000) ? (a + b) < a : 1'b0;
+    assign overflow = (aluc == 6'b100000) ? (a[31] == b[31] && res[31] != a[31]) : 1'b0;
+    assign flag = (aluc == 6'b101010) ? (a < b) : (aluc == 6'b101011) ? (a < b) : 1'bz;
 
     always @(*) begin
         case (aluc)

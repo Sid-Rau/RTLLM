@@ -1,4 +1,4 @@
-module multi_16bit (
+module multi_16bit(
     input clk,
     input rst_n,
     input start,
@@ -27,7 +27,7 @@ module multi_16bit (
             end else begin
                 i <= 0;
             end
-            
+
             if (i == 0) begin
                 areg <= ain;
                 breg <= bin;
@@ -37,7 +37,7 @@ module multi_16bit (
                     yout_r <= yout_r + (breg << (i-1));
                 end
             end
-            
+
             if (i == 16) begin
                 done_r <= 1;
             end else if (i == 17) begin

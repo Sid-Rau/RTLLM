@@ -8,49 +8,72 @@ module traffic_light(
     output reg green
 );
     reg [7:0] cnt;
-    reg [1:0] state, next_state;
+    reg [1:0] state;
     reg p_red, p_yellow, p_green;
-    
-    parameter idle = 2'b00, s1_red = 2'b01, s2_yellow = 2'b10, s3_green = 2'b11;
+
+    parameter idle = 2'b00, 
+              s1_red = 2'b01, 
+              s2_yellow = 2'b10, 
+              s3_green = 2'b11;
 
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             state <= idle;
-            cnt <= 10;
+            cnt <= 8'd10;
         end else begin
-            state <= next_state;
-            if (state == s3_green && cnt > 10) cnt <= 10;
-            else if (state == s3_green && p_green) cnt <= 60;
-            else if (state == s2_yellow && p_yellow) cnt <= 5;
-            else if (state == s1_red && p_red) cnt <= 10;
-            else if (cnt > 0) cnt <= cnt - 1;
+            case (state)
+                idle: begin
+                    red <= 0;
+                    yellow <= 0;
+                    green <= 0;
+                    state <= s1_red;
+                end
+                s1_red: begin
+                    red <= 1;
+                    yellow <= 0;
+                    green <= 0;
+                    if (cnt == 0) begin
+                        state <= s3_green;
+                    end
+                end
+                s2_yellow: begin
+                    red <= 0;
+                    yellow <= 1;
+                    green <= 0;
+                    if (cnt == 0) begin
+                        state <= s1_red;
+                    end
+                end
+                s3_green: begin
+                    red <= 0;
+                    yellow <= 0;
+                    green <= 1;
+                    if (cnt == 0) begin
+                        state <= s2_yellow;
+                    end
+                end
+            endcase
         end
     end
-    
-    always @(*) begin
-        case (state)
-            idle: next_state = s1_red;
-            s1_red: begin
-                red = 1;
-                yellow = 0;
-                green = 0;
-                if (cnt == 0) next_state = s3_green; else next_state = s1_red;
+
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            cnt <= 8'd10;
+        end else begin
+            if (pass_request && green) begin
+                cnt <= 8'd10;
+            end else if (!green && p_green) begin
+                cnt <= 8'd60;
+            end else if (!yellow && p_yellow) begin
+                cnt <= 8'd5;
+            end else if (!red && p_red) begin
+                cnt <= 8'd10;
+            end else begin
+                if (cnt > 0) cnt <= cnt - 1;
             end
-            s2_yellow: begin
-                red = 0;
-                yellow = 1;
-                green = 0;
-                if (cnt == 0) next_state = s1_red; else next_state = s2_yellow;
-            end
-            s3_green: begin
-                red = 0;
-                yellow = 0;
-                green = 1;
-                if (cnt == 0) next_state = s2_yellow; else next_state = s3_green;
-            end
-        endcase
+        end
     end
-    
+
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             p_red <= 0;
@@ -62,7 +85,7 @@ module traffic_light(
             p_green <= green;
         end
     end
-    
+
     assign clock = cnt;
 
 endmodule

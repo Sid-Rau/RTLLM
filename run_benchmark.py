@@ -397,18 +397,27 @@ def pretty_print_module_stats(stats: dict) -> None:
     stats_copy = stats.copy()
     overall = stats_copy.pop("OVERALL", None)
     header = (
-        f"{'Module':<20}  {'':<2}  {'Passed':>8}  {'Syntax':>6}  {'Failed':>6}  "
-        f"{'Compile':>8}  {'Sim':>5}  {'Timeout':>7}"
+        f"{'Module':<25}  {'Functional':^11}  {'Syntax':^8}  {'Passed':^8}  {'Failed':^8}  "
+        f"{'Compile':^8}  {'Sim':^6}  {'Timeout':^8}"
     )
     print(header)
     print("-" * len(header))
-    for module, s in sorted(stats_copy.items()):
+    # Sort: functional (✓) first, then among non-functional, syntax passing (✓) first, then by module name
+    sorted_items = sorted(
+        stats_copy.items(),
+        key=lambda x: (
+            -(x[1]['test_passed'] > 0),
+            -(x[1]['test_passed'] == 0 and x[1].get('ever_compiled', False)),
+            x[0]
+        )
+    )
+    for module, s in sorted_items:
         functional = '✓' if s['test_passed'] > 0 else '✗'
         passed_ratio = f"{s['test_passed']}/{s['runs']}"
         syntax_correct = '✓' if s.get('ever_compiled', False) else '✗'
         print(
-            f"{module:<20}  {functional:<2}  {passed_ratio:>8}  {syntax_correct:>6}  {s['test_failed']:>6}  "
-            f"{s['compile_error']:>8}  {s['simulation_error']:>5}  {s['timeout']:>7}"
+            f"{module:<25}  {functional:^11}  {syntax_correct:^8}  {passed_ratio:^8}  {s['test_failed']:^8}  "
+            f"{s['compile_error']:^8}  {s['simulation_error']:^6}  {s['timeout']:^8}"
         )
     if overall:
         print("\nOverall statistics across all modules and all runs:")
@@ -421,7 +430,7 @@ def pretty_print_module_stats(stats: dict) -> None:
         print(f"Total timeouts:     {overall['timeout']}")
         print(f"Overall pass rate:  {overall['pass_rate']*100:.1f}%")
         print(f"Functional modules: {overall['functional']} / {overall['total_modules']}")
-        print(f"Syntax correct:     {overall['syntax_correct']} / {overall['total_modules']}")
+        print(f"Syntax correct:     {overall['syntax_correct']} / {overall['total_modules']}\n")
 
 def write_combined_stats_to_log(results_list: list[dict], rtl_dirs: list[str], stats: dict, filename: Optional[str] = None, filename_prefix: Optional[str] = None, logs_dir: str = "logs") -> str:
     """
@@ -484,60 +493,57 @@ def write_combined_stats_to_log(results_list: list[dict], rtl_dirs: list[str], s
         log_file.write("PER-MODULE STATISTICS\n")
         log_file.write("-" * 60 + "\n")
         header = (
-            f"{'Module':<20}  {'':<2}  {'Passed':>8}  {'Syntax':>6}  {'Failed':>6}  "
-            f"{'Compile':>8}  {'Sim':>5}  {'Timeout':>7}\n"
+            f"{'Module':<25}  {'Functional':^11}  {'Syntax':^8}  {'Passed':^8}  {'Failed':^8}  "
+            f"{'Compile':^8}  {'Sim':^6}  {'Timeout':^8}\n"
         )
         log_file.write(header)
         log_file.write("-" * len(header) + "\n")
-        for module, s in sorted(stats_copy.items()):
+        # Sort: functional (✓) first, then among non-functional, syntax passing (✓) first, then by module name
+        sorted_items = sorted(
+            stats_copy.items(),
+            key=lambda x: (
+                -(x[1]['test_passed'] > 0),
+                -(x[1]['test_passed'] == 0 and x[1].get('ever_compiled', False)),
+                x[0]
+            )
+        )
+        for module, s in sorted_items:
             functional = '✓' if s['test_passed'] > 0 else '✗'
             passed_ratio = f"{s['test_passed']}/{s['runs']}"
             syntax_correct = '✓' if s.get('ever_compiled', False) else '✗'
             log_file.write(
-                f"{module:<20}  {functional:<2}  {passed_ratio:>8}  {syntax_correct:>6}  {s['test_failed']:>6}  "
-                f"{s['compile_error']:>8}  {s['simulation_error']:>5}  {s['timeout']:>7}\n"
+                f"{module:<25}  {functional:^11}  {syntax_correct:^8}  {passed_ratio:^8}  {s['test_failed']:^8}  "
+                f"{s['compile_error']:^8}  {s['simulation_error']:^6}  {s['timeout']:^8}\n"
             )
         log_file.write("\n")
-        for i, (result_dict, rtl_dir) in enumerate(zip(results_list, rtl_dirs)):
+        # --- DETAILED RESULTS BY MODULE ---
+        # Build a mapping: module_name -> list of (attempt/run, result_dict, rtl_dir)
+        module_attempts = {}
+        for run_idx, (result_dict, rtl_dir) in enumerate(zip(results_list, rtl_dirs), 1):
             if result_dict is None:
                 continue
-            log_file.write(f"DETAILED RESULTS - {os.path.basename(rtl_dir)}\n")
-            log_file.write("=" * 80 + "\n")
-            log_file.write(f"RTL Directory: {rtl_dir}\n")
-            log_file.write(f"Total Modules Tested: {len(result_dict)}\n")
-            passed = sum(1 for result in result_dict.values() if result["status"] == "test_passed")
-            failed = sum(1 for result in result_dict.values() if result["status"] == "test_failed")
-            compile_errors = sum(1 for result in result_dict.values() if result["status"] == "compile_error")
-            sim_errors = sum(1 for result in result_dict.values() if result["status"] == "simulation_error")
-            timeouts = sum(1 for result in result_dict.values() if result["status"] == "timeout")
-            log_file.write(f"Passed: {passed}, Failed: {failed}, Compile Errors: {compile_errors}, "
-                          f"Simulation Errors: {sim_errors}, Timeouts: {timeouts}\n")
-            log_file.write(f"Success Rate: {(passed/len(result_dict)*100):.1f}%\n\n")
-            status_groups = {
-                "test_passed": [],
-                "test_failed": [],
-                "compile_error": [],
-                "simulation_error": [],
-                "timeout": []
-            }
             for module_name, result in result_dict.items():
-                status_groups[result["status"]].append((module_name, result))
-            for status, modules in status_groups.items():
-                if modules:
-                    log_file.write(f"{status.upper().replace('_', ' ')} ({len(modules)} modules):\n")
-                    log_file.write("-" * 40 + "\n")
-                    for module_name, result in modules:
-                        log_file.write(f"  {module_name}\n")
-                        if result["status"] != "test_passed":
-                            if result["compile_stderr"]:
-                                log_file.write(f"    Compile Error: {result['compile_stderr'].strip()}\n")
-                            if result["sim_stderr"]:
-                                log_file.write(f"    Simulation Error: {result['sim_stderr'].strip()}\n")
-                            if result["compile_stdout"]:
-                                log_file.write(f"    Compile Output: {result['compile_stdout'].strip()}\n")
-                            if result["sim_stdout"]:
-                                log_file.write(f"    Simulation Output: {result['sim_stdout'].strip()}\n")
-            log_file.write("\n" + "=" * 80 + "\n\n")
+                if module_name not in module_attempts:
+                    module_attempts[module_name] = []
+                module_attempts[module_name].append((run_idx, result, rtl_dir))
+        
+        log_file.write("DETAILED RESULTS BY MODULE\n")
+        log_file.write("=" * 80 + "\n")
+        for module_name in sorted(module_attempts.keys()):
+            log_file.write(f"MODULE: {module_name}\n")
+            log_file.write("-" * 40 + "\n")
+            for run_idx, result, rtl_dir in module_attempts[module_name]:
+                log_file.write(f"  Attempt {run_idx} (from {os.path.basename(rtl_dir)}): Status: {result['status']}\n")
+                if result["status"] != "test_passed":
+                    if result["compile_stderr"]:
+                        log_file.write(f"    Compile Error: {result['compile_stderr'].strip()}\n")
+                    if result["sim_stderr"]:
+                        log_file.write(f"    Simulation Error: {result['sim_stderr'].strip()}\n")
+                    if result["compile_stdout"]:
+                        log_file.write(f"    Compile Output: {result['compile_stdout'].strip()}\n")
+                    if result["sim_stdout"]:
+                        log_file.write(f"    Simulation Output: {result['sim_stdout'].strip()}\n")
+            log_file.write("\n")
         log_file.write("=" * 100 + "\n")
         log_file.write("END OF COMBINED TEST RESULTS\n")
         log_file.write("=" * 100 + "\n")
@@ -651,8 +657,15 @@ def generate_stats_table_image(stats: dict, filename_prefix: str, logs_dir: str 
         print("No module statistics available for table generation.")
         return ""
     
-    # Sort modules by pass rate (descending)
-    sorted_modules = sorted(module_stats.items(), key=lambda x: x[1]['pass_rate'], reverse=True)
+    # Sort: functional (✓) first, then among non-functional, syntax passing (✓) first, then by module name
+    sorted_modules = sorted(
+        module_stats.items(),
+        key=lambda x: (
+            -(x[1]['test_passed'] > 0),
+            -(x[1]['test_passed'] == 0 and x[1].get('ever_compiled', False)),
+            x[0]
+        )
+    )
     
     # Create figure and axis with reduced height
     fig, ax = plt.subplots(figsize=(16, max(6, len(module_stats) * 0.3)))
@@ -661,7 +674,7 @@ def generate_stats_table_image(stats: dict, filename_prefix: str, logs_dir: str 
     
     # Prepare data for the table with reorganized columns
     table_data = [
-        ['Module', '', 'Passed', 'Syntax', 'Failed', 'Compile', 'Sim', 'Timeout']
+        ['Module', 'Functional', 'Syntax', 'Passed', 'Failed', 'Compile', 'Sim', 'Timeout']
     ]
     
     for module_name, module_data in sorted_modules:
@@ -671,8 +684,8 @@ def generate_stats_table_image(stats: dict, filename_prefix: str, logs_dir: str 
         table_data.append([
             module_name,
             functional,
-            passed_ratio,
             syntax_correct,
+            passed_ratio,
             str(module_data['test_failed']),
             str(module_data['compile_error']),
             str(module_data['simulation_error']),

@@ -1,4 +1,4 @@
-module pulse_detect (
+module pulse_detect(
     input clk,
     input rst_n,
     input data_in,
@@ -26,7 +26,7 @@ module pulse_detect (
                 end
                 2'b10: begin
                     if (data_in) begin
-                        state <= 2'b01;
+                        state <= 2'b01; // stay in state 01
                         data_out <= 0;
                     end else begin
                         state <= 2'b00;

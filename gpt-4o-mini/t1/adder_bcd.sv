@@ -1,4 +1,4 @@
-module adder_bcd(
+module adder_bcd (
     input [3:0] A,
     input [3:0] B,
     input Cin,
@@ -6,10 +6,13 @@ module adder_bcd(
     output reg Cout
 );
     wire [4:0] total;
+    wire correction;
+
     assign total = A + B + Cin;
+    assign correction = total > 9;
 
     always @(*) begin
-        if (total > 9) begin
+        if (correction) begin
             Sum = total + 6;
             Cout = 1;
         end else begin

@@ -1,4 +1,4 @@
-module adder_bcd(
+module adder_bcd (
     input [3:0] A,
     input [3:0] B,
     input Cin,

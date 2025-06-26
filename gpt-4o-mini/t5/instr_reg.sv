@@ -18,6 +18,7 @@ module instr_reg(
             case (fetch)
                 2'b01: ins_p1 <= data;
                 2'b10: ins_p2 <= data;
+                default: ;
             endcase
         end
     end

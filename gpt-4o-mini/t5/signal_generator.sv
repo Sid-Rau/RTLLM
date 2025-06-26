@@ -14,16 +14,14 @@ module signal_generator (
                 0: begin
                     if (wave < 31) begin
                         wave <= wave + 1;
-                    end
-                    if (wave == 31) begin
+                    end else begin
                         state <= 1;
                     end
                 end
                 1: begin
                     if (wave > 0) begin
                         wave <= wave - 1;
-                    end
-                    if (wave == 0) begin
+                    end else begin
                         state <= 0;
                     end
                 end

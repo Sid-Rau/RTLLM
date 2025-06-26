@@ -1,4 +1,4 @@
-module float_multi(
+module float_multi (
     input clk,
     input rst,
     input [31:0] a,
@@ -19,44 +19,41 @@ module float_multi(
         end else begin
             case (counter)
                 3'b000: begin
-                    a_mantissa <= {1'b1, a[22:0]};
-                    b_mantissa <= {1'b1, b[22:0]};
-                    a_exponent <= a[30:23] - 127;
-                    b_exponent <= b[30:23] - 127;
                     a_sign <= a[31];
                     b_sign <= b[31];
+                    a_exponent <= a[30:23];
+                    b_exponent <= b[30:23];
+                    a_mantissa <= {1'b1, a[22:0]};
+                    b_mantissa <= {1'b1, b[22:0]};
                     counter <= counter + 1;
                 end
                 3'b001: begin
-                    if (a[30:23] == 255 || b[30:23] == 255) begin
-                        z <= (a[30:23] == 255 && a[22:0] != 0) || (b[30:23] == 255 && b[22:0] != 0) ? 32'h7FC00000 : 32'h7F800000;
-                    end else if (a[30:23] == 0 || b[30:23] == 0) begin
-                        z <= 32'b0;
+                    if (a_exponent == 255 || b_exponent == 255) begin
+                        z <= {a_sign ^ b_sign, 255, 0}; // NaN or Infinity
                     end else begin
                         z_sign <= a_sign ^ b_sign;
-                        z_exponent <= a_exponent + b_exponent + 1;
+                        z_exponent <= a_exponent + b_exponent - 127;
                         product <= a_mantissa * b_mantissa;
                         counter <= counter + 1;
                     end
                 end
                 3'b010: begin
-                    z_mantissa <= product[47:24];
+                    z_mantissa <= product[47:24]; // Take the top 24 bits
                     guard_bit <= product[23];
                     round_bit <= product[22];
                     sticky <= |product[21:0];
                     if (z_mantissa[23]) begin
-                        z_mantissa <= z_mantissa >> 1;
                         z_exponent <= z_exponent + 1;
-                    end else if (z_mantissa[22:21] == 2'b00) begin
-                        if (guard_bit && (round_bit || sticky)) begin
-                            z_mantissa <= z_mantissa + 1;
-                        end
+                        z_mantissa <= z_mantissa >> 1;
                     end
                     counter <= counter + 1;
                 end
                 3'b011: begin
-                    z <= {z_sign, z_exponent[7:0] + 127, z_mantissa[22:0]};
-                    counter <= 3'b000;
+                    if (round_bit & (guard_bit | sticky)) begin
+                        z_mantissa <= z_mantissa + 1;
+                    end
+                    z <= {z_sign, z_exponent[7:0], z_mantissa[22:0]};
+                    counter <= 3'b000; // Reset for next operation
                 end
             endcase
         end

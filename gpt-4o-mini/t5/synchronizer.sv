@@ -14,7 +14,7 @@ module synchronizer (
 
     always @(posedge clk_a or negedge arstn) begin
         if (!arstn)
-            data_reg <= 4'b0000;
+            data_reg <= 4'b0;
         else
             data_reg <= data_in;
     end
@@ -38,7 +38,7 @@ module synchronizer (
 
     always @(posedge clk_b or negedge brstn) begin
         if (!brstn)
-            dataout <= 4'b0000;
+            dataout <= 4'b0;
         else if (en_clap_two)
             dataout <= data_reg;
     end

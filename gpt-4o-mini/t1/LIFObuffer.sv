@@ -1,4 +1,4 @@
-module LIFObuffer (
+module LIFObuffer(
     input [3:0] dataIn,
     input RW,
     input EN,
@@ -19,16 +19,20 @@ module LIFObuffer (
             stack_mem[2] <= 4'b0000;
             stack_mem[3] <= 4'b0000;
         end else if (EN) begin
-            if (RW == 1'b0 && SP < 2'b11) begin
-                stack_mem[SP] <= dataIn;
-                SP <= SP + 1;
-            end else if (RW == 1'b1 && SP > 2'b00) begin
-                SP <= SP - 1;
-                dataOut <= stack_mem[SP - 1];
-                stack_mem[SP - 1] <= 4'b0000;
+            if (RW == 1'b0) begin
+                if (!FULL) begin
+                    stack_mem[SP] <= dataIn;
+                    SP <= SP + 1;
+                end
+            end else begin
+                if (!EMPTY) begin
+                    SP <= SP - 1;
+                    dataOut <= stack_mem[SP];
+                    stack_mem[SP] <= 4'b0000;
+                end
             end
         end
         EMPTY <= (SP == 2'b00);
-        FULL <= (SP == 2'b11);
+        FULL <= (SP == 2'b10);
     end
 endmodule

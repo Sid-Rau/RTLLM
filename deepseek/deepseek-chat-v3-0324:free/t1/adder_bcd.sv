@@ -1,17 +1,22 @@
-module adder_bcd(
+module adder_bcd (
     input [3:0] A,
     input [3:0] B,
     input Cin,
-    output [3:0] Sum,
-    output Cout
+    output reg [3:0] Sum,
+    output reg Cout
 );
 
-    wire [4:0] sum_temp;
-    wire correction;
+    reg [4:0] temp_sum;
 
-    assign sum_temp = A + B + Cin;
-    assign correction = (sum_temp > 9) ? 1'b1 : 1'b0;
-    assign Sum = correction ? (sum_temp + 6) : sum_temp;
-    assign Cout = correction;
+    always @(*) begin
+        temp_sum = A + B + Cin;
+        if (temp_sum > 9) begin
+            temp_sum = temp_sum + 6;
+            Cout = 1;
+        end else begin
+            Cout = 0;
+        end
+        Sum = temp_sum[3:0];
+    end
 
 endmodule

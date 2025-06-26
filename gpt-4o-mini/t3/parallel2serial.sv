@@ -1,4 +1,4 @@
-module parallel2serial(
+module parallel2serial (
     input clk,
     input rst_n,
     input [3:0] d,
@@ -10,19 +10,20 @@ module parallel2serial(
 
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            cnt <= 2'b00;
+            cnt <= 0;
             valid_out <= 0;
             dout <= 0;
+            data <= 0;
         end else begin
-            if (cnt == 2'b11) begin
+            if (cnt == 3) begin
                 data <= d;
-                cnt <= 2'b00;
+                cnt <= 0;
                 valid_out <= 1;
             end else begin
-                dout <= data[3];
-                data <= {data[2:0], 1'b0};
                 cnt <= cnt + 1;
                 valid_out <= 0;
+                dout <= data[3];
+                data <= {data[2:0], data[3]};
             end
         end
     end

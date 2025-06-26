@@ -1,7 +1,7 @@
 module traffic_light(
-    input wire rst_n,
-    input wire clk,
-    input wire pass_request,
+    input rst_n,
+    input clk,
+    input pass_request,
     output reg [7:0] clock,
     output reg red,
     output reg yellow,
@@ -21,12 +21,32 @@ module traffic_light(
         end
     end
 
-    always @(*) begin
-        case(state)
-            idle: next_state = s1_red;
-            s1_red: next_state = (cnt == 8'd10) ? s3_green : s1_red;
-            s2_yellow: next_state = (cnt == 8'd5) ? s1_red : s2_yellow;
-            s3_green: next_state = (cnt == 8'd60) ? s2_yellow : s3_green;
+    always @(state or cnt or pass_request) begin
+        case (state)
+            idle: begin
+                next_state = s1_red;
+            end
+            s1_red: begin
+                red = 1;
+                yellow = 0;
+                green = 0;
+                if (cnt == 0) next_state = s3_green;
+                else next_state = s1_red;
+            end
+            s2_yellow: begin
+                red = 0;
+                yellow = 1;
+                green = 0;
+                if (cnt == 0) next_state = s1_red;
+                else next_state = s2_yellow;
+            end
+            s3_green: begin
+                red = 0;
+                yellow = 0;
+                green = 1;
+                if (cnt == 0) next_state = s2_yellow;
+                else next_state = s3_green;
+            end
             default: next_state = idle;
         endcase
     end
@@ -43,43 +63,21 @@ module traffic_light(
                 cnt <= 8'd5;
             end else if (!red && p_red) begin
                 cnt <= 8'd10;
-            end else begin
-                if (cnt > 0) cnt <= cnt - 1;
+            end else if (cnt > 0) begin
+                cnt <= cnt - 1;
             end
         end
     end
 
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            p_red <= 1'b0;
-            p_yellow <= 1'b0;
-            p_green <= 1'b0;
+            p_red <= 0;
+            p_yellow <= 0;
+            p_green <= 0;
         end else begin
             p_red <= red;
             p_yellow <= yellow;
             p_green <= green;
-            case(state)
-                s1_red: begin
-                    red <= 1'b1;
-                    yellow <= 1'b0;
-                    green <= 1'b0;
-                end
-                s2_yellow: begin
-                    red <= 1'b0;
-                    yellow <= 1'b1;
-                    green <= 1'b0;
-                end
-                s3_green: begin
-                    red <= 1'b0;
-                    yellow <= 1'b0;
-                    green <= 1'b1;
-                end
-                default: begin
-                    red <= 1'b0;
-                    yellow <= 1'b0;
-                    green <= 1'b0;
-                end
-            endcase
         end
     end
 

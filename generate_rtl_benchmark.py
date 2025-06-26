@@ -38,7 +38,7 @@ PROVIDER_CONFIGS = {
     "google": {
         "api_key_env": "GOOGLE_API_KEY",
         "provider": "google_genai",
-        "models": ["gemini-1.5-pro", "gemini-1.5-flash", "gemini-2.0-pro", "gemini-2.0-flash"]
+        "models": ["gemini-2.0-pro", "gemini-2.0-flash", "gemini-2.5-pro", "gemini-2.5-flash"]
     },
     "deepseek": {
         "api_key_env": "DEEPSEEK_API_KEY",
@@ -56,8 +56,8 @@ PROVIDER_CONFIGS = {
             "openai/gpt-4o-mini",
             "openai/gpt-3.5-turbo",
             "anthropic/claude-3-5-sonnet-20241022",
-            "google/gemini-2.0-pro",
-            "google/gemini-2.0-flash"
+            "google/gemini-2.5-pro",
+            "google/gemini-2.5-flash"
         ]
     }
 }
@@ -237,45 +237,6 @@ def test_client_connection(client, provider: str, model_name: str) -> bool:
         print(f"✗ Connection failed: {e}")
         return False
 
-def validate_benchmark_directories(benchmark_dirs: list) -> bool:
-    """
-    Validate that benchmark directories exist and have required files.
-    
-    Args:
-        benchmark_dirs: List of benchmark directory paths
-        
-    Returns:
-        bool: True if all directories are valid, False otherwise
-    """
-    if not benchmark_dirs:
-        print("✗ No benchmark directories found!")
-        return False
-    
-    print(f"Validating {len(benchmark_dirs)} benchmark directories...")
-    valid_dirs = []
-    
-    for benchmark_dir in benchmark_dirs:
-        module_name = os.path.basename(benchmark_dir)
-        description_file = os.path.join(benchmark_dir, "design_description.txt")
-        testbench_file = os.path.join(benchmark_dir, "testbench.v")
-        
-        if not os.path.exists(description_file):
-            print(f"✗ Missing design_description.txt in {module_name}")
-            continue
-            
-        if not os.path.exists(testbench_file):
-            print(f"✗ Missing testbench.v in {module_name}")
-            continue
-            
-        valid_dirs.append(benchmark_dir)
-    
-    if len(valid_dirs) != len(benchmark_dirs):
-        print(f"✗ Only {len(valid_dirs)}/{len(benchmark_dirs)} benchmark directories are valid!")
-        return False
-    
-    print(f"✓ All {len(valid_dirs)} benchmark directories are valid")
-    return True
-
 # --- Main Execution ---
 def main():
     parser = argparse.ArgumentParser(description="RTL Generation Benchmark with Multiple LLM Providers")
@@ -286,13 +247,12 @@ def main():
     parser.add_argument("--pass-at-k", type=int, default=PASS_AT_K, help=f"Number of attempts per design (default: {PASS_AT_K})")
     parser.add_argument("--output-dir", default=None, help=f"Base output directory for generated RTL (creates t1, t2, etc. subdirectories). If not set, uses the model name.")
     parser.add_argument("--detailed", action="store_true", help="Enable detailed output and log file generation")
-    parser.add_argument("--list-providers", action="store_true", help="List available providers and their models")
+    parser.add_argument("--list", action="store_true", help="List available providers and their models")
     parser.add_argument("--skip-generation", action="store_true", help="Skip RTL generation and only run the benchmark on the output directory.")
     parser.add_argument("--workers", type=int, default=4, help="Number of worker threads for concurrent generation (default: 4)")
-    parser.add_argument("--skip-validation", action="store_true", help="Skip connection and benchmark validation (use with caution)")
     args = parser.parse_args()
 
-    if args.list_providers:
+    if args.list:
         print("Available providers and models:")
         print("=" * 50)
         for provider, config in PROVIDER_CONFIGS.items():
@@ -328,54 +288,31 @@ def main():
         return
 
     # Validate configuration and connection before starting generation
-    if not args.skip_validation:
-        print("\n" + "="*60)
-        print("VALIDATION PHASE")
-        print("="*60)
-        
-        # Validate benchmark directories
-        benchmark_dirs = build_benchmark_directory_list()
-        if not validate_benchmark_directories(benchmark_dirs):
-            print("\n✗ Validation failed! Please check your benchmark directory structure.")
-            print("Each benchmark directory should contain:")
-            print("  - design_description.txt")
-            print("  - testbench.v")
-            return
-        
-        # Test client connection
-        try:
-            client = setup_langchain_client(
-                provider=args.provider,
-                model_name=args.model,
-                temperature=args.temperature,
-                max_tokens=args.max_tokens
-            )
-            print(f"LangChain client initialized with provider: {args.provider}, model: {args.model}")
-        except Exception as e:
-            print(f"\n✗ Failed to setup LangChain client: {e}")
-            print("Please check your API keys and provider configuration.")
-            return
-        
-        if not test_client_connection(client, args.provider, args.model):
-            print("\n✗ Connection test failed! Please check your API keys and network connection.")
-            return
-        
-        print("\n✓ All validations passed! Starting RTL generation...")
-    else:
-        print("\n⚠️  Skipping validation (use with caution)")
-        benchmark_dirs = build_benchmark_directory_list()
-        try:
-            client = setup_langchain_client(
-                provider=args.provider,
-                model_name=args.model,
-                temperature=args.temperature,
-                max_tokens=args.max_tokens
-            )
-            print(f"LangChain client initialized with provider: {args.provider}, model: {args.model}")
-        except Exception as e:
-            print(f"\n✗ Failed to setup LangChain client: {e}")
-            return
+    print("\n" + "="*60)
+    print("VALIDATION PHASE")
+    print("="*60)
+    
+    # Test client connection
+    try:
+        client = setup_langchain_client(
+            provider=args.provider,
+            model_name=args.model,
+            temperature=args.temperature,
+            max_tokens=args.max_tokens
+        )
+        print(f"LangChain client initialized with provider: {args.provider}, model: {args.model}")
+    except Exception as e:
+        print(f"\n✗ Failed to setup LangChain client: {e}")
+        print("Please check your API keys and provider configuration.")
+        return
+    
+    if not test_client_connection(client, args.provider, args.model):
+        print("\n✗ Connection test failed! Please check your API keys and network connection.")
+        return
+    
+    print("\n✓ Connection validation passed! Starting RTL generation...")
 
+    benchmark_dirs = build_benchmark_directory_list()
     print(f"Found {len(benchmark_dirs)} benchmark directories")
     os.makedirs(args.output_dir, exist_ok=True)
 

@@ -1,4 +1,4 @@
-module freq_div (
+module freq_div(
     input wire CLK_in,
     input wire RST,
     output reg CLK_50,

@@ -9,19 +9,32 @@ module div_16bit(
     reg [15:0] remainder;
     integer i;
 
-    always @(*) begin
+    always @* begin
         a_reg = A;
         b_reg = B;
-        remainder = a_reg;
+        remainder = 0;
         result = 0;
 
         for (i = 15; i >= 8; i = i - 1) begin
-            remainder = {remainder[14:0], 1'b0};
-            if (remainder[15:8] >= b_reg) begin
-                remainder[15:8] = remainder[15:8] - b_reg;
+            remainder = {remainder[14:0], a_reg[i]};
+            if (remainder >= b_reg) begin
+                remainder = remainder - b_reg;
                 result[i] = 1;
+            end else begin
+                result[i] = 0;
             end
         end
+
+        for (i = 7; i >= 0; i = i - 1) begin
+            remainder = {remainder[14:0], a_reg[i]};
+            if (remainder >= b_reg) begin
+                remainder = remainder - b_reg;
+                result[i] = 1;
+            end else begin
+                result[i] = 0;
+            end
+        end
+        
         odd = remainder;
     end
 endmodule

@@ -1,4 +1,4 @@
-module multi_pipe_4bit (
+module multi_pipe_4bit(
     input clk,
     input rst_n,
     input [3:0] mul_a,
@@ -19,15 +19,14 @@ module multi_pipe_4bit (
             end
         end else begin
             for (i = 0; i < size; i = i + 1) begin
-                partial_product[i] <= (mul_b[i] ? (mul_a << i) : 8'd0);
+                if (mul_b[i]) begin
+                    partial_product[i] <= {mul_a, 4'b0} << i;
+                end else begin
+                    partial_product[i] <= 8'd0;
+                end
+                sum_reg[i] <= sum_reg[i] + partial_product[i];
             end
-            
-            sum_reg[0] <= partial_product[0];
-            for (i = 1; i < size; i = i + 1) begin
-                sum_reg[i] <= sum_reg[i-1] + partial_product[i];
-            end
-            
-            mul_out <= sum_reg[size-1];
+            mul_out <= sum_reg[0] + sum_reg[1] + sum_reg[2] + sum_reg[3];
         end
     end
 endmodule

@@ -1,8 +1,8 @@
 module width_8to16 (
-    input wire clk,
-    input wire rst_n,
-    input wire valid_in,
-    input wire [7:0] data_in,
+    input clk,
+    input rst_n,
+    input valid_in,
+    input [7:0] data_in,
     output reg valid_out,
     output reg [15:0] data_out
 );

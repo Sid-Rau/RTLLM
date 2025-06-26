@@ -1,0 +1,156 @@
+================================================================================
+RTL BENCHMARK TEST RESULTS
+================================================================================
+Test Date: 2025-06-26 04:29:24
+RTL Directory: /home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t4
+Total Modules Tested: 50
+
+SUMMARY STATISTICS
+----------------------------------------
+Passed: 34
+Failed: 12
+Compile Errors: 3
+Simulation Errors: 0
+Timeouts: 1
+Success Rate: 68.0%
+
+DETAILED RESULTS
+----------------------------------------
+
+TEST PASSED (34 modules):
+------------------------------
+  adder_8bit
+  sub_64bit
+  multi_pipe_4bit
+  ROM
+  counter_12
+  fsm
+  freq_div
+  pe
+  JC_counter
+  edge_detect
+  width_8to16
+  sequence_detector
+  comparator_4bit
+  LIFObuffer
+  accu
+  square_wave
+  multi_8bit
+  RAM
+  multi_16bit
+  multi_booth_8bit
+  float_multi
+  multi_pipe_8bit
+  right_shifter
+  fixed_point_substractor
+  LFSR
+  calendar
+  adder_32bit
+  up_down_counter
+  instr_reg
+  adder_16bit
+  fixed_point_adder
+  comparator_3bit
+  adder_bcd
+  synchronizer
+
+TEST FAILED (12 modules):
+------------------------------
+  div_16bit
+    Simulation Output: ===========Test completed with          29 /100 failures===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Divider/div_16bit/testbench.v:31: $finish called at 1000000 (1ps)
+  barrel_shifter
+    Simulation Output: =========== Test completed with           1 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/barrel_shifter/testbench.v:31: $finish called at 80 (1s)
+  radix2_div
+    Simulation Output: Error: dividend=100, divisor= 10, expected=000a, got=147f
+Error: dividend=156, divisor= 10, expected=00f6, got=ec81
+Error: dividend=100, divisor=246, expected=00f6, got=0000
+Error: dividend=156, divisor=246, expected=000a, got=ec7f
+Error: dividend=123, divisor=123, expected=0001, got=147f
+Error: dividend=123, divisor=251, expected=7b00, got=0000
+Error: dividend=255, divisor=  7, expected=0324, got=0e7f
+===========Failed===========          7
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Divider/radix2_div/testbench.v:87: $finish called at 825000 (1ps)
+  freq_divbyfrac
+    Simulation Output: Failed at          0: clk=1, clk_div=0 (expected           1)
+Failed at          1: clk=0, clk_div=0 (expected           1)
+Failed at          3: clk=0, clk_div=1 (expected           0)
+Failed at          4: clk=1, clk_div=1 (expected           0)
+Failed at          5: clk=0, clk_div=1 (expected           0)
+Failed at          6: clk=1, clk_div=1 (expected           0)
+Failed at         10: clk=1, clk_div=1 (expected           0)
+Failed at         11: clk=0, clk_div=1 (expected           0)
+Failed at         14: clk=1, clk_div=0 (expected           1)
+Failed at         15: clk=0, clk_div=0 (expected           1)
+Failed at         17: clk=0, clk_div=1 (expected           0)
+Failed at         18: clk=1, clk_div=1 (expected           0)
+Failed at         19: clk=0, clk_div=1 (expected           0)
+=========== Test completed with          13/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyfrac/testbench.v:27: $finish called at 130000 (1ps)
+  parallel2serial
+    Simulation Output: ===========Test completed with          90 /100 failures===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/parallel2serial/testbench.v:63: $finish called at 10005 (1ns)
+  freq_divbyodd
+    Simulation Output: Failed at          1: clk=1, clk_div=0 (expected           1)
+Failed at          2: clk=0, clk_div=0 (expected           1)
+Failed at          3: clk=1, clk_div=0 (expected           1)
+Failed at          4: clk=0, clk_div=0 (expected           1)
+Failed at          6: clk=0, clk_div=1 (expected           0)
+Failed at          7: clk=1, clk_div=1 (expected           0)
+Failed at          8: clk=0, clk_div=1 (expected           0)
+Failed at          9: clk=1, clk_div=1 (expected           0)
+Failed at         10: clk=0, clk_div=1 (expected           0)
+=========== Test completed with           9/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyodd/testbench.v:27: $finish called at 130000 (1ps)
+  signal_generator
+    Simulation Output: ===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Signal generation/signal_generator/testbench.v:39: $finish called at 1010 (1s)
+  pulse_detect
+    Simulation Output: ===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/pulse_detect/testbench.v:43: $finish called at 148 (1ns)
+  freq_divbyeven
+    Simulation Output: Failed at          3: clk=0, clk_div=1 (expected           0)
+Failed at          4: clk=1, clk_div=1 (expected           0)
+Failed at          9: clk=0, clk_div=0 (expected           1)
+Failed at         10: clk=1, clk_div=0 (expected           1)
+Failed at         15: clk=0, clk_div=1 (expected           0)
+Failed at         16: clk=1, clk_div=1 (expected           0)
+=========== Test completed with           6/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyeven/testbench.v:27: $finish called at 110000 (1ps)
+  traffic_light
+    Simulation Output: At time                   40, clock =  10, red = 1, yellow = 0, green = 0
+At time                  140, clock =   0, red = 1, yellow = 0, green = 0
+At time                  740, clock =   3, red = 0, yellow = 0, green = 1
+At time                  890, clock =   9, red = 1, yellow = 0, green = 0
+At time                  920, clock =   6, red = 1, yellow = 0, green = 0
+At time                  930, clock =   5, red = 1, yellow = 0, green = 0
+===========Failed===========          3
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/traffic_light/testbench.v:78: $finish called at 930 (1ns)
+  alu
+    Simulation Output: WARNING: /home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/alu/testbench.v:43: $readmemh(reference.dat): Not enough words in the file for the requested range [0:31].
+===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/alu/testbench.v:86: $finish called at 175000 (1ps)
+  clkgenerator
+    Simulation Output: =========== Test completed with          20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/clkgenerator/testbench.v:29: $finish called at 100 (1s)
+
+COMPILE ERROR (3 modules):
+------------------------------
+  asyn_fifo
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/FIFO/asyn_fifo/testbench.v:102: sorry: break statements not supported.
+  ring_counter
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Control/Counter/ring_counter/testbench.v:20: sorry: Assignment to an entire array or to an array slice is not yet supported.
+Elaboration failed
+  adder_pipe_64bit
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/google/gemini-2.5-flash/t4/adder_pipe_64bit.sv:105: error: result_r Unable to assign to unresolved wires.
+1 error(s) during elaboration.
+
+TIMEOUT (1 modules):
+------------------------------
+  serial2parallel
+    Simulation Error: Simulation timed out after 1 seconds
+
+================================================================================
+END OF TEST RESULTS
+================================================================================

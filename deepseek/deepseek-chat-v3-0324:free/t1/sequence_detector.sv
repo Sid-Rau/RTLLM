@@ -1,6 +1,6 @@
 module sequence_detector (
     input clk,
-    input reset_n,
+    input rst_n,
     input data_in,
     output reg sequence_detected
 );
@@ -13,31 +13,28 @@ module sequence_detector (
     parameter S3 = 3'b011;
     parameter S4 = 3'b100;
 
-    always @(posedge clk or negedge reset_n) begin
-        if (!reset_n) begin
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
             current_state <= IDLE;
+            sequence_detected <= 1'b0;
         end else begin
             current_state <= next_state;
+            if (current_state == S3 && data_in == 1'b1)
+                sequence_detected <= 1'b1;
+            else
+                sequence_detected <= 1'b0;
         end
     end
 
     always @(*) begin
         case (current_state)
-            IDLE: next_state = data_in ? S1 : IDLE;
-            S1: next_state = data_in ? S1 : S2;
-            S2: next_state = data_in ? S3 : IDLE;
-            S3: next_state = data_in ? S1 : S4;
-            S4: next_state = data_in ? S1 : IDLE;
+            IDLE: next_state = (data_in == 1'b1) ? S1 : IDLE;
+            S1: next_state = (data_in == 1'b0) ? S2 : S1;
+            S2: next_state = (data_in == 1'b0) ? S3 : S1;
+            S3: next_state = (data_in == 1'b1) ? S4 : IDLE;
+            S4: next_state = (data_in == 1'b1) ? S1 : S2;
             default: next_state = IDLE;
         endcase
-    end
-
-    always @(posedge clk or negedge reset_n) begin
-        if (!reset_n) begin
-            sequence_detected <= 1'b0;
-        end else begin
-            sequence_detected <= (current_state == S3) && (!data_in);
-        end
     end
 
 endmodule

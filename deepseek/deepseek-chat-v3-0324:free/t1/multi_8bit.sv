@@ -4,19 +4,17 @@ module multi_8bit (
     output reg [15:0] product
 );
 
-    reg [15:0] temp_product;
-    reg [7:0] multiplicand;
     integer i;
+    reg [15:0] shifted_A;
 
-    always @* begin
-        temp_product = 16'b0;
-        multiplicand = A;
+    always @(*) begin
+        product = 16'b0;
+        shifted_A = {8'b0, A};
         for (i = 0; i < 8; i = i + 1) begin
             if (B[i]) begin
-                temp_product = temp_product + (multiplicand << i);
+                product = product + (shifted_A << i);
             end
         end
-        product = temp_product;
     end
 
 endmodule

@@ -16,7 +16,7 @@ module traffic_light(
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             state <= idle;
-            cnt <= 10;
+            cnt <= 8'd10;
         end else begin
             state <= next_state;
         end
@@ -40,7 +40,6 @@ module traffic_light(
                 red = 0; yellow = 0; green = 1;
                 if (cnt == 0) next_state = s2_yellow; else next_state = s3_green;
             end
-            default: next_state = idle;
         endcase
     end
 
@@ -64,9 +63,7 @@ module traffic_light(
 
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            p_red <= 0;
-            p_yellow <= 0;
-            p_green <= 0;
+            p_red <= 0; p_yellow <= 0; p_green <= 0;
         end else begin
             p_red <= red;
             p_yellow <= yellow;

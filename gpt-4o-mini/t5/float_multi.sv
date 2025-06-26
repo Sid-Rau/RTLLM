@@ -29,9 +29,9 @@ module float_multi(
                 end
                 3'b001: begin
                     if (a_exponent == 255 || b_exponent == 255) begin
-                        z <= (a_exponent == 255 && a_mantissa != 0) || (b_exponent == 255 && b_mantissa != 0) ? 32'b01111111100000000000000000000000 : 32'b11111111100000000000000000000000;
+                        z <= (a_exponent == 255 && a_mantissa != 0) || (b_exponent == 255 && b_mantissa != 0) ? 32'b01111111110000000000000000000000 : 32'b01111111100000000000000000000000;
+                        counter <= 3'b000; 
                     end else begin
-                        z_sign <= a_sign ^ b_sign;
                         z_exponent <= a_exponent + b_exponent - 127;
                         product <= a_mantissa * b_mantissa;
                         counter <= counter + 1;
@@ -43,29 +43,17 @@ module float_multi(
                     round_bit <= product[22];
                     sticky <= |product[21:0];
                     if (z_mantissa[23]) begin
-                        z_exponent <= z_exponent + 1;
                         z_mantissa <= z_mantissa >> 1;
+                        z_exponent <= z_exponent + 1;
                     end
                     counter <= counter + 1;
                 end
                 3'b011: begin
-                    if (round_bit && (guard_bit || sticky)) begin
+                    if (guard_bit && (round_bit || sticky)) begin
                         z_mantissa <= z_mantissa + 1;
                     end
-                    if (z_mantissa[23]) begin
-                        z_exponent <= z_exponent + 1;
-                        z_mantissa <= z_mantissa >> 1;
-                    end
-                    counter <= counter + 1;
-                end
-                3'b100: begin
-                    if (z_exponent >= 255) begin
-                        z <= {z_sign, 8'b11111111, 23'b0};
-                    end else if (z_exponent <= 0) begin
-                        z <= {z_sign, 8'b0, 23'b0};
-                    end else begin
-                        z <= {z_sign, z_exponent[7:0], z_mantissa[22:0]};
-                    end
+                    z_sign <= a_sign ^ b_sign;
+                    z <= {z_sign, z_exponent[7:0], z_mantissa[22:0]};
                     counter <= 3'b000;
                 end
             endcase

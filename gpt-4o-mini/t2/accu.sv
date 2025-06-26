@@ -1,4 +1,4 @@
-module accu(
+module accu (
     input clk,
     input rst_n,
     input [7:0] data_in,
@@ -18,12 +18,13 @@ module accu(
             if (count < 4) begin
                 data_buffer[count] <= data_in;
                 count <= count + 1;
-                valid_out <= 0;
             end
             if (count == 3) begin
                 data_out <= data_buffer[0] + data_buffer[1] + data_buffer[2] + data_buffer[3];
                 valid_out <= 1;
-                count <= 0;
+                count <= 0; // Reset count after accumulation
+            end else begin
+                valid_out <= 0;
             end
         end else begin
             valid_out <= 0;

@@ -1,28 +1,29 @@
 ================================================================================
 RTL BENCHMARK TEST RESULTS
 ================================================================================
-Test Date: 2025-06-26 00:31:05
+Test Date: 2025-06-26 04:14:12
 RTL Directory: /home/sid/projects/llm_verilog/RTLLM/gpt-4o-mini/t2
 Total Modules Tested: 50
 
 SUMMARY STATISTICS
 ----------------------------------------
-Passed: 26
-Failed: 12
-Compile Errors: 11
+Passed: 30
+Failed: 15
+Compile Errors: 4
 Simulation Errors: 0
 Timeouts: 1
-Success Rate: 52.0%
+Success Rate: 60.0%
 
 DETAILED RESULTS
 ----------------------------------------
 
-TEST PASSED (26 modules):
+TEST PASSED (30 modules):
 ------------------------------
   adder_8bit
   sub_64bit
   multi_pipe_4bit
   ROM
+  div_16bit
   counter_12
   fsm
   freq_div
@@ -35,9 +36,12 @@ TEST PASSED (26 modules):
   RAM
   multi_16bit
   multi_booth_8bit
-  signal_generator
   right_shifter
+  fixed_point_substractor
+  LFSR
   calendar
+  adder_32bit
+  alu
   up_down_counter
   instr_reg
   adder_16bit
@@ -46,11 +50,11 @@ TEST PASSED (26 modules):
   adder_bcd
   synchronizer
 
-TEST FAILED (12 modules):
+TEST FAILED (15 modules):
 ------------------------------
-  div_16bit
-    Simulation Output: ===========Test completed with         100 /100 failures===========
-/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Divider/div_16bit/testbench.v:31: $finish called at 1000000 (1ps)
+  adder_pipe_64bit
+    Simulation Output: =========== Test completed with         100 / 100 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Adder/adder_pipe_64bit/testbench.v:47: $finish called at 1600 (1s)
   barrel_shifter
     Simulation Output: =========== Test completed with           1 failures ===========
 /home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/barrel_shifter/testbench.v:31: $finish called at 80 (1s)
@@ -74,6 +78,9 @@ Failed at         19: clk=0, clk_div=1 (expected           0)
   parallel2serial
     Simulation Output: ===========Test completed with           x /100 failures===========
 /home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/parallel2serial/testbench.v:63: $finish called at 10005 (1ns)
+  sequence_detector
+    Simulation Output: =========== Test completed with           2 /100 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Control/Finite State Machine/sequence_detector/testbench.v:50: $finish called at 108000 (1ps)
   LIFObuffer
     Simulation Output: =========== Test completed with           2/20 failures ===========
 /home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/LIFO/LIFObuffer/testbench.v:70: $finish called at 265000 (1ps)
@@ -94,84 +101,52 @@ Failed at         19: clk=1, clk_div=1 (expected           0)
   accu
     Simulation Output: ===========Error===========
 /home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Accumulator/accu/testbench.v:85: $finish called at 150000 (1ps)
+  signal_generator
+    Simulation Output: ===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Signal generation/signal_generator/testbench.v:39: $finish called at 1010 (1s)
   pulse_detect
     Simulation Output: ===========Error===========
 /home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/pulse_detect/testbench.v:43: $finish called at 148 (1ns)
   multi_pipe_8bit
     Simulation Output: ===========Test completed with         100 /100 failures===========
 /home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Multiplier/multi_pipe_8bit/testbench.v:79: $finish called at 68201 (1ns)
+  freq_divbyeven
+    Simulation Output: Failed at          3: clk=0, clk_div=1 (expected           0)
+Failed at          4: clk=1, clk_div=1 (expected           0)
+Failed at          9: clk=0, clk_div=0 (expected           1)
+Failed at         10: clk=1, clk_div=0 (expected           1)
+Failed at         15: clk=0, clk_div=1 (expected           0)
+Failed at         16: clk=1, clk_div=1 (expected           0)
+=========== Test completed with           6/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyeven/testbench.v:27: $finish called at 110000 (1ps)
   traffic_light
     Simulation Output: At time                   40, clock =   7, red = 1, yellow = 0, green = 0
-At time                  140, clock =   0, red = 1, yellow = 0, green = 0
-At time                  740, clock =   0, red = 1, yellow = 0, green = 0
-At time                  890, clock =   0, red = 1, yellow = 0, green = 0
-At time                  920, clock =   0, red = 1, yellow = 0, green = 0
-At time                  930, clock =   0, red = 1, yellow = 0, green = 0
-===========Failed===========          3
+At time                  140, clock =  60, red = 0, yellow = 1, green = 0
+At time                  740, clock =   0, red = 0, yellow = 1, green = 0
+At time                  890, clock =  60, red = 1, yellow = 0, green = 0
+At time                  920, clock =   3, red = 1, yellow = 0, green = 0
+At time                  930, clock =   2, red = 1, yellow = 0, green = 0
+===========Failed===========          2
 /home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/traffic_light/testbench.v:78: $finish called at 930 (1ns)
   clkgenerator
     Simulation Output: =========== Test completed with          20 failures ===========
 /home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/clkgenerator/testbench.v:29: $finish called at 100 (1s)
 
-COMPILE ERROR (11 modules):
+COMPILE ERROR (4 modules):
 ------------------------------
   asyn_fifo
     Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/FIFO/asyn_fifo/testbench.v:102: sorry: break statements not supported.
-  adder_pipe_64bit
-    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Adder/adder_pipe_64bit/testbench.v:66: error: parameter `DATA_WIDTH` not found in `tb_adder64.u_pip_add64`.
-/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Adder/adder_pipe_64bit/testbench.v:67: error: parameter `STG_WIDTH` not found in `tb_adder64.u_pip_add64`.
-3 error(s) during elaboration.
   radix2_div
-    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Divider/radix2_div/testbench.v:14: error: port ``res_ready'' is not a port of uut.
-/home/sid/projects/llm_verilog/RTLLM/gpt-4o-mini/t2/radix2_div.sv:41: error: All but the final index in a chain of indices must be a single value, not a range.
-/home/sid/projects/llm_verilog/RTLLM/gpt-4o-mini/t2/radix2_div.sv:43: error: All but the final index in a chain of indices must be a single value, not a range.
-3 error(s) during elaboration.
-  sequence_detector
-    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Control/Finite State Machine/sequence_detector/testbench.v:8: error: port ``rst_n'' is not a port of dut.
-1 error(s) during elaboration.
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Divider/radix2_div/testbench.v:53: error: res_ready Unable to assign to unresolved wires.
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Divider/radix2_div/testbench.v:76: error: res_ready Unable to assign to unresolved wires.
+2 error(s) during elaboration.
   ring_counter
     Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Control/Counter/ring_counter/testbench.v:20: sorry: Assignment to an entire array or to an array slice is not yet supported.
 Elaboration failed
   float_multi
-    Compile Error: /home/sid/projects/llm_verilog/RTLLM/gpt-4o-mini/t2/float_multi.sv:58: error: Concatenation operand "(z_exponent['sd7:'sd0])+('sd127)" has indefinite width.
-1 error(s) during elaboration.
-  fixed_point_substractor
-    Compile Error: /home/sid/projects/llm_verilog/RTLLM/gpt-4o-mini/t2/fixed_point_substractor.sv:18: error: sign_res is not a valid l-value in tb_fixed_point_subtractor.uut.
-/home/sid/projects/llm_verilog/RTLLM/gpt-4o-mini/t2/fixed_point_substractor.sv:8:      : sign_res is declared here as wire.
-/home/sid/projects/llm_verilog/RTLLM/gpt-4o-mini/t2/fixed_point_substractor.sv:21: error: sign_res is not a valid l-value in tb_fixed_point_subtractor.uut.
-/home/sid/projects/llm_verilog/RTLLM/gpt-4o-mini/t2/fixed_point_substractor.sv:8:      : sign_res is declared here as wire.
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/gpt-4o-mini/t2/float_multi.sv:32: error: Concatenation operand "'sd255" has indefinite width.
+/home/sid/projects/llm_verilog/RTLLM/gpt-4o-mini/t2/float_multi.sv:32: error: Concatenation operand "'sd0" has indefinite width.
 2 error(s) during elaboration.
-  LFSR
-    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:6: warning: Port 1 (clk) of LFSR expects 1 bits, got 4.
-/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:6:        : Pruning 3 high bits of the expression.
-/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:6: warning: Port 3 (out) of LFSR expects 4 bits, got 1.
-/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:6:        : Padding 3 high bits of the port.
-/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:11: error: rst_tb Unable to assign to unresolved wires.
-/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:14: error: rst_tb Unable to assign to unresolved wires.
-2 error(s) during elaboration.
-  freq_divbyeven
-    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyeven/testbench.v:10: error: Unknown module type: freq_divbyeven
-2 error(s) during elaboration.
-*** These modules were missing:
-        freq_divbyeven referenced 1 times.
-***
-  adder_32bit
-    Compile Error: /home/sid/projects/llm_verilog/RTLLM/gpt-4o-mini/t2/adder_32bit.sv:36: error: Unknown module type: cla_16bit
-/home/sid/projects/llm_verilog/RTLLM/gpt-4o-mini/t2/adder_32bit.sv:44: error: Unknown module type: cla_16bit
-3 error(s) during elaboration.
-*** These modules were missing:
-        cla_16bit referenced 2 times.
-***
-  alu
-    Compile Error: /home/sid/projects/llm_verilog/RTLLM/gpt-4o-mini/t2/alu.sv:20: error: carry is not a valid l-value in test_alu.uut.
-/home/sid/projects/llm_verilog/RTLLM/gpt-4o-mini/t2/alu.sv:7:      : carry is declared here as wire.
-/home/sid/projects/llm_verilog/RTLLM/gpt-4o-mini/t2/alu.sv:21: error: carry is not a valid l-value in test_alu.uut.
-/home/sid/projects/llm_verilog/RTLLM/gpt-4o-mini/t2/alu.sv:7:      : carry is declared here as wire.
-/home/sid/projects/llm_verilog/RTLLM/gpt-4o-mini/t2/alu.sv:22: error: carry is not a valid l-value in test_alu.uut.
-/home/sid/projects/llm_verilog/RTLLM/gpt-4o-mini/t2/alu.sv:7:      : carry is declared here as wire.
-/home/sid/projects/llm_verilog/RTLLM/gpt-4o-mini/t2/alu.sv:23: error: carry is not a valid l-value in test_alu.uut.
-/home/sid/projects/llm_verilog/RTLLM/gpt-4o-mini/t2/alu.sv:7:      : carry is declared here as wire.
-4 error(s) during elaboration.
 
 TIMEOUT (1 modules):
 ------------------------------

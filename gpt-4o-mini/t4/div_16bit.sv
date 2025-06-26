@@ -1,4 +1,4 @@
-module div_16bit (
+module div_16bit(
     input [15:0] A,
     input [7:0] B,
     output reg [15:0] result,
@@ -20,6 +20,8 @@ module div_16bit (
             if (remainder >= {8'b0, b_reg}) begin
                 remainder = remainder - {8'b0, b_reg};
                 result[i] = 1;
+            end else begin
+                result[i] = 0;
             end
         end
         odd = remainder;

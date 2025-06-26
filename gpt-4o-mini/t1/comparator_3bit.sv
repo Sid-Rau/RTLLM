@@ -1,11 +1,11 @@
-module comparator_3bit(
+module comparator_3bit (
     input [2:0] A,
     input [2:0] B,
     output reg A_greater,
     output reg A_equal,
     output reg A_less
 );
-    always @* begin
+    always @(*) begin
         if (A > B) begin
             A_greater = 1;
             A_equal = 0;

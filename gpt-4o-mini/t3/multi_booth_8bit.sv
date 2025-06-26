@@ -1,4 +1,4 @@
-module multi_booth_8bit (
+module multi_booth_8bit(
     input clk,
     input reset,
     input [7:0] a,
@@ -12,19 +12,19 @@ module multi_booth_8bit (
 
     always @(posedge clk or posedge reset) begin
         if (reset) begin
-            multiplier <= {{8{a[7]}}, a};
-            multiplicand <= {{8{b[7]}}, b};
+            multiplicand <= {{8{a[7]}}, a};
+            multiplier <= {{8{b[7]}}, b};
             p <= 16'b0;
             ctr <= 5'b0;
-            rdy <= 1'b0;
+            rdy <= 0;
         end else if (ctr < 16) begin
-            multiplicand <= multiplicand << 1;
             if (multiplier[ctr] == 1) begin
                 p <= p + multiplicand;
             end
+            multiplicand <= multiplicand << 1;
             ctr <= ctr + 1;
         end else if (ctr == 16) begin
-            rdy <= 1'b1;
+            rdy <= 1;
         end
     end
 endmodule

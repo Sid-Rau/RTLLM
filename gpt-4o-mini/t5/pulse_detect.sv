@@ -6,30 +6,31 @@ module pulse_detect(
 );
     reg [1:0] state;
 
+    parameter IDLE = 2'b00, RISING = 2'b01, FALLING = 2'b10;
+
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            state <= 2'b00;
+            state <= IDLE;
             data_out <= 0;
         end else begin
             case (state)
-                2'b00: begin
+                IDLE: begin
                     if (data_in) begin
-                        state <= 2'b01;
-                        data_out <= 0;
+                        state <= RISING;
                     end
+                    data_out <= 0;
                 end
-                2'b01: begin
+                RISING: begin
                     if (!data_in) begin
-                        state <= 2'b10;
-                        data_out <= 0;
+                        state <= FALLING;
                     end
+                    data_out <= 0;
                 end
-                2'b10: begin
+                FALLING: begin
                     if (data_in) begin
-                        state <= 2'b01;
-                        data_out <= 0;
+                        state <= RISING;
                     end else begin
-                        state <= 2'b00;
+                        state <= IDLE;
                         data_out <= 1;
                     end
                 end

@@ -1,23 +1,23 @@
 ================================================================================
 RTL BENCHMARK TEST RESULTS
 ================================================================================
-Test Date: 2025-06-26 00:30:58
+Test Date: 2025-06-26 03:49:30
 RTL Directory: /home/sid/projects/llm_verilog/RTLLM/gpt-4o/t4
 Total Modules Tested: 50
 
 SUMMARY STATISTICS
 ----------------------------------------
-Passed: 30
+Passed: 32
 Failed: 12
-Compile Errors: 7
+Compile Errors: 5
 Simulation Errors: 0
 Timeouts: 1
-Success Rate: 60.0%
+Success Rate: 64.0%
 
 DETAILED RESULTS
 ----------------------------------------
 
-TEST PASSED (30 modules):
+TEST PASSED (32 modules):
 ------------------------------
   adder_8bit
   sub_64bit
@@ -41,7 +41,9 @@ TEST PASSED (30 modules):
   float_multi
   right_shifter
   fixed_point_substractor
+  LFSR
   calendar
+  adder_pipe_64bit
   up_down_counter
   instr_reg
   adder_16bit
@@ -121,7 +123,7 @@ At time                  930, clock =   7, red = 0, yellow = 0, green = 1
     Simulation Output: =========== Test completed with          20 failures ===========
 /home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/clkgenerator/testbench.v:29: $finish called at 100 (1s)
 
-COMPILE ERROR (7 modules):
+COMPILE ERROR (5 modules):
 ------------------------------
   asyn_fifo
     Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/FIFO/asyn_fifo/testbench.v:102: sorry: break statements not supported.
@@ -134,24 +136,12 @@ COMPILE ERROR (7 modules):
   ring_counter
     Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Control/Counter/ring_counter/testbench.v:20: sorry: Assignment to an entire array or to an array slice is not yet supported.
 Elaboration failed
-  LFSR
-    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:6: warning: Port 1 (clk) of LFSR expects 1 bits, got 4.
-/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:6:        : Pruning 3 high bits of the expression.
-/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:6: warning: Port 3 (out) of LFSR expects 4 bits, got 1.
-/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:6:        : Padding 3 high bits of the port.
-/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:11: error: rst_tb Unable to assign to unresolved wires.
-/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:14: error: rst_tb Unable to assign to unresolved wires.
-2 error(s) during elaboration.
   freq_divbyeven
     Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyeven/testbench.v:10: error: Unknown module type: freq_divbyeven
 2 error(s) during elaboration.
 *** These modules were missing:
         freq_divbyeven referenced 1 times.
 ***
-  adder_pipe_64bit
-    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Adder/adder_pipe_64bit/testbench.v:66: error: parameter `DATA_WIDTH` not found in `tb_adder64.u_pip_add64`.
-/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Adder/adder_pipe_64bit/testbench.v:67: error: parameter `STG_WIDTH` not found in `tb_adder64.u_pip_add64`.
-3 error(s) during elaboration.
 
 TIMEOUT (1 modules):
 ------------------------------

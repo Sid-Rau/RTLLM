@@ -1,4 +1,4 @@
-module RAM (
+module RAM(
     input clk,
     input rst_n,
     input write_en,

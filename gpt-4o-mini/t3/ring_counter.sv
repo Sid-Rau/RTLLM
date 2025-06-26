@@ -5,7 +5,7 @@ module ring_counter(
 );
     always @(posedge clk or posedge reset) begin
         if (reset) begin
-            out <= 8'b00000001;
+            out <= 8'b0000_0001;
         end else begin
             out <= {out[6:0], out[7]};
         end

@@ -3,7 +3,7 @@ Please act as a professional verilog designer.
 Frequency divider that divides the input clock frequency by even numbers. This module generates a divided clock signal by toggling its output every specified number of input clock cycles.
 
 Module name: 
-    freq_diveven
+    freq_divbyeven
 
 Input ports:
     clk: Input clock signal that will be divided.

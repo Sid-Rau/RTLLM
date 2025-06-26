@@ -1,4 +1,4 @@
-module float_multi (
+module float_multi(
     input clk,
     input rst,
     input [31:0] a,
@@ -29,7 +29,7 @@ module float_multi (
                 end
                 3'b001: begin
                     if (a_exponent == 255 || b_exponent == 255) begin
-                        z <= (a_exponent == 255 && a_mantissa != 0) || (b_exponent == 255 && b_mantissa != 0) ? 32'b01111111100000000000000000000000 : 32'b01111111110000000000000000000000;
+                        z <= (a_exponent == 255 && a_mantissa != 0) || (b_exponent == 255 && b_mantissa != 0) ? 32'b01111111100000000000000000000000 : 32'b11111111100000000000000000000000;
                     end else begin
                         z_sign <= a_sign ^ b_sign;
                         z_exponent <= a_exponent + b_exponent - 127;
@@ -49,10 +49,20 @@ module float_multi (
                     counter <= counter + 1;
                 end
                 3'b011: begin
+                    if (guard_bit && (round_bit || sticky)) begin
+                        z_mantissa <= z_mantissa + 1;
+                    end
+                    if (z_mantissa[23]) begin
+                        z_mantissa <= z_mantissa >> 1;
+                        z_exponent <= z_exponent + 1;
+                    end
+                    counter <= counter + 1;
+                end
+                3'b100: begin
                     if (z_exponent >= 255) begin
                         z <= {z_sign, 8'b11111111, 23'b0};
                     end else if (z_exponent <= 0) begin
-                        z <= {z_sign, 8'b0, 23'b0};
+                        z <= {z_sign, 8'b0, z_mantissa[22:0]};
                     end else begin
                         z <= {z_sign, z_exponent[7:0], z_mantissa[22:0]};
                     end

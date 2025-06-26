@@ -1,15 +1,11 @@
 module verified_adder_64bit
-#(
-    parameter DATA_WIDTH = 64,
-    parameter STG_WIDTH = 16
-)
 (
     input clk,
     input rst_n,
     input i_en,
-    input [DATA_WIDTH-1:0] adda,
-    input [DATA_WIDTH-1:0] addb,
-    output [DATA_WIDTH:0] result,
+    input [63:0] adda,
+    input [63:0] addb,
+    output [64:0] result,
     output reg o_en
 );
 
@@ -17,57 +13,57 @@ reg stage1;
 reg stage2;
 reg stage3;
 
-wire [STG_WIDTH-1:0] a1;
-wire [STG_WIDTH-1:0] b1;
-wire [STG_WIDTH-1:0] a2;
-wire [STG_WIDTH-1:0] b2;
-wire [STG_WIDTH-1:0] a3;
-wire [STG_WIDTH-1:0] b3;
-wire [STG_WIDTH-1:0] a4;
-wire [STG_WIDTH-1:0] b4;
+wire [15:0] a1;
+wire [15:0] b1;
+wire [15:0] a2;
+wire [15:0] b2;
+wire [15:0] a3;
+wire [15:0] b3;
+wire [15:0] a4;
+wire [15:0] b4;
 
-reg [STG_WIDTH-1:0] a2_ff1;
-reg [STG_WIDTH-1:0] b2_ff1;
+reg [15:0] a2_ff1;
+reg [15:0] b2_ff1;
 
-reg [STG_WIDTH-1:0] a3_ff1;
-reg [STG_WIDTH-1:0] b3_ff1;
-reg [STG_WIDTH-1:0] a3_ff2;
-reg [STG_WIDTH-1:0] b3_ff2;
+reg [15:0] a3_ff1;
+reg [15:0] b3_ff1;
+reg [15:0] a3_ff2;
+reg [15:0] b3_ff2;
 
-reg [STG_WIDTH-1:0] a4_ff1;
-reg [STG_WIDTH-1:0] b4_ff1;
-reg [STG_WIDTH-1:0] a4_ff2;
-reg [STG_WIDTH-1:0] b4_ff2;
-reg [STG_WIDTH-1:0] a4_ff3;
-reg [STG_WIDTH-1:0] b4_ff3;
+reg [15:0] a4_ff1;
+reg [15:0] b4_ff1;
+reg [15:0] a4_ff2;
+reg [15:0] b4_ff2;
+reg [15:0] a4_ff3;
+reg [15:0] b4_ff3;
 
 reg c1;
 reg c2;
 reg c3;
 reg c4;
 
-reg [STG_WIDTH-1:0] s1;
-reg [STG_WIDTH-1:0] s2;
-reg [STG_WIDTH-1:0] s3;
-reg [STG_WIDTH-1:0] s4;
+reg [15:0] s1;
+reg [15:0] s2;
+reg [15:0] s3;
+reg [15:0] s4;
 
-reg [STG_WIDTH-1:0] s1_ff1;
-reg [STG_WIDTH-1:0] s1_ff2;
-reg [STG_WIDTH-1:0] s1_ff3;
+reg [15:0] s1_ff1;
+reg [15:0] s1_ff2;
+reg [15:0] s1_ff3;
 
-reg [STG_WIDTH-1:0] s2_ff1;
-reg [STG_WIDTH-1:0] s2_ff2;
+reg [15:0] s2_ff1;
+reg [15:0] s2_ff2;
 
-reg [STG_WIDTH-1:0] s3_ff1;
+reg [15:0] s3_ff1;
 
-assign a1 = adda[STG_WIDTH-1:0];
-assign b1 = addb[STG_WIDTH-1:0];
-assign a2 = adda[STG_WIDTH*2-1:16];
-assign b2 = addb[STG_WIDTH*2-1:16];
-assign a3 = adda[STG_WIDTH*3-1:32];
-assign b3 = addb[STG_WIDTH*3-1:32];
-assign a4 = adda[STG_WIDTH*4-1:48];
-assign b4 = addb[STG_WIDTH*4-1:48];
+assign a1 = adda[15:0];
+assign b1 = addb[15:0];
+assign a2 = adda[31:16];
+assign b2 = addb[31:16];
+assign a3 = adda[47:32];
+assign b3 = addb[47:32];
+assign a4 = adda[63:48];
+assign b4 = addb[63:48];
 
 always @(posedge clk, negedge rst_n) begin
     if (!rst_n) begin

@@ -1,4 +1,4 @@
-module JC_counter(
+module JC_counter (
     input clk,
     input rst_n,
     output reg [63:0] Q

@@ -3,7 +3,7 @@ reg clk_tb;
 reg rst_tb;
 wire [3:0] out_tb;
 
-LFSR DUT(out_tb,clk_tb,rst_tb);
+LFSR DUT(.clk(clk_tb), .rst(rst_tb), .out(out_tb));
 
 initial
 begin

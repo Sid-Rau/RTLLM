@@ -23,7 +23,7 @@ module multi_booth_8bit(
             end
             multiplicand <= multiplicand << 1;
             ctr <= ctr + 1;
-        end else begin
+        end else if (ctr == 16) begin
             rdy <= 1;
         end
     end

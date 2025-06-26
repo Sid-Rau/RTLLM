@@ -1,44 +1,143 @@
-module alu (
+module alu(
     input  [31:0] a,
     input  [31:0] b,
     input  [5:0] aluc,
     output reg [31:0] r,
-    output zero,
-    output carry,
-    output negative,
-    output overflow,
+    output reg zero,
+    output reg carry,
+    output reg negative,
+    output reg overflow,
     output reg flag
 );
-    wire signed [31:0] a_signed = a;
-    wire signed [31:0] b_signed = b;
-    wire [32:0] add_result = a + b;
-    wire [32:0] sub_result = a - b;
-    
-    assign zero = (r == 32'b0);
-    assign carry = add_result[32];
-    assign negative = r[31];
-    assign overflow = (aluc == ADD || aluc == SUB) ? (add_result[31] ^ a[31] ^ b[31] ^ r[31]) : 1'b0;
+    parameter ADD  = 6'b100000;
+    parameter ADDU = 6'b100001;
+    parameter SUB  = 6'b100010;
+    parameter SUBU = 6'b100011;
+    parameter AND  = 6'b100100;
+    parameter OR   = 6'b100101;
+    parameter XOR  = 6'b100110;
+    parameter NOR  = 6'b100111;
+    parameter SLT  = 6'b101010;
+    parameter SLTU = 6'b101011;
+    parameter SLL  = 6'b000000;
+    parameter SRL  = 6'b000010;
+    parameter SRA  = 6'b000011;
+    parameter SLLV = 6'b000100;
+    parameter SRLV = 6'b000110;
+    parameter SRAV = 6'b000111;
+    parameter LUI  = 6'b001111;
 
     always @(*) begin
         case (aluc)
-            6'b100000: r = add_result[31:0]; flag = 1'b0; // ADD
-            6'b100001: r = a + b; flag = 1'b0; // ADDU
-            6'b100010: r = sub_result[31:0]; flag = 1'b0; // SUB
-            6'b100011: r = a - b; flag = 1'b0; // SUBU
-            6'b100100: r = a & b; flag = 1'b0; // AND
-            6'b100101: r = a | b; flag = 1'b0; // OR
-            6'b100110: r = a ^ b; flag = 1'b0; // XOR
-            6'b100111: r = ~(a | b); flag = 1'b0; // NOR
-            6'b101010: r = (a_signed < b_signed) ? 32'b1 : 32'b0; flag = 1'b1; // SLT
-            6'b101011: r = (a < b) ? 32'b1 : 32'b0; flag = 1'b1; // SLTU
-            6'b000000: r = b << a[4:0]; flag = 1'b0; // SLL
-            6'b000010: r = b >> a[4:0]; flag = 1'b0; // SRL
-            6'b000011: r = $signed(b) >>> a[4:0]; flag = 1'b0; // SRA
-            6'b000100: r = b << a_signed; flag = 1'b0; // SLLV
-            6'b000110: r = b >> a_signed; flag = 1'b0; // SRLV
-            6'b000111: r = $signed(b) >>> a_signed; flag = 1'b0; // SRAV
-            6'b001111: r = {a[15:0], 16'b0}; flag = 1'b0; // LUI
-            default: r = 32'bz; flag = 1'bz; // Default case
+            ADD: begin
+                {carry, r} = a + b;
+                overflow = (a[31] == b[31]) && (r[31] != a[31]);
+                flag = 0;
+            end
+            ADDU: begin
+                r = a + b;
+                carry = 0;
+                overflow = 0;
+                flag = 0;
+            end
+            SUB: begin
+                {carry, r} = a - b;
+                overflow = (a[31] != b[31]) && (r[31] != a[31]);
+                flag = 0;
+            end
+            SUBU: begin
+                r = a - b;
+                carry = 0;
+                overflow = 0;
+                flag = 0;
+            end
+            AND: begin
+                r = a & b;
+                carry = 0;
+                overflow = 0;
+                flag = 0;
+            end
+            OR: begin
+                r = a | b;
+                carry = 0;
+                overflow = 0;
+                flag = 0;
+            end
+            XOR: begin
+                r = a ^ b;
+                carry = 0;
+                overflow = 0;
+                flag = 0;
+            end
+            NOR: begin
+                r = ~(a | b);
+                carry = 0;
+                overflow = 0;
+                flag = 0;
+            end
+            SLT: begin
+                r = (a < b) ? 1 : 0;
+                flag = 1;
+                carry = 0;
+                overflow = 0;
+            end
+            SLTU: begin
+                r = (a < b) ? 1 : 0;
+                flag = 1;
+                carry = 0;
+                overflow = 0;
+            end
+            SLL: begin
+                r = b << a[4:0];
+                carry = 0;
+                overflow = 0;
+                flag = 0;
+            end
+            SRL: begin
+                r = b >> a[4:0];
+                carry = 0;
+                overflow = 0;
+                flag = 0;
+            end
+            SRA: begin
+                r = $signed(b) >>> a[4:0];
+                carry = 0;
+                overflow = 0;
+                flag = 0;
+            end
+            SLLV: begin
+                r = b << a[4:0];
+                carry = 0;
+                overflow = 0;
+                flag = 0;
+            end
+            SRLV: begin
+                r = b >> a[4:0];
+                carry = 0;
+                overflow = 0;
+                flag = 0;
+            end
+            SRAV: begin
+                r = $signed(b) >>> a[4:0];
+                carry = 0;
+                overflow = 0;
+                flag = 0;
+            end
+            LUI: begin
+                r = {a[15:0], 16'b0};
+                carry = 0;
+                overflow = 0;
+                flag = 0;
+            end
+            default: begin
+                r = 32'bz;
+                carry = 0;
+                overflow = 0;
+                flag = 0;
+            end
         endcase
+
+        zero = (r == 32'b0);
+        negative = r[31];
     end
 endmodule

@@ -14,7 +14,7 @@ always @(posedge clk or negedge rst_n) begin
             out <= 4'b0000;
         end
         else begin
-            out <= out + 1'b1;
+            out <= out + 1;
         end
     end
 end

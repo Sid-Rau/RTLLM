@@ -1,6 +1,6 @@
 module sequence_detector(
     input clk,
-    input reset_n,
+    input rst_n,
     input data_in,
     output reg sequence_detected
 );
@@ -14,8 +14,8 @@ module sequence_detector(
 
     state_t current_state, next_state;
 
-    always @(posedge clk or negedge reset_n) begin
-        if (!reset_n)
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n)
             current_state <= IDLE;
         else
             current_state <= next_state;
@@ -58,8 +58,8 @@ module sequence_detector(
         endcase
     end
 
-    always @(posedge clk or negedge reset_n) begin
-        if (!reset_n)
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n)
             sequence_detected <= 1'b0;
         else if (current_state == S4)
             sequence_detected <= 1'b1;

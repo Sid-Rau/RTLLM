@@ -1,4 +1,4 @@
-module ring_counter(
+module ring_counter (
     input clk,
     input reset,
     output reg [7:0] out

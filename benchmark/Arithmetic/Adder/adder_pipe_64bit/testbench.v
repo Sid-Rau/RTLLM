@@ -62,11 +62,7 @@ module tb_adder64();
     end
   end
 
-  adder_pipe_64bit #(
-    .DATA_WIDTH(DATA_WIDTH),
-    .STG_WIDTH(STG_WIDTH)
-  )
-  u_pip_add64 (
+  adder_pipe_64bit u_pip_add64 (
     .clk (CLK),
     .rst_n (RST),
     .i_en (i_en),

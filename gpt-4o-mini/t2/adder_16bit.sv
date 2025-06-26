@@ -1,9 +1,9 @@
-module adder_16bit (
-    input  [15:0] a,
-    input  [15:0] b,
-    input         Cin,
+module adder_16bit(
+    input [15:0] a,
+    input [15:0] b,
+    input Cin,
     output [15:0] y,
-    output        Co
+    output Co
 );
     wire [7:0] sum0, sum1;
     wire c0, c1;

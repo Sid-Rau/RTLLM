@@ -1,6 +1,6 @@
 module sequence_detector(
     input clk,
-    input reset_n,
+    input rst_n,
     input data_in,
     output reg sequence_detected
 );
@@ -14,8 +14,8 @@ module sequence_detector(
 
     state_t current_state, next_state;
 
-    always @(posedge clk or negedge reset_n) begin
-        if (!reset_n)
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n)
             current_state <= IDLE;
         else
             current_state <= next_state;
@@ -24,40 +24,43 @@ module sequence_detector(
     always @(*) begin
         case (current_state)
             IDLE: begin
+                sequence_detected = 1'b0;
                 if (data_in) 
                     next_state = S1;
                 else 
                     next_state = IDLE;
-                sequence_detected = 1'b0;
             end
             S1: begin
+                sequence_detected = 1'b0;
                 if (!data_in) 
                     next_state = S2;
                 else 
                     next_state = S1;
-                sequence_detected = 1'b0;
             end
             S2: begin
+                sequence_detected = 1'b0;
                 if (data_in) 
                     next_state = S3;
                 else 
                     next_state = IDLE;
-                sequence_detected = 1'b0;
             end
             S3: begin
+                sequence_detected = 1'b0;
                 if (!data_in) 
                     next_state = S4;
                 else 
                     next_state = S1;
-                sequence_detected = 1'b0;
             end
             S4: begin
-                next_state = IDLE;
                 sequence_detected = 1'b1;
+                if (data_in) 
+                    next_state = S1;
+                else 
+                    next_state = IDLE;
             end
             default: begin
-                next_state = IDLE;
                 sequence_detected = 1'b0;
+                next_state = IDLE;
             end
         endcase
     end

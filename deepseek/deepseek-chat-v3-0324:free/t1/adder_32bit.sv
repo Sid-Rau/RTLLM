@@ -1,118 +1,52 @@
 module adder_32bit(A, B, S, C32);
-    input [32:1] A;
-    input [32:1] B;
+    input [32:1] A, B;
     output [32:1] S;
     output C32;
 
-    wire [16:1] S_low, S_high;
+    wire [16:1] S1, S2;
     wire C16;
 
-    adder_16bit low_adder (
-        .A(A[16:1]),
-        .B(B[16:1]),
-        .Cin(1'b0),
-        .S(S_low),
-        .Cout(C16)
-    );
+    adder_16bit adder1(.A(A[16:1]), .B(B[16:1]), .cin(1'b0), .S(S1), .cout(C16));
+    adder_16bit adder2(.A(A[32:17]), .B(B[32:17]), .cin(C16), .S(S2), .cout(C32));
 
-    adder_16bit high_adder (
-        .A(A[32:17]),
-        .B(B[32:17]),
-        .Cin(C16),
-        .S(S_high),
-        .Cout(C32)
-    );
-
-    assign S = {S_high, S_low};
+    assign S = {S2, S1};
 endmodule
 
-module adder_16bit(A, B, Cin, S, Cout);
-    input [16:1] A;
-    input [16:1] B;
-    input Cin;
+module adder_16bit(A, B, cin, S, cout);
+    input [16:1] A, B;
+    input cin;
     output [16:1] S;
-    output Cout;
+    output cout;
 
-    wire [4:1] G, P;
-    wire [4:1] C;
+    wire [4:1] G, P, C;
 
-    adder_4bit adder0 (
-        .A(A[4:1]),
-        .B(B[4:1]),
-        .Cin(Cin),
-        .S(S[4:1]),
-        .G(G[1]),
-        .P(P[1])
-    );
+    assign C[1] = cin;
+    assign cout = C[4];
 
-    adder_4bit adder1 (
-        .A(A[8:5]),
-        .B(B[8:5]),
-        .Cin(C[1]),
-        .S(S[8:5]),
-        .G(G[2]),
-        .P(P[2])
-    );
-
-    adder_4bit adder2 (
-        .A(A[12:9]),
-        .B(B[12:9]),
-        .Cin(C[2]),
-        .S(S[12:9]),
-        .G(G[3]),
-        .P(P[3])
-    );
-
-    adder_4bit adder3 (
-        .A(A[16:13]),
-        .B(B[16:13]),
-        .Cin(C[3]),
-        .S(S[16:13]),
-        .G(G[4]),
-        .P(P[4])
-    );
-
-    cla_logic cla (
-        .G(G),
-        .P(P),
-        .Cin(Cin),
-        .C({Cout, C[3:1]})
-    );
+    cla_block cla1(.A(A[4:1]), .B(B[4:1]), .cin(C[1]), .S(S[4:1]), .G(G[1]), .P(P[1]), .cout(C[2]));
+    cla_block cla2(.A(A[8:5]), .B(B[8:5]), .cin(C[2]), .S(S[8:5]), .G(G[2]), .P(P[2]), .cout(C[3]));
+    cla_block cla3(.A(A[12:9]), .B(B[12:9]), .cin(C[3]), .S(S[12:9]), .G(G[3]), .P(P[3]), .cout(C[4]));
+    cla_block cla4(.A(A[16:13]), .B(B[16:13]), .cin(C[4]), .S(S[16:13]), .G(G[4]), .P(P[4]), .cout());
 endmodule
 
-module adder_4bit(A, B, Cin, S, G, P);
-    input [4:1] A;
-    input [4:1] B;
-    input Cin;
+module cla_block(A, B, cin, S, G, P, cout);
+    input [4:1] A, B;
+    input cin;
     output [4:1] S;
-    output G;
-    output P;
+    output G, P;
+    output cout;
 
-    wire [4:1] G_i;
-    wire [4:1] P_i;
-    wire [4:1] C;
+    wire [4:1] g, p, c;
 
-    assign G_i = A & B;
-    assign P_i = A ^ B;
-    assign S = P_i ^ {C[3:1], Cin};
+    assign g = A & B;
+    assign p = A ^ B;
+    assign c[1] = cin;
+    assign c[2] = g[1] | (p[1] & c[1]);
+    assign c[3] = g[2] | (p[2] & g[1]) | (p[2] & p[1] & c[1]);
+    assign c[4] = g[3] | (p[3] & g[2]) | (p[3] & p[2] & g[1]) | (p[3] & p[2] & p[1] & c[1]);
+    assign cout = g[4] | (p[4] & g[3]) | (p[4] & p[3] & g[2]) | (p[4] & p[3] & p[2] & g[1]) | (p[4] & p[3] & p[2] & p[1] & c[1]);
 
-    assign G = G_i[4] | (P_i[4] & G_i[3]) | (P_i[4] & P_i[3] & G_i[2]) | (P_i[4] & P_i[3] & P_i[2] & G_i[1]);
-    assign P = P_i[4] & P_i[3] & P_i[2] & P_i[1];
-
-    assign C[1] = G_i[1] | (P_i[1] & Cin);
-    assign C[2] = G_i[2] | (P_i[2] & G_i[1]) | (P_i[2] & P_i[1] & Cin);
-    assign C[3] = G_i[3] | (P_i[3] & G_i[2]) | (P_i[3] & P_i[2] & G_i[1]) | (P_i[3] & P_i[2] & P_i[1] & Cin);
-    assign C[4] = G_i[4] | (P_i[4] & G_i[3]) | (P_i[4] & P_i[3] & G_i[2]) | (P_i[4] & P_i[3] & P_i[2] & G_i[1]) | (P_i[4] & P_i[3] & P_i[2] & P_i[1] & Cin);
-endmodule
-
-module cla_logic(G, P, Cin, C);
-    input [4:1] G;
-    input [4:1] P;
-    input Cin;
-    output [4:1] C;
-
-    assign C[1] = G[1] | (P[1] & Cin);
-    assign C[2] = G[2] | (P[2] & G[1]) | (P[2] & P[1] & Cin);
-    assign C[3] = G[3] | (P[3] & G[2]) | (P[3] & P[2] & G[1]) | (P[3] & P[2] & P[1] & Cin);
-    assign C[4] = G[4] | (P[4] & G[3]) | (P[4] & P[3] & G[2]) | (P[4] & P[3] & P[2] & G[1]) | (P[4] & P[3] & P[2] & P[1] & Cin);
+    assign G = g[4] | (p[4] & g[3]) | (p[4] & p[3] & g[2]) | (p[4] & p[3] & p[2] & g[1]);
+    assign P = p[4] & p[3] & p[2] & p[1];
+    assign S = p ^ c[4:1];
 endmodule

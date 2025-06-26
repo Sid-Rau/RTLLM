@@ -1,8 +1,8 @@
-module instr_reg (
-    input wire clk,
-    input wire rst,
-    input wire [1:0] fetch,
-    input wire [7:0] data,
+module instr_reg(
+    input clk,
+    input rst,
+    input [1:0] fetch,
+    input [7:0] data,
     output reg [2:0] ins,
     output reg [4:0] ad1,
     output reg [7:0] ad2
@@ -23,7 +23,7 @@ module instr_reg (
         end
     end
 
-    always @(*) begin
+    always @* begin
         ins = ins_p1[7:5];
         ad1 = ins_p1[4:0];
         ad2 = ins_p2;

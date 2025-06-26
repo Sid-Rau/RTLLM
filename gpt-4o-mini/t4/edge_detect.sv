@@ -1,7 +1,7 @@
-module edge_detect (
-    input clk,
-    input rst_n,
-    input a,
+module edge_detect(
+    input wire clk,
+    input wire rst_n,
+    input wire a,
     output reg rise,
     output reg down
 );

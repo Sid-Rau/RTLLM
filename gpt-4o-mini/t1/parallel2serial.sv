@@ -13,17 +13,16 @@ module parallel2serial (
             cnt <= 0;
             valid_out <= 0;
             dout <= 0;
-            data <= 0;
         end else begin
             if (cnt == 3) begin
                 data <= d;
                 cnt <= 0;
                 valid_out <= 1;
             end else begin
-                cnt <= cnt + 1;
-                valid_out <= 0;
                 dout <= data[3];
                 data <= {data[2:0], 1'b0};
+                cnt <= cnt + 1;
+                valid_out <= 0;
             end
         end
     end

@@ -4,22 +4,32 @@ module fixed_point_subtractor #(parameter Q = 16, parameter N = 32) (
     output reg [N-1:0] c
 );
     reg [N-1:0] res;
-    wire sign_a = a[N-1];
-    wire sign_b = b[N-1];
-    wire [N-1:0] abs_a = sign_a ? (~a + 1) : a;
-    wire [N-1:0] abs_b = sign_b ? (~b + 1) : b;
 
     always @(*) begin
-        if (sign_a == sign_b) begin
-            res = sign_a ? (~abs_a + abs_b) : (abs_a - abs_b);
-            c = (res == 0) ? 0 : {res[N-1], res[N-2:0]};
-        end else begin
-            if (abs_a > abs_b) begin
-                res = abs_a + abs_b;
-                c = {1'b0, res[N-2:0]};
+        if (a[N-1] == b[N-1]) begin
+            // Same sign subtraction
+            res = a - b;
+            if (res == 0) begin
+                c = 0;
             end else begin
-                res = abs_b + abs_a;
-                c = {1'b1, res[N-2:0]};
+                c = res;
+            end
+        end else begin
+            // Different sign subtraction
+            if (a[N-1] == 0 && b[N-1] == 1) begin
+                // a positive, b negative
+                if (a > {1'b0, b[N-2:0]}) begin
+                    c = a + {1'b0, b[N-2:0]};
+                end else begin
+                    c = ~(b) + 1;
+                end
+            end else if (a[N-1] == 1 && b[N-1] == 0) begin
+                // a negative, b positive
+                if ({1'b0, a[N-2:0]} > b) begin
+                    c = ~(b) + 1;
+                end else begin
+                    c = b + {1'b0, a[N-2:0]};
+                end
             end
         end
     end

@@ -1,4 +1,4 @@
-module freq_diveven #(parameter NUM_DIV = 2) (
+module freq_divbyeven #(parameter NUM_DIV = 2) (
     input wire clk,
     input wire rst_n,
     output reg clk_div
@@ -7,13 +7,15 @@ module freq_diveven #(parameter NUM_DIV = 2) (
 
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            cnt <= 4'b0000;
+            cnt <= 4'b0;
             clk_div <= 1'b0;
-        end else if (cnt < (NUM_DIV / 2 - 1)) begin
-            cnt <= cnt + 1;
         end else begin
-            cnt <= 4'b0000;
-            clk_div <= ~clk_div;
+            if (cnt < (NUM_DIV / 2 - 1)) begin
+                cnt <= cnt + 1'b1;
+            end else begin
+                cnt <= 4'b0;
+                clk_div <= ~clk_div;
+            end
         end
     end
 endmodule

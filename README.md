@@ -188,7 +188,7 @@ python generate_rtl_benchmark.py --skip-generation --output-dir existing_results
 - **OpenAI**: gpt-4o, gpt-4o-mini, gpt-4-turbo, gpt-3.5-turbo
 - **Anthropic**: claude-3-5-sonnet-20241022, claude-3-opus-20240229, claude-3-sonnet-20240229
 - **Ollama**: llama3.2, codellama, mistral, qwen2
-- **Google**: gemini-1.5-pro, gemini-1.5-flash, gemini-2.0-pro, gemini-2.0-flash
+- **Google**: gemini-2.0-pro, gemini-2.0-flash, gemini-2.5-pro, gemini-2.5-flash
 - **DeepSeek**: deepseek-chat, deepseek-coder
 
 ## Output and Results

@@ -1,4 +1,4 @@
-module edge_detect(
+module edge_detect (
     input clk,
     input rst_n,
     input a,
@@ -13,8 +13,8 @@ module edge_detect(
             down <= 0;
             a_prev <= 0;
         end else begin
-            rise <= (a == 1 && a_prev == 0);
-            down <= (a == 0 && a_prev == 1);
+            rise <= (a_prev == 0 && a == 1);
+            down <= (a_prev == 1 && a == 0);
             a_prev <= a;
         end
     end

@@ -3,10 +3,8 @@ module freq_divbyodd #(parameter NUM_DIV = 5) (
     input rst_n,
     output reg clk_div
 );
-    reg [31:0] cnt1;
-    reg [31:0] cnt2;
-    reg clk_div1;
-    reg clk_div2;
+    reg [31:0] cnt1, cnt2;
+    reg clk_div1, clk_div2;
 
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin

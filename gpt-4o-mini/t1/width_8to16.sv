@@ -13,6 +13,7 @@ module width_8to16 (
         if (!rst_n) begin
             data_out <= 16'b0;
             valid_out <= 1'b0;
+            data_lock <= 8'b0;
             flag <= 1'b0;
         end else begin
             if (valid_in) begin
@@ -24,7 +25,7 @@ module width_8to16 (
                     valid_out <= 1'b1;
                     flag <= 1'b0;
                 end
-            end else begin
+            end else if (flag) begin
                 valid_out <= 1'b0;
             end
         end

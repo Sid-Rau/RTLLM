@@ -12,6 +12,7 @@ Input ports:
     dividend: 8-bit input signal representing the dividend for division.
     divisor: 8-bit input signal representing the divisor for division.
     opn_valid: 1-bit indicates that a valid operation request is present.
+    res_ready: 1-bit indicates that the result is ready to be received 
 Output ports:
     res_valid: 1-bit output signal indicating the result is valid and ready.
     result: 16-bit the output containing the remainder in the upper 8 bits and the quotient in the lower 8 bits.

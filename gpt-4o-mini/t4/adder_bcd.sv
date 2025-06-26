@@ -5,15 +5,15 @@ module adder_bcd (
     output reg [3:0] Sum,
     output reg Cout
 );
-    wire [4:0] total;
-    assign total = A + B + Cin;
+    wire [4:0] temp_sum;
+    assign temp_sum = A + B + Cin;
 
     always @(*) begin
-        if (total > 9) begin
-            Sum = total + 6;
+        if (temp_sum > 9) begin
+            Sum = temp_sum + 6;
             Cout = 1;
         end else begin
-            Sum = total;
+            Sum = temp_sum;
             Cout = 0;
         end
     end

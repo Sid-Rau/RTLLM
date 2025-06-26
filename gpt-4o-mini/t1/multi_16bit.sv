@@ -22,23 +22,24 @@ module multi_16bit(
         end else begin
             if (start) begin
                 if (i < 16) begin
-                    if (i == 0) begin
-                        areg <= ain;
-                        breg <= bin;
-                    end
-                    if (areg[i]) begin
-                        yout_r <= yout_r + (breg << i);
-                    end
                     i <= i + 1;
                 end
             end else begin
                 i <= 0;
             end
-            
+
+            if (i == 0) begin
+                areg <= ain;
+                breg <= bin;
+            end else if (i > 0 && i < 17) begin
+                if (areg[i-1]) begin
+                    yout_r <= yout_r + (breg << (i-1));
+                end
+            end
+
             if (i == 16) begin
                 done_r <= 1;
-            end
-            if (i == 17) begin
+            end else if (i == 17) begin
                 done_r <= 0;
             end
         end

@@ -1,4 +1,4 @@
-module right_shifter(
+module right_shifter (
     input clk,
     input d,
     output reg [7:0] q

@@ -1,41 +1,28 @@
 module fixed_point_adder #(
     parameter Q = 8,
     parameter N = 16
-)(
+) (
     input [N-1:0] a,
     input [N-1:0] b,
     output [N-1:0] c
 );
 
     reg [N-1:0] res;
-    reg [N-1:0] abs_a;
-    reg [N-1:0] abs_b;
-    reg [N-1:0] sum;
-    reg [N-1:0] diff;
-    reg sign_a;
-    reg sign_b;
-    reg sign_sum;
-    reg sign_diff;
 
     always @(*) begin
-        sign_a = a[N-1];
-        sign_b = b[N-1];
-        abs_a = sign_a ? -a : a;
-        abs_b = sign_b ? -b : b;
-
-        if (sign_a == sign_b) begin
-            sum = abs_a + abs_b;
-            sign_sum = sign_a;
-            res = sign_sum ? -sum : sum;
+        if (a[N-1] == b[N-1]) begin
+            res[N-2:0] = a[N-2:0] + b[N-2:0];
+            res[N-1] = a[N-1];
         end else begin
-            if (abs_a > abs_b) begin
-                diff = abs_a - abs_b;
-                sign_diff = sign_a;
+            if (a[N-2:0] > b[N-2:0]) begin
+                res[N-2:0] = a[N-2:0] - b[N-2:0];
+                res[N-1] = a[N-1];
+            end else if (b[N-2:0] > a[N-2:0]) begin
+                res[N-2:0] = b[N-2:0] - a[N-2:0];
+                res[N-1] = b[N-1];
             end else begin
-                diff = abs_b - abs_a;
-                sign_diff = sign_b;
+                res = {N{1'b0}};
             end
-            res = sign_diff ? -diff : diff;
         end
     end
 

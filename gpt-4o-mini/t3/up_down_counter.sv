@@ -7,10 +7,12 @@ module up_down_counter(
     always @(posedge clk) begin
         if (reset) begin
             count <= 16'b0;
-        end else if (up_down) begin
-            count <= count + 1;
         end else begin
-            count <= count - 1;
+            if (up_down) begin
+                count <= count + 1;
+            end else begin
+                count <= count - 1;
+            end
         end
     end
 endmodule

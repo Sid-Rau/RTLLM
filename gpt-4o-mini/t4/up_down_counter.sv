@@ -1,10 +1,10 @@
-module up_down_counter(
-    input clk,
-    input reset,
-    input up_down,
+module up_down_counter (
+    input wire clk,
+    input wire reset,
+    input wire up_down,
     output reg [15:0] count
 );
-    always @(posedge clk) begin
+    always @(posedge clk or posedge reset) begin
         if (reset) begin
             count <= 16'b0;
         end else if (up_down) begin

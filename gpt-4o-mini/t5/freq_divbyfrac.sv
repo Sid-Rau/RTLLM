@@ -1,6 +1,6 @@
-module freq_divbyfrac (
-    input wire clk,
-    input wire rst_n,
+module freq_divbyfrac(
+    input clk,
+    input rst_n,
     output reg clk_div
 );
     reg [2:0] count;
@@ -13,20 +13,24 @@ module freq_divbyfrac (
             clk_int2 <= 1'b0;
             clk_div <= 1'b0;
         end else begin
-            if (count < 3'b100) begin
-                count <= count + 1;
-            end else begin
-                count <= 3'b000;
-            end
-            
-            if (count < 3'b100) begin
-                clk_int1 <= (count < 3'b100) ? 1'b1 : 1'b0;
-                clk_int2 <= (count < 3'b011) ? 1'b1 : 1'b0;
+            if (count < 3'd4) begin
+                clk_int1 <= 1'b1;
             end else begin
                 clk_int1 <= 1'b0;
+            end
+
+            if (count >= 3'd4 && count < 3'd7) begin
+                clk_int2 <= 1'b1;
+            end else begin
                 clk_int2 <= 1'b0;
             end
-            
+
+            if (count == 3'd6) begin
+                count <= 3'b000;
+            end else begin
+                count <= count + 1'b1;
+            end
+
             clk_div <= clk_int1 | clk_int2;
         end
     end

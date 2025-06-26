@@ -11,22 +11,24 @@ module width_8to16 (
 
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            data_out <= 16'b0;
-            valid_out <= 1'b0;
-            data_lock <= 8'b0;
-            flag <= 1'b0;
+            valid_out <= 0;
+            data_out <= 0;
+            data_lock <= 0;
+            flag <= 0;
         end else begin
             if (valid_in) begin
                 if (!flag) begin
                     data_lock <= data_in;
-                    flag <= 1'b1;
+                    flag <= 1;
                 end else begin
                     data_out <= {data_lock, data_in};
-                    valid_out <= 1'b1;
-                    flag <= 1'b0;
+                    valid_out <= 1;
+                    flag <= 0;
                 end
+            end else if (flag) begin
+                valid_out <= 0;
             end else begin
-                valid_out <= 1'b0;
+                valid_out <= 0;
             end
         end
     end

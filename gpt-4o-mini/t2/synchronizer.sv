@@ -13,13 +13,17 @@ module synchronizer (
     reg en_clap_two;
 
     always @(posedge clk_a or negedge arstn) begin
-        if (!arstn) begin
+        if (!arstn)
             data_reg <= 4'b0;
-            en_data_reg <= 1'b0;
-        end else begin
+        else
             data_reg <= data_in;
+    end
+
+    always @(posedge clk_a or negedge arstn) begin
+        if (!arstn)
+            en_data_reg <= 1'b0;
+        else
             en_data_reg <= data_en;
-        end
     end
 
     always @(posedge clk_b or negedge brstn) begin
@@ -33,10 +37,9 @@ module synchronizer (
     end
 
     always @(posedge clk_b or negedge brstn) begin
-        if (!brstn) begin
+        if (!brstn)
             dataout <= 4'b0;
-        end else if (en_clap_two) begin
+        else if (en_clap_two)
             dataout <= data_reg;
-        end
     end
 endmodule

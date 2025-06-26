@@ -5,26 +5,32 @@ module pulse_detect(
     output reg data_out
 );
     reg [1:0] state;
+    parameter IDLE = 2'b00, HIGH = 2'b01, LOW = 2'b10;
 
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            state <= 2'b00;
-            data_out <= 1'b0;
+            state <= IDLE;
+            data_out <= 0;
         end else begin
             case (state)
-                2'b00: begin
-                    if (data_in) state <= 2'b01;
+                IDLE: begin
+                    if (data_in) begin
+                        state <= HIGH;
+                        data_out <= 0;
+                    end
                 end
-                2'b01: begin
-                    if (!data_in) state <= 2'b10;
-                end
-                2'b10: begin
-                    if (data_in) state <= 2'b11;
-                end
-                2'b11: begin
+                HIGH: begin
                     if (!data_in) begin
-                        data_out <= 1'b1;
-                        state <= 2'b00;
+                        state <= LOW;
+                    end
+                end
+                LOW: begin
+                    if (data_in) begin
+                        data_out <= 1;
+                        state <= HIGH;
+                    end else begin
+                        state <= IDLE;
+                        data_out <= 0;
                     end
                 end
             endcase
