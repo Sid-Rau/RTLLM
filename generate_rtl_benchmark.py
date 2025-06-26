@@ -1,11 +1,17 @@
 import os
 import time
 import argparse
+import threading
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Optional
+from dotenv import load_dotenv
 from langchain.chat_models import init_chat_model
 from langchain.prompts import PromptTemplate
 from langchain.schema import HumanMessage, SystemMessage
 from run_benchmark import build_benchmark_directory_list
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Model/provider configuration
 PROVIDER = "openai"
@@ -37,7 +43,22 @@ PROVIDER_CONFIGS = {
     "deepseek": {
         "api_key_env": "DEEPSEEK_API_KEY",
         "provider": "deepseek",
-        "models": ["deepseek-chat", "deepseek-coder"]
+        "models": ["deepseek-r1-0528", "deepseek-chat-v3-0324", "deepseek-chat"]
+    },
+    "openrouter": {
+        "api_key_env": "OPENROUTER_API_KEY",
+        "provider": "openai",
+        "models": [
+            "deepseek/deepseek-r1-0528:free",
+            "deepseek/deepseek-chat-v3-0324:free",
+            "deepseek/deepseek-chat:free",
+            "openai/gpt-4o",
+            "openai/gpt-4o-mini",
+            "openai/gpt-3.5-turbo",
+            "anthropic/claude-3-5-sonnet-20241022",
+            "google/gemini-2.0-pro",
+            "google/gemini-2.0-flash"
+        ]
     }
 }
 
@@ -92,7 +113,10 @@ def setup_langchain_client(provider: Optional[str] = None, model_name: Optional[
         elif provider == "google":
             kwargs["google_api_key"] = api_key
         elif provider == "deepseek":
-            kwargs["deepseek_api_key"] = api_key
+            kwargs["api_key"] = api_key
+        elif provider == "openrouter":
+            kwargs["openai_api_key"] = api_key
+            kwargs["base_url"] = "https://openrouter.ai/api/v1"
     return init_chat_model(model_name, model_provider=config["provider"], **kwargs)
 
 def read_design_description(benchmark_dir: str) -> Optional[str]:
@@ -139,6 +163,119 @@ def save_generated_design(base_output_dir: str, module_name: str, attempt: int, 
         f.write(code)
     return filepath
 
+def generate_single_module(client, benchmark_dir: str, base_output_dir: str, attempt: int, module_index: int, total_modules: int) -> tuple[str, bool, str]:
+    """
+    Generate RTL for a single module. This function is designed to be used with threading.
+    
+    Args:
+        client: LangChain client
+        benchmark_dir: Path to benchmark directory
+        base_output_dir: Base output directory
+        attempt: Current attempt number
+        module_index: Index of the module (for progress tracking)
+        total_modules: Total number of modules
+        
+    Returns:
+        tuple: (module_name, success, filepath_or_error)
+    """
+    module_name = os.path.basename(benchmark_dir)
+    print(f"\n[{module_index}/{total_modules}] Processing: {module_name}")
+    
+    description = read_design_description(benchmark_dir)
+    if not description:
+        error_msg = f"No design description found for {module_name}"
+        print(f"  {error_msg}")
+        return module_name, False, error_msg
+    
+    extracted_name = extract_module_name_from_description(description)
+    if extracted_name and extracted_name != module_name:
+        print(f"  Warning: Module name mismatch. Expected: {module_name}, Found: {extracted_name}")
+    
+    print(f"  Generating {module_name}...")
+    generated_code = generate_rtl_design(client, description, attempt)
+    
+    if generated_code:
+        try:
+            filepath = save_generated_design(base_output_dir, module_name, attempt, generated_code)
+            print(f"    Saved to: {filepath}")
+            return module_name, True, filepath
+        except Exception as e:
+            error_msg = f"Failed to save {module_name}: {e}"
+            print(f"    {error_msg}")
+            return module_name, False, error_msg
+    else:
+        error_msg = f"Failed to generate {module_name}"
+        print(f"    {error_msg}")
+        return module_name, False, error_msg
+
+def test_client_connection(client, provider: str, model_name: str) -> bool:
+    """
+    Test the client connection with a simple prompt to ensure it's working.
+    
+    Args:
+        client: LangChain client to test
+        provider: Provider name for error messages
+        model_name: Model name for error messages
+        
+    Returns:
+        bool: True if connection is successful, False otherwise
+    """
+    try:
+        print(f"Testing connection to {provider} with model {model_name}...")
+        test_prompt = "Please respond with 'OK' if you can see this message."
+        messages = [HumanMessage(content=test_prompt)]
+        response = client.invoke(messages)
+        
+        if response and response.content:
+            print(f"✓ Connection successful! Model responded: {response.content[:50]}...")
+            return True
+        else:
+            print(f"✗ Connection failed: No response from model")
+            return False
+            
+    except Exception as e:
+        print(f"✗ Connection failed: {e}")
+        return False
+
+def validate_benchmark_directories(benchmark_dirs: list) -> bool:
+    """
+    Validate that benchmark directories exist and have required files.
+    
+    Args:
+        benchmark_dirs: List of benchmark directory paths
+        
+    Returns:
+        bool: True if all directories are valid, False otherwise
+    """
+    if not benchmark_dirs:
+        print("✗ No benchmark directories found!")
+        return False
+    
+    print(f"Validating {len(benchmark_dirs)} benchmark directories...")
+    valid_dirs = []
+    
+    for benchmark_dir in benchmark_dirs:
+        module_name = os.path.basename(benchmark_dir)
+        description_file = os.path.join(benchmark_dir, "design_description.txt")
+        testbench_file = os.path.join(benchmark_dir, "testbench.v")
+        
+        if not os.path.exists(description_file):
+            print(f"✗ Missing design_description.txt in {module_name}")
+            continue
+            
+        if not os.path.exists(testbench_file):
+            print(f"✗ Missing testbench.v in {module_name}")
+            continue
+            
+        valid_dirs.append(benchmark_dir)
+    
+    if len(valid_dirs) != len(benchmark_dirs):
+        print(f"✗ Only {len(valid_dirs)}/{len(benchmark_dirs)} benchmark directories are valid!")
+        return False
+    
+    print(f"✓ All {len(valid_dirs)} benchmark directories are valid")
+    return True
+
 # --- Main Execution ---
 def main():
     parser = argparse.ArgumentParser(description="RTL Generation Benchmark with Multiple LLM Providers")
@@ -151,6 +288,8 @@ def main():
     parser.add_argument("--detailed", action="store_true", help="Enable detailed output and log file generation")
     parser.add_argument("--list-providers", action="store_true", help="List available providers and their models")
     parser.add_argument("--skip-generation", action="store_true", help="Skip RTL generation and only run the benchmark on the output directory.")
+    parser.add_argument("--workers", type=int, default=4, help="Number of worker threads for concurrent generation (default: 4)")
+    parser.add_argument("--skip-validation", action="store_true", help="Skip connection and benchmark validation (use with caution)")
     args = parser.parse_args()
 
     if args.list_providers:
@@ -188,19 +327,55 @@ def main():
         print(f"Generated RTL files saved to: {args.output_dir}/ (in t1, t2, etc. subdirectories)")
         return
 
-    try:
-        client = setup_langchain_client(
-            provider=args.provider,
-            model_name=args.model,
-            temperature=args.temperature,
-            max_tokens=args.max_tokens
-        )
-        print(f"LangChain client initialized with provider: {args.provider}, model: {args.model}")
-    except Exception as e:
-        print(f"Failed to setup LangChain client: {e}")
-        return
+    # Validate configuration and connection before starting generation
+    if not args.skip_validation:
+        print("\n" + "="*60)
+        print("VALIDATION PHASE")
+        print("="*60)
+        
+        # Validate benchmark directories
+        benchmark_dirs = build_benchmark_directory_list()
+        if not validate_benchmark_directories(benchmark_dirs):
+            print("\n✗ Validation failed! Please check your benchmark directory structure.")
+            print("Each benchmark directory should contain:")
+            print("  - design_description.txt")
+            print("  - testbench.v")
+            return
+        
+        # Test client connection
+        try:
+            client = setup_langchain_client(
+                provider=args.provider,
+                model_name=args.model,
+                temperature=args.temperature,
+                max_tokens=args.max_tokens
+            )
+            print(f"LangChain client initialized with provider: {args.provider}, model: {args.model}")
+        except Exception as e:
+            print(f"\n✗ Failed to setup LangChain client: {e}")
+            print("Please check your API keys and provider configuration.")
+            return
+        
+        if not test_client_connection(client, args.provider, args.model):
+            print("\n✗ Connection test failed! Please check your API keys and network connection.")
+            return
+        
+        print("\n✓ All validations passed! Starting RTL generation...")
+    else:
+        print("\n⚠️  Skipping validation (use with caution)")
+        benchmark_dirs = build_benchmark_directory_list()
+        try:
+            client = setup_langchain_client(
+                provider=args.provider,
+                model_name=args.model,
+                temperature=args.temperature,
+                max_tokens=args.max_tokens
+            )
+            print(f"LangChain client initialized with provider: {args.provider}, model: {args.model}")
+        except Exception as e:
+            print(f"\n✗ Failed to setup LangChain client: {e}")
+            return
 
-    benchmark_dirs = build_benchmark_directory_list()
     print(f"Found {len(benchmark_dirs)} benchmark directories")
     os.makedirs(args.output_dir, exist_ok=True)
 
@@ -211,24 +386,41 @@ def main():
         subdir = f"t{attempt}"
         attempt_output_dir = os.path.join(args.output_dir, subdir)
         os.makedirs(attempt_output_dir, exist_ok=True)
-        for i, benchmark_dir in enumerate(benchmark_dirs):
-            module_name = os.path.basename(benchmark_dir)
-            print(f"\n[{i+1}/{len(benchmark_dirs)}] Processing: {module_name}")
-            description = read_design_description(benchmark_dir)
-            if not description:
-                print(f"  No design description found for {module_name}")
-                continue
-            extracted_name = extract_module_name_from_description(description)
-            if extracted_name and extracted_name != module_name:
-                print(f"  Warning: Module name mismatch. Expected: {module_name}, Found: {extracted_name}")
-            print(f"  Generating {module_name}...")
-            generated_code = generate_rtl_design(client, description, attempt)
-            if generated_code:
-                filepath = save_generated_design(args.output_dir, module_name, attempt, generated_code)
-                print(f"    Saved to: {filepath}")
-            else:
-                print(f"    Failed to generate {module_name}")
-            time.sleep(1)
+        
+        # Use ThreadPoolExecutor for concurrent generation
+        with ThreadPoolExecutor(max_workers=args.workers) as executor:
+            # Submit all tasks
+            future_to_module = {}
+            for i, benchmark_dir in enumerate(benchmark_dirs):
+                future = executor.submit(
+                    generate_single_module,
+                    client,
+                    benchmark_dir,
+                    args.output_dir,
+                    attempt,
+                    i + 1,
+                    len(benchmark_dirs)
+                )
+                future_to_module[future] = benchmark_dir
+            
+            # Collect results as they complete
+            successful_generations = 0
+            failed_generations = 0
+            
+            for future in as_completed(future_to_module):
+                module_name, success, result = future.result()
+                if success:
+                    successful_generations += 1
+                else:
+                    failed_generations += 1
+                
+                # Print progress
+                completed = successful_generations + failed_generations
+                print(f"\nProgress: {completed}/{len(benchmark_dirs)} completed "
+                      f"(✓ {successful_generations}, ✗ {failed_generations})")
+        
+        print(f"\nAttempt {attempt} completed: {successful_generations} successful, {failed_generations} failed")
+        time.sleep(1)  # Brief pause between attempts
 
     print(f"\n{'='*60}")
     print("RUNNING BENCHMARK ON ALL ATTEMPTS")

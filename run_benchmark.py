@@ -33,12 +33,39 @@ SIM_TIMEOUT = 1
 
 # --- Utility Functions ---
 class TimeoutError(Exception):
+    """Custom exception for timeout errors."""
     pass
 
 def timeout_handler(signum: int, frame: Any) -> None:
+    """
+    Signal handler for timeout events.
+    
+    Args:
+        signum: Signal number
+        frame: Current stack frame
+        
+    Raises:
+        TimeoutError: When timeout signal is received
+    """
     raise TimeoutError("Operation timed out")
 
 def run_with_timeout(cmd: List[str], timeout: int, description: str, cwd: Optional[str] = None) -> subprocess.CompletedProcess:
+    """
+    Run a command with a timeout limit.
+    
+    Args:
+        cmd: Command to run as a list of strings
+        timeout: Timeout in seconds
+        description: Description of the operation for error messages
+        cwd: Working directory for the command (optional)
+        
+    Returns:
+        subprocess.CompletedProcess: Result of the command execution
+        
+    Raises:
+        TimeoutError: If the command times out
+        Exception: If any other error occurs during execution
+    """
     try:
         signal.signal(signal.SIGALRM, timeout_handler)
         signal.alarm(timeout)
@@ -56,6 +83,15 @@ def run_with_timeout(cmd: List[str], timeout: int, description: str, cwd: Option
         raise e
 
 def find_leaf_directories(root_path: str) -> List[str]:
+    """
+    Find all leaf directories (directories containing files) in a directory tree.
+    
+    Args:
+        root_path: Root directory to search from
+        
+    Returns:
+        List[str]: List of paths to leaf directories
+    """
     leaf_dirs: List[str] = []
     if os.path.exists(root_path):
         for item in os.listdir(root_path):
@@ -69,6 +105,12 @@ def find_leaf_directories(root_path: str) -> List[str]:
     return leaf_dirs
 
 def build_benchmark_directory_list() -> List[str]:
+    """
+    Build a list of all benchmark directories by searching through categories.
+    
+    Returns:
+        List[str]: List of paths to benchmark directories
+    """
     path = os.path.join(os.getcwd(), "benchmark")
     dir_list: List[str] = []
     for cat in CATEGORIES:
@@ -78,6 +120,16 @@ def build_benchmark_directory_list() -> List[str]:
     return dir_list
 
 def test_file(rtl_file_path: str, benchmark_path: str) -> dict:
+    """
+    Test a single RTL file against its corresponding benchmark testbench.
+    
+    Args:
+        rtl_file_path: Path to the RTL file to test
+        benchmark_path: Path to the benchmark directory containing testbench
+        
+    Returns:
+        dict: Test results containing status, stdout, stderr, and return codes
+    """
     result = {
         "status": "unknown",
         "compile_stdout": "",
@@ -126,6 +178,19 @@ def test_file(rtl_file_path: str, benchmark_path: str) -> dict:
     return result
 
 def write_results_to_log(result_dict: dict, rtl_file_dir: str, log_file_path: Optional[str] = None, filename_prefix: Optional[str] = None, logs_dir: str = "logs") -> str:
+    """
+    Write test results to a log file with detailed statistics and error information.
+    
+    Args:
+        result_dict: Dictionary containing test results for each module
+        rtl_file_dir: Directory containing the RTL files that were tested
+        log_file_path: Path for the log file (optional, auto-generated if not provided)
+        filename_prefix: Prefix for the log filename (optional)
+        logs_dir: Directory to store log files
+        
+    Returns:
+        str: Path to the created log file
+    """
     if filename_prefix is None:
         filename_prefix = os.path.basename(os.path.dirname(rtl_file_dir))
     model_logs_dir = os.path.join(logs_dir, filename_prefix)
@@ -196,6 +261,19 @@ def test_all(
     write_log_file: bool = False,
     logs_dir: str = "logs"
 ) -> dict | None:
+    """
+    Test all RTL files in a directory against their corresponding benchmarks.
+    
+    Args:
+        rtl_file_dir: Directory containing RTL files to test
+        print_summary: Whether to print summary statistics to console
+        print_detailed: Whether to print detailed results to console
+        write_log_file: Whether to write results to a log file
+        logs_dir: Directory to store log files
+        
+    Returns:
+        dict | None: Dictionary containing test results for each module, or None if directory doesn't exist
+    """
     if not os.path.isdir(rtl_file_dir):
         if print_summary:
             print(f"Directory {rtl_file_dir} does not exist.")
@@ -255,6 +333,15 @@ def test_all(
     return result_dict
 
 def compile_module_stats(results_list: list[dict]) -> dict:
+    """
+    Compile statistics across multiple test runs for all modules.
+    
+    Args:
+        results_list: List of result dictionaries from multiple test runs
+        
+    Returns:
+        dict: Compiled statistics including per-module and overall statistics
+    """
     stats = {}
     overall: Dict[str, Union[int, float]] = {
         "runs": 0,
@@ -298,22 +385,30 @@ def compile_module_stats(results_list: list[dict]) -> dict:
     return stats
 
 def pretty_print_module_stats(stats: dict) -> None:
+    """
+    Print module statistics in a formatted table to the console.
+    
+    Args:
+        stats: Dictionary containing compiled statistics
+    """
     if not stats:
         print("No statistics to display.")
         return
     stats_copy = stats.copy()
     overall = stats_copy.pop("OVERALL", None)
     header = (
-        f"{'Module':<21}  {'Runs':>5}  {'Passed':>7}  {'Failed':>7}  "
-        f"{'CompileErr':>12}  {'SimErr':>9}  {'Timeout':>9}  {'PassRate':>10}   {'Functional':>7}"
+        f"{'Module':<20}  {'':<2}  {'Passed':>8}  {'Syntax':>6}  {'Failed':>6}  "
+        f"{'Compile':>8}  {'Sim':>5}  {'Timeout':>7}"
     )
     print(header)
     print("-" * len(header))
     for module, s in sorted(stats_copy.items()):
-        any_pass = '\u2705' if s['test_passed'] > 0 else ''
+        functional = '✓' if s['test_passed'] > 0 else '✗'
+        passed_ratio = f"{s['test_passed']}/{s['runs']}"
+        syntax_correct = '✓' if s.get('ever_compiled', False) else '✗'
         print(
-            f"{module:<21}  {s['runs']:>5}  {s['test_passed']:>7}  {s['test_failed']:>7}  "
-            f"{s['compile_error']:>12}  {s['simulation_error']:>9}  {s['timeout']:>9}  {s['pass_rate']*100:9.1f}% {any_pass:>7}"
+            f"{module:<20}  {functional:<2}  {passed_ratio:>8}  {syntax_correct:>6}  {s['test_failed']:>6}  "
+            f"{s['compile_error']:>8}  {s['simulation_error']:>5}  {s['timeout']:>7}"
         )
     if overall:
         print("\nOverall statistics across all modules and all runs:")
@@ -329,6 +424,20 @@ def pretty_print_module_stats(stats: dict) -> None:
         print(f"Syntax correct:     {overall['syntax_correct']} / {overall['total_modules']}")
 
 def write_combined_stats_to_log(results_list: list[dict], rtl_dirs: list[str], stats: dict, filename: Optional[str] = None, filename_prefix: Optional[str] = None, logs_dir: str = "logs") -> str:
+    """
+    Write combined statistics from multiple test runs to a comprehensive log file.
+    
+    Args:
+        results_list: List of result dictionaries from multiple test runs
+        rtl_dirs: List of RTL directories that were tested
+        stats: Compiled statistics dictionary
+        filename: Name for the log file (optional, auto-generated if not provided)
+        filename_prefix: Prefix for the log filename (optional)
+        logs_dir: Directory to store log files
+        
+    Returns:
+        str: Path to the created log file
+    """
     if filename_prefix is None:
         filename_prefix = "combined"
     model_logs_dir = os.path.join(logs_dir, filename_prefix)
@@ -375,16 +484,18 @@ def write_combined_stats_to_log(results_list: list[dict], rtl_dirs: list[str], s
         log_file.write("PER-MODULE STATISTICS\n")
         log_file.write("-" * 60 + "\n")
         header = (
-            f"{'Module':<25}  {'Runs':>5}  {'Passed':>7}  {'Failed':>7}  "
-            f"{'CompileErr':>12}  {'SimErr':>9}  {'Timeout':>9}  {'PassRate':>10}   {'Functional':>7}\n"
+            f"{'Module':<20}  {'':<2}  {'Passed':>8}  {'Syntax':>6}  {'Failed':>6}  "
+            f"{'Compile':>8}  {'Sim':>5}  {'Timeout':>7}\n"
         )
         log_file.write(header)
         log_file.write("-" * len(header) + "\n")
         for module, s in sorted(stats_copy.items()):
-            any_pass = '\u2705' if s['test_passed'] > 0 else ''
+            functional = '✓' if s['test_passed'] > 0 else '✗'
+            passed_ratio = f"{s['test_passed']}/{s['runs']}"
+            syntax_correct = '✓' if s.get('ever_compiled', False) else '✗'
             log_file.write(
-                f"{module:<25}  {s['runs']:>5}  {s['test_passed']:>7}  {s['test_failed']:>7}  "
-                f"{s['compile_error']:>12}  {s['simulation_error']:>9}  {s['timeout']:>9}  {s['pass_rate']*100:9.1f}% {any_pass:>7}\n"
+                f"{module:<20}  {functional:<2}  {passed_ratio:>8}  {syntax_correct:>6}  {s['test_failed']:>6}  "
+                f"{s['compile_error']:>8}  {s['simulation_error']:>5}  {s['timeout']:>7}\n"
             )
         log_file.write("\n")
         for i, (result_dict, rtl_dir) in enumerate(zip(results_list, rtl_dirs)):
@@ -443,7 +554,7 @@ def generate_overall_stats_table_image(stats: dict, filename_prefix: str, logs_d
         logs_dir: Directory to save the image
         
     Returns:
-        Path to the generated image file
+        str: Path to the generated image file, or empty string if no statistics available
     """
     if not stats or "OVERALL" not in stats:
         print("No overall statistics available for table generation.")
@@ -528,7 +639,7 @@ def generate_stats_table_image(stats: dict, filename_prefix: str, logs_dir: str 
         logs_dir: Directory to save the image
         
     Returns:
-        Path to the generated image file
+        str: Path to the generated image file, or empty string if no statistics available
     """
     if not stats or "OVERALL" not in stats:
         print("No statistics available for table generation.")
@@ -543,35 +654,36 @@ def generate_stats_table_image(stats: dict, filename_prefix: str, logs_dir: str 
     # Sort modules by pass rate (descending)
     sorted_modules = sorted(module_stats.items(), key=lambda x: x[1]['pass_rate'], reverse=True)
     
-    # Create figure and axis
-    fig, ax = plt.subplots(figsize=(16, max(8, len(module_stats) * 0.4)))
+    # Create figure and axis with reduced height
+    fig, ax = plt.subplots(figsize=(16, max(6, len(module_stats) * 0.3)))
     ax.axis('tight')
     ax.axis('off')
     
-    # Prepare data for the table
+    # Prepare data for the table with reorganized columns
     table_data = [
-        ['Module', 'Runs', 'Passed', 'Failed', 'Compile Err', 'Sim Err', 'Timeout', 'Pass Rate', 'Functional']
+        ['Module', '', 'Passed', 'Syntax', 'Failed', 'Compile', 'Sim', 'Timeout']
     ]
     
     for module_name, module_data in sorted_modules:
         functional = '✓' if module_data['test_passed'] > 0 else '✗'
+        passed_ratio = f"{module_data['test_passed']}/{module_data['runs']}"
+        syntax_correct = '✓' if module_data.get('ever_compiled', False) else '✗'
         table_data.append([
             module_name,
-            str(module_data['runs']),
-            str(module_data['test_passed']),
+            functional,
+            passed_ratio,
+            syntax_correct,
             str(module_data['test_failed']),
             str(module_data['compile_error']),
             str(module_data['simulation_error']),
-            str(module_data['timeout']),
-            f"{module_data['pass_rate']*100:.1f}%",
-            functional
+            str(module_data['timeout'])
         ])
     
-    # Create table
+    # Create table with reduced spacing
     table = ax.table(cellText=table_data, cellLoc='center', loc='center')
     table.auto_set_font_size(False)
-    table.set_fontsize(10)
-    table.scale(1.0, 1.5)
+    table.set_fontsize(9)
+    table.scale(1.0, 1.2)
     
     # Style the table
     for i in range(len(table_data)):
@@ -592,8 +704,16 @@ def generate_stats_table_image(stats: dict, filename_prefix: str, logs_dir: str 
                 
                 cell.set_facecolor(row_color)
                 
-                # Special styling for pass rate column
-                if j == 7:  # Pass Rate column
+                # Special styling for functional column (second column)
+                if j == 1:  # Functional column
+                    if module_stats[sorted_modules[i-1][0]]['test_passed'] > 0:
+                        cell.set_facecolor('#90EE90')  # Green
+                        cell.set_text_props(weight='bold')
+                    else:
+                        cell.set_facecolor('#FFB6C1')  # Light red
+                
+                # Special styling for passed ratio column
+                elif j == 2:  # Passed ratio column
                     if pass_rate >= 0.8:
                         cell.set_facecolor('#90EE90')  # Green
                     elif pass_rate >= 0.5:
@@ -601,17 +721,17 @@ def generate_stats_table_image(stats: dict, filename_prefix: str, logs_dir: str 
                     else:
                         cell.set_facecolor('#FFB6C1')  # Light red
                 
-                # Special styling for functional column
-                elif j == 8:  # Functional column
-                    if module_stats[sorted_modules[i-1][0]]['test_passed'] > 0:
+                # Special styling for syntax column
+                elif j == 3:  # Syntax column
+                    if module_stats[sorted_modules[i-1][0]].get('ever_compiled', False):
                         cell.set_facecolor('#90EE90')  # Green
                         cell.set_text_props(weight='bold')
                     else:
                         cell.set_facecolor('#FFB6C1')  # Light red
             
-            # Add borders
+            # Add borders with reduced linewidth
             cell.set_edgecolor('#CCCCCC')
-            cell.set_linewidth(0.5)
+            cell.set_linewidth(0.3)
     
     # Add title with overall stats
     overall = stats["OVERALL"]
@@ -620,7 +740,7 @@ def generate_stats_table_image(stats: dict, filename_prefix: str, logs_dir: str 
     title_text += f'Functional: {overall["functional"]}/{overall["total_modules"]} modules | '
     title_text += f'Date: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}'
     
-    plt.title(title_text, fontsize=14, fontweight='bold', pad=20)
+    plt.title(title_text, fontsize=12, fontweight='bold', pad=15)
     
     # Save the image
     model_logs_dir = os.path.join(logs_dir, filename_prefix)
@@ -634,6 +754,21 @@ def generate_stats_table_image(stats: dict, filename_prefix: str, logs_dir: str 
     return image_path
 
 def run_benchmark(test_dir: str, print_summary: bool = True, print_detailed: bool = True, write_log_file: bool = True, logs_dir: str = "logs", generate_overall_table: bool = True, generate_per_module_table: bool = True) -> tuple[list[dict], dict]:
+    """
+    Run comprehensive benchmarks on all RTL directories within a test directory.
+    
+    Args:
+        test_dir: Directory containing subdirectories with RTL files to test
+        print_summary: Whether to print summary statistics to console
+        print_detailed: Whether to print detailed results to console
+        write_log_file: Whether to write results to log files
+        logs_dir: Directory to store log files
+        generate_overall_table: Whether to generate overall statistics table image
+        generate_per_module_table: Whether to generate per-module statistics table image
+        
+    Returns:
+        tuple[list[dict], dict]: Tuple containing (list of result dictionaries, compiled statistics)
+    """
     result_list = []
     rtl_dirs = []
     folder_name = os.path.basename(test_dir.rstrip('/'))
@@ -661,6 +796,14 @@ def run_benchmark(test_dir: str, print_summary: bool = True, print_detailed: boo
     return result_list, stats
 
 def main(args: list[str]):
+    """
+    Main entry point for the RTL benchmark runner.
+    
+    Parses command line arguments and runs the benchmark with specified options.
+    
+    Args:
+        args: Command line arguments (excluding script name)
+    """
     parser = argparse.ArgumentParser(description="Run RTL benchmark and write logs grouped by model.")
     parser.add_argument("test_dir", help="Directory containing generated RTL attempts (t1, t2, ...)")
     parser.add_argument("--no-overall-table", action="store_true", help="Skip generation of overall statistics table")

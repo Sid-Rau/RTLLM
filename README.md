@@ -72,6 +72,21 @@ pip install -r requirements.txt
 
 ### 2. Set Up API Keys
 
+You can set up API keys in two ways:
+
+**Option 1: Using .env file (Recommended)**
+```bash
+# Copy the template and edit with your API keys
+cp env_template.txt .env
+
+# Edit .env file with your actual API keys
+# OPENAI_API_KEY=your-actual-openai-key
+# ANTHROPIC_API_KEY=your-actual-anthropic-key
+# GOOGLE_API_KEY=your-actual-google-key
+# DEEPSEEK_API_KEY=your-actual-deepseek-key
+```
+
+**Option 2: Using environment variables**
 ```bash
 # For OpenAI
 export OPENAI_API_KEY="your-openai-api-key"

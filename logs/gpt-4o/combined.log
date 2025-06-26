@@ -1,7 +1,7 @@
 ====================================================================================================
 COMBINED RTL BENCHMARK TEST RESULTS
 ====================================================================================================
-Test Date: 2025-06-26 00:02:38
+Test Date: 2025-06-26 00:30:58
 Total Test Runs: 5
 RTL Directories Tested: t2, t5, t3, t1, t4
 Total Modules Tested: 50
@@ -29,58 +29,58 @@ Syntax correct:     43 / 50
 
 PER-MODULE STATISTICS
 ------------------------------------------------------------
-Module                      Runs   Passed   Failed    CompileErr     SimErr    Timeout    PassRate   Functional
-----------------------------------------------------------------------------------------------------------------
-JC_counter                     5        5        0             0          0          0      100.0%       ✅
-LFSR                           5        0        0             5          0          0        0.0%        
-LIFObuffer                     5        3        2             0          0          0       60.0%       ✅
-RAM                            5        5        0             0          0          0      100.0%       ✅
-ROM                            5        5        0             0          0          0      100.0%       ✅
-accu                           5        5        0             0          0          0      100.0%       ✅
-adder_16bit                    5        5        0             0          0          0      100.0%       ✅
-adder_32bit                    5        2        2             1          0          0       40.0%       ✅
-adder_8bit                     5        5        0             0          0          0      100.0%       ✅
-adder_bcd                      5        5        0             0          0          0      100.0%       ✅
-adder_pipe_64bit               5        0        0             5          0          0        0.0%        
-alu                            5        0        5             0          0          0        0.0%        
-asyn_fifo                      5        0        0             5          0          0        0.0%        
-barrel_shifter                 5        0        5             0          0          0        0.0%        
-calendar                       5        5        0             0          0          0      100.0%       ✅
-clkgenerator                   5        0        5             0          0          0        0.0%        
-comparator_3bit                5        5        0             0          0          0      100.0%       ✅
-comparator_4bit                5        5        0             0          0          0      100.0%       ✅
-counter_12                     5        5        0             0          0          0      100.0%       ✅
-div_16bit                      5        0        5             0          0          0        0.0%        
-edge_detect                    5        5        0             0          0          0      100.0%       ✅
-fixed_point_adder              5        5        0             0          0          0      100.0%       ✅
-fixed_point_substractor        5        5        0             0          0          0      100.0%       ✅
-float_multi                    5        4        1             0          0          0       80.0%       ✅
-freq_div                       5        5        0             0          0          0      100.0%       ✅
-freq_divbyeven                 5        0        0             5          0          0        0.0%        
-freq_divbyfrac                 5        0        5             0          0          0        0.0%        
-freq_divbyodd                  5        0        5             0          0          0        0.0%        
-fsm                            5        5        0             0          0          0      100.0%       ✅
-instr_reg                      5        5        0             0          0          0      100.0%       ✅
-multi_16bit                    5        5        0             0          0          0      100.0%       ✅
-multi_8bit                     5        5        0             0          0          0      100.0%       ✅
-multi_booth_8bit               5        5        0             0          0          0      100.0%       ✅
-multi_pipe_4bit                5        2        1             2          0          0       40.0%       ✅
-multi_pipe_8bit                5        1        4             0          0          0       20.0%       ✅
-parallel2serial                5        0        5             0          0          0        0.0%        
-pe                             5        5        0             0          0          0      100.0%       ✅
-pulse_detect                   5        0        5             0          0          0        0.0%        
-radix2_div                     5        0        0             5          0          0        0.0%        
-right_shifter                  5        5        0             0          0          0      100.0%       ✅
-ring_counter                   5        0        0             5          0          0        0.0%        
-sequence_detector              5        0        0             5          0          0        0.0%        
-serial2parallel                5        0        0             0          0          5        0.0%        
-signal_generator               5        3        2             0          0          0       60.0%       ✅
-square_wave                    5        5        0             0          0          0      100.0%       ✅
-sub_64bit                      5        5        0             0          0          0      100.0%       ✅
-synchronizer                   5        5        0             0          0          0      100.0%       ✅
-traffic_light                  5        0        5             0          0          0        0.0%        
-up_down_counter                5        5        0             0          0          0      100.0%       ✅
-width_8to16                    5        5        0             0          0          0      100.0%       ✅
+Module                      Passed  Syntax  Failed   Compile    Sim  Timeout
+-----------------------------------------------------------------------------
+JC_counter            ✓        5/5       ✓       0         0      0        0
+LFSR                  ✗        0/5       ✗       0         5      0        0
+LIFObuffer            ✓        3/5       ✓       2         0      0        0
+RAM                   ✓        5/5       ✓       0         0      0        0
+ROM                   ✓        5/5       ✓       0         0      0        0
+accu                  ✓        5/5       ✓       0         0      0        0
+adder_16bit           ✓        5/5       ✓       0         0      0        0
+adder_32bit           ✓        2/5       ✓       2         1      0        0
+adder_8bit            ✓        5/5       ✓       0         0      0        0
+adder_bcd             ✓        5/5       ✓       0         0      0        0
+adder_pipe_64bit      ✗        0/5       ✗       0         5      0        0
+alu                   ✗        0/5       ✓       5         0      0        0
+asyn_fifo             ✗        0/5       ✗       0         5      0        0
+barrel_shifter        ✗        0/5       ✓       5         0      0        0
+calendar              ✓        5/5       ✓       0         0      0        0
+clkgenerator          ✗        0/5       ✓       5         0      0        0
+comparator_3bit       ✓        5/5       ✓       0         0      0        0
+comparator_4bit       ✓        5/5       ✓       0         0      0        0
+counter_12            ✓        5/5       ✓       0         0      0        0
+div_16bit             ✗        0/5       ✓       5         0      0        0
+edge_detect           ✓        5/5       ✓       0         0      0        0
+fixed_point_adder     ✓        5/5       ✓       0         0      0        0
+fixed_point_substractor  ✓        5/5       ✓       0         0      0        0
+float_multi           ✓        4/5       ✓       1         0      0        0
+freq_div              ✓        5/5       ✓       0         0      0        0
+freq_divbyeven        ✗        0/5       ✗       0         5      0        0
+freq_divbyfrac        ✗        0/5       ✓       5         0      0        0
+freq_divbyodd         ✗        0/5       ✓       5         0      0        0
+fsm                   ✓        5/5       ✓       0         0      0        0
+instr_reg             ✓        5/5       ✓       0         0      0        0
+multi_16bit           ✓        5/5       ✓       0         0      0        0
+multi_8bit            ✓        5/5       ✓       0         0      0        0
+multi_booth_8bit      ✓        5/5       ✓       0         0      0        0
+multi_pipe_4bit       ✓        2/5       ✓       1         2      0        0
+multi_pipe_8bit       ✓        1/5       ✓       4         0      0        0
+parallel2serial       ✗        0/5       ✓       5         0      0        0
+pe                    ✓        5/5       ✓       0         0      0        0
+pulse_detect          ✗        0/5       ✓       5         0      0        0
+radix2_div            ✗        0/5       ✗       0         5      0        0
+right_shifter         ✓        5/5       ✓       0         0      0        0
+ring_counter          ✗        0/5       ✗       0         5      0        0
+sequence_detector     ✗        0/5       ✗       0         5      0        0
+serial2parallel       ✗        0/5       ✓       0         0      0        5
+signal_generator      ✓        3/5       ✓       2         0      0        0
+square_wave           ✓        5/5       ✓       0         0      0        0
+sub_64bit             ✓        5/5       ✓       0         0      0        0
+synchronizer          ✓        5/5       ✓       0         0      0        0
+traffic_light         ✗        0/5       ✓       5         0      0        0
+up_down_counter       ✓        5/5       ✓       0         0      0        0
+width_8to16           ✓        5/5       ✓       0         0      0        0
 
 DETAILED RESULTS - t2
 ================================================================================

@@ -1,0 +1,1138 @@
+====================================================================================================
+COMBINED RTL BENCHMARK TEST RESULTS
+====================================================================================================
+Test Date: 2025-06-26 02:28:25
+Total Test Runs: 5
+RTL Directories Tested: t2, t5, t3, t1, t4
+Total Modules Tested: 50
+
+SUMMARY STATISTICS
+----------------------------------------
+Passed: 146
+Failed: 63
+Compile Errors: 36
+Simulation Errors: 0
+Timeouts: 5
+Success Rate: 58.4%
+
+OVERALL STATISTICS ACROSS ALL RUNS
+------------------------------------------------------------
+Total runs:         250
+Total passed:       146
+Total failed:       63
+Total compile err:  36
+Total sim err:      0
+Total timeouts:     5
+Overall pass rate:  58.4%
+Functional modules: 33 / 50
+Syntax correct:     43 / 50
+
+PER-MODULE STATISTICS
+------------------------------------------------------------
+Module                      Passed  Syntax  Failed   Compile    Sim  Timeout
+-----------------------------------------------------------------------------
+JC_counter            ✓        5/5       ✓       0         0      0        0
+LFSR                  ✗        0/5       ✗       0         5      0        0
+LIFObuffer            ✓        1/5       ✓       4         0      0        0
+RAM                   ✓        5/5       ✓       0         0      0        0
+ROM                   ✓        5/5       ✓       0         0      0        0
+accu                  ✓        5/5       ✓       0         0      0        0
+adder_16bit           ✓        5/5       ✓       0         0      0        0
+adder_32bit           ✓        4/5       ✓       0         1      0        0
+adder_8bit            ✓        5/5       ✓       0         0      0        0
+adder_bcd             ✓        5/5       ✓       0         0      0        0
+adder_pipe_64bit      ✗        0/5       ✗       0         5      0        0
+alu                   ✗        0/5       ✓       5         0      0        0
+asyn_fifo             ✗        0/5       ✗       0         5      0        0
+barrel_shifter        ✗        0/5       ✓       5         0      0        0
+calendar              ✓        5/5       ✓       0         0      0        0
+clkgenerator          ✗        0/5       ✓       5         0      0        0
+comparator_3bit       ✓        5/5       ✓       0         0      0        0
+comparator_4bit       ✓        5/5       ✓       0         0      0        0
+counter_12            ✓        5/5       ✓       0         0      0        0
+div_16bit             ✓        5/5       ✓       0         0      0        0
+edge_detect           ✓        5/5       ✓       0         0      0        0
+fixed_point_adder     ✓        4/5       ✓       1         0      0        0
+fixed_point_substractor  ✓        3/5       ✓       2         0      0        0
+float_multi           ✓        3/5       ✓       2         0      0        0
+freq_div              ✓        5/5       ✓       0         0      0        0
+freq_divbyeven        ✗        0/5       ✗       0         5      0        0
+freq_divbyfrac        ✗        0/5       ✓       5         0      0        0
+freq_divbyodd         ✗        0/5       ✓       5         0      0        0
+fsm                   ✓        3/5       ✓       2         0      0        0
+instr_reg             ✓        5/5       ✓       0         0      0        0
+multi_16bit           ✓        5/5       ✓       0         0      0        0
+multi_8bit            ✓        5/5       ✓       0         0      0        0
+multi_booth_8bit      ✗        0/5       ✓       5         0      0        0
+multi_pipe_4bit       ✓        5/5       ✓       0         0      0        0
+multi_pipe_8bit       ✓        1/5       ✓       4         0      0        0
+parallel2serial       ✓        2/5       ✓       3         0      0        0
+pe                    ✓        5/5       ✓       0         0      0        0
+pulse_detect          ✗        0/5       ✓       5         0      0        0
+radix2_div            ✗        0/5       ✗       0         5      0        0
+right_shifter         ✓        5/5       ✓       0         0      0        0
+ring_counter          ✗        0/5       ✗       0         5      0        0
+sequence_detector     ✗        0/5       ✗       0         5      0        0
+serial2parallel       ✗        0/5       ✓       0         0      0        5
+signal_generator      ✗        0/5       ✓       5         0      0        0
+square_wave           ✓        5/5       ✓       0         0      0        0
+sub_64bit             ✓        5/5       ✓       0         0      0        0
+synchronizer          ✓        5/5       ✓       0         0      0        0
+traffic_light         ✗        0/5       ✓       5         0      0        0
+up_down_counter       ✓        5/5       ✓       0         0      0        0
+width_8to16           ✓        5/5       ✓       0         0      0        0
+
+DETAILED RESULTS - t2
+================================================================================
+RTL Directory: /home/sid/projects/llm_verilog/RTLLM/deepseek/deepseek-chat-v3-0324:free/t2
+Total Modules Tested: 50
+Passed: 30, Failed: 12, Compile Errors: 7, Simulation Errors: 0, Timeouts: 1
+Success Rate: 60.0%
+
+TEST PASSED (30 modules):
+----------------------------------------
+  adder_8bit
+  sub_64bit
+  multi_pipe_4bit
+  ROM
+  div_16bit
+  counter_12
+  fsm
+  freq_div
+  pe
+  JC_counter
+  edge_detect
+  width_8to16
+  parallel2serial
+  comparator_4bit
+  accu
+  square_wave
+  multi_8bit
+  RAM
+  multi_16bit
+  float_multi
+  right_shifter
+  calendar
+  adder_32bit
+  up_down_counter
+  instr_reg
+  adder_16bit
+  fixed_point_adder
+  comparator_3bit
+  adder_bcd
+  synchronizer
+TEST FAILED (12 modules):
+----------------------------------------
+  barrel_shifter
+    Simulation Output: =========== Test completed with           1 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/barrel_shifter/testbench.v:31: $finish called at 80 (1s)
+  freq_divbyfrac
+    Simulation Output: Failed at          0: clk=1, clk_div=0 (expected           1)
+Failed at          1: clk=0, clk_div=0 (expected           1)
+Failed at          2: clk=1, clk_div=0 (expected           1)
+Failed at          6: clk=1, clk_div=1 (expected           0)
+Failed at         10: clk=1, clk_div=1 (expected           0)
+Failed at         11: clk=0, clk_div=1 (expected           0)
+Failed at         13: clk=0, clk_div=1 (expected           0)
+Failed at         17: clk=0, clk_div=1 (expected           0)
+Failed at         18: clk=1, clk_div=1 (expected           0)
+Failed at         19: clk=0, clk_div=1 (expected           0)
+=========== Test completed with          10/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyfrac/testbench.v:27: $finish called at 130000 (1ps)
+  LIFObuffer
+    Simulation Output: =========== Test completed with           1/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/LIFO/LIFObuffer/testbench.v:70: $finish called at 265000 (1ps)
+  freq_divbyodd
+    Simulation Output: Failed at          1: clk=1, clk_div=0 (expected           1)
+Failed at          2: clk=0, clk_div=0 (expected           1)
+Failed at          3: clk=1, clk_div=0 (expected           1)
+Failed at          4: clk=0, clk_div=0 (expected           1)
+Failed at          5: clk=1, clk_div=0 (expected           1)
+Failed at          9: clk=1, clk_div=1 (expected           0)
+Failed at         10: clk=0, clk_div=1 (expected           0)
+Failed at         16: clk=0, clk_div=1 (expected           0)
+Failed at         17: clk=1, clk_div=1 (expected           0)
+Failed at         18: clk=0, clk_div=1 (expected           0)
+Failed at         19: clk=1, clk_div=1 (expected           0)
+=========== Test completed with          11/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyodd/testbench.v:27: $finish called at 130000 (1ps)
+  multi_booth_8bit
+    Simulation Output: =========== Failed ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Multiplier/multi_booth_8bit/testbench.v:71: $finish called at 1900 (1ns)
+  signal_generator
+    Simulation Output: ===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Signal generation/signal_generator/testbench.v:39: $finish called at 1010 (1s)
+  pulse_detect
+    Simulation Output: ===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/pulse_detect/testbench.v:43: $finish called at 148 (1ns)
+  multi_pipe_8bit
+    Simulation Output: ===========Test completed with         100 /100 failures===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Multiplier/multi_pipe_8bit/testbench.v:79: $finish called at 68201 (1ns)
+  fixed_point_substractor
+    Simulation Output: Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 0xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+=========== Test completed with         100 /100 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Other/fixed_point_substractor/testbench.v:73: $finish called at 1000000 (1ps)
+  traffic_light
+    Simulation Output: At time                   40, clock =   9, red = 1, yellow = 0, green = 0
+At time                  140, clock = 255, red = 1, yellow = 0, green = 0
+At time                  740, clock =   1, red = 0, yellow = 0, green = 1
+At time                  890, clock =   5, red = 1, yellow = 0, green = 0
+At time                  920, clock =   2, red = 1, yellow = 0, green = 0
+At time                  930, clock =   1, red = 1, yellow = 0, green = 0
+===========Failed===========          3
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/traffic_light/testbench.v:78: $finish called at 930 (1ns)
+  alu
+    Simulation Output: WARNING: /home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/alu/testbench.v:43: $readmemh(reference.dat): Not enough words in the file for the requested range [0:31].
+===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/alu/testbench.v:86: $finish called at 175000 (1ps)
+  clkgenerator
+    Simulation Output: =========== Test completed with          20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/clkgenerator/testbench.v:29: $finish called at 100 (1s)
+COMPILE ERROR (7 modules):
+----------------------------------------
+  asyn_fifo
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/FIFO/asyn_fifo/testbench.v:102: sorry: break statements not supported.
+  radix2_div
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Divider/radix2_div/testbench.v:14: error: port ``res_ready'' is not a port of uut.
+1 error(s) during elaboration.
+  sequence_detector
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Control/Finite State Machine/sequence_detector/testbench.v:8: error: port ``rst_n'' is not a port of dut.
+1 error(s) during elaboration.
+  ring_counter
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Control/Counter/ring_counter/testbench.v:20: sorry: Assignment to an entire array or to an array slice is not yet supported.
+Elaboration failed
+  LFSR
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:6: warning: Port 1 (clk) of LFSR expects 1 bits, got 4.
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:6:        : Pruning 3 high bits of the expression.
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:6: warning: Port 3 (out) of LFSR expects 4 bits, got 1.
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:6:        : Padding 3 high bits of the port.
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:11: error: rst_tb Unable to assign to unresolved wires.
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:14: error: rst_tb Unable to assign to unresolved wires.
+2 error(s) during elaboration.
+  freq_divbyeven
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyeven/testbench.v:10: error: Unknown module type: freq_divbyeven
+2 error(s) during elaboration.
+*** These modules were missing:
+        freq_divbyeven referenced 1 times.
+***
+  adder_pipe_64bit
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Adder/adder_pipe_64bit/testbench.v:66: error: parameter `DATA_WIDTH` not found in `tb_adder64.u_pip_add64`.
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Adder/adder_pipe_64bit/testbench.v:67: error: parameter `STG_WIDTH` not found in `tb_adder64.u_pip_add64`.
+3 error(s) during elaboration.
+TIMEOUT (1 modules):
+----------------------------------------
+  serial2parallel
+    Simulation Error: Simulation timed out after 1 seconds
+
+================================================================================
+
+DETAILED RESULTS - t5
+================================================================================
+RTL Directory: /home/sid/projects/llm_verilog/RTLLM/deepseek/deepseek-chat-v3-0324:free/t5
+Total Modules Tested: 50
+Passed: 28, Failed: 13, Compile Errors: 8, Simulation Errors: 0, Timeouts: 1
+Success Rate: 56.0%
+
+TEST PASSED (28 modules):
+----------------------------------------
+  adder_8bit
+  sub_64bit
+  multi_pipe_4bit
+  ROM
+  div_16bit
+  counter_12
+  fsm
+  freq_div
+  pe
+  JC_counter
+  edge_detect
+  width_8to16
+  comparator_4bit
+  accu
+  square_wave
+  multi_8bit
+  RAM
+  multi_16bit
+  float_multi
+  right_shifter
+  fixed_point_substractor
+  calendar
+  up_down_counter
+  instr_reg
+  adder_16bit
+  comparator_3bit
+  adder_bcd
+  synchronizer
+TEST FAILED (13 modules):
+----------------------------------------
+  barrel_shifter
+    Simulation Output: =========== Test completed with           1 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/barrel_shifter/testbench.v:31: $finish called at 80 (1s)
+  freq_divbyfrac
+    Simulation Output: Failed at          0: clk=1, clk_div=0 (expected           1)
+Failed at          3: clk=0, clk_div=1 (expected           0)
+Failed at          4: clk=1, clk_div=1 (expected           0)
+Failed at          5: clk=0, clk_div=1 (expected           0)
+Failed at          6: clk=1, clk_div=1 (expected           0)
+Failed at          7: clk=0, clk_div=0 (expected           1)
+Failed at          8: clk=1, clk_div=0 (expected           1)
+Failed at          9: clk=0, clk_div=0 (expected           1)
+Failed at         14: clk=1, clk_div=0 (expected           1)
+Failed at         17: clk=0, clk_div=1 (expected           0)
+Failed at         18: clk=1, clk_div=1 (expected           0)
+Failed at         19: clk=0, clk_div=1 (expected           0)
+=========== Test completed with          12/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyfrac/testbench.v:27: $finish called at 130000 (1ps)
+  parallel2serial
+    Simulation Output: ===========Test completed with          97 /100 failures===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/parallel2serial/testbench.v:63: $finish called at 10005 (1ns)
+  LIFObuffer
+    Simulation Output: =========== Test completed with           1/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/LIFO/LIFObuffer/testbench.v:70: $finish called at 265000 (1ps)
+  freq_divbyodd
+    Simulation Output: Failed at          1: clk=1, clk_div=0 (expected           1)
+Failed at          2: clk=0, clk_div=0 (expected           1)
+Failed at          3: clk=1, clk_div=0 (expected           1)
+Failed at          4: clk=0, clk_div=0 (expected           1)
+Failed at          6: clk=0, clk_div=1 (expected           0)
+Failed at          7: clk=1, clk_div=1 (expected           0)
+Failed at          8: clk=0, clk_div=1 (expected           0)
+Failed at          9: clk=1, clk_div=1 (expected           0)
+Failed at         11: clk=1, clk_div=0 (expected           1)
+Failed at         12: clk=0, clk_div=0 (expected           1)
+Failed at         13: clk=1, clk_div=0 (expected           1)
+Failed at         14: clk=0, clk_div=0 (expected           1)
+Failed at         16: clk=0, clk_div=1 (expected           0)
+Failed at         17: clk=1, clk_div=1 (expected           0)
+Failed at         18: clk=0, clk_div=1 (expected           0)
+Failed at         19: clk=1, clk_div=1 (expected           0)
+=========== Test completed with          16/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyodd/testbench.v:27: $finish called at 130000 (1ps)
+  multi_booth_8bit
+    Simulation Output: =========== Failed ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Multiplier/multi_booth_8bit/testbench.v:71: $finish called at 1900 (1ns)
+  signal_generator
+    Simulation Output: ===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Signal generation/signal_generator/testbench.v:39: $finish called at 1010 (1s)
+  pulse_detect
+    Simulation Output: ===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/pulse_detect/testbench.v:43: $finish called at 148 (1ns)
+  multi_pipe_8bit
+    Simulation Output: ===========Test completed with         100 /100 failures===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Multiplier/multi_pipe_8bit/testbench.v:79: $finish called at 68201 (1ns)
+  traffic_light
+    Simulation Output: At time                   40, clock =  10, red = 1, yellow = 0, green = 0
+At time                  140, clock =  10, red = 1, yellow = 0, green = 0
+At time                  740, clock =  10, red = 1, yellow = 0, green = 0
+At time                  890, clock =  10, red = 1, yellow = 0, green = 0
+At time                  920, clock =  10, red = 1, yellow = 0, green = 0
+At time                  930, clock =  10, red = 1, yellow = 0, green = 0
+===========Failed===========          3
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/traffic_light/testbench.v:78: $finish called at 930 (1ns)
+  alu
+    Simulation Output: WARNING: /home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/alu/testbench.v:43: $readmemh(reference.dat): Not enough words in the file for the requested range [0:31].
+===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/alu/testbench.v:86: $finish called at 175000 (1ps)
+  fixed_point_adder
+    Simulation Output: Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+=========== Test completed with         100 /100 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Other/fixed_point_adder/testbench.v:55: $finish called at 1000000 (1ps)
+  clkgenerator
+    Simulation Output: =========== Test completed with          20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/clkgenerator/testbench.v:29: $finish called at 100 (1s)
+COMPILE ERROR (8 modules):
+----------------------------------------
+  asyn_fifo
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/FIFO/asyn_fifo/testbench.v:102: sorry: break statements not supported.
+  radix2_div
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Divider/radix2_div/testbench.v:14: error: port ``res_ready'' is not a port of uut.
+1 error(s) during elaboration.
+  sequence_detector
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Control/Finite State Machine/sequence_detector/testbench.v:8: error: port ``rst_n'' is not a port of dut.
+1 error(s) during elaboration.
+  ring_counter
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Control/Counter/ring_counter/testbench.v:20: sorry: Assignment to an entire array or to an array slice is not yet supported.
+Elaboration failed
+  LFSR
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:6: warning: Port 1 (clk) of LFSR expects 1 bits, got 4.
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:6:        : Pruning 3 high bits of the expression.
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:6: warning: Port 3 (out) of LFSR expects 4 bits, got 1.
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:6:        : Padding 3 high bits of the port.
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:11: error: rst_tb Unable to assign to unresolved wires.
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:14: error: rst_tb Unable to assign to unresolved wires.
+2 error(s) during elaboration.
+  freq_divbyeven
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyeven/testbench.v:10: error: Unknown module type: freq_divbyeven
+2 error(s) during elaboration.
+*** These modules were missing:
+        freq_divbyeven referenced 1 times.
+***
+  adder_32bit
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/deepseek/deepseek-chat-v3-0324:free/t5/adder_32bit.sv:76: error: Index C[5] is out of range.
+/home/sid/projects/llm_verilog/RTLLM/deepseek/deepseek-chat-v3-0324:free/t5/adder_32bit.sv:76: error: Index C[5] is out of range.
+/home/sid/projects/llm_verilog/RTLLM/deepseek/deepseek-chat-v3-0324:free/t5/adder_32bit.sv:76: error: Index C[5] is out of range.
+/home/sid/projects/llm_verilog/RTLLM/deepseek/deepseek-chat-v3-0324:free/t5/adder_32bit.sv:76: error: Index C[5] is out of range.
+/home/sid/projects/llm_verilog/RTLLM/deepseek/deepseek-chat-v3-0324:free/t5/adder_32bit.sv:56: error: Index C[5] is out of range.
+/home/sid/projects/llm_verilog/RTLLM/deepseek/deepseek-chat-v3-0324:free/t5/adder_32bit.sv:76: error: Index C[5] is out of range.
+/home/sid/projects/llm_verilog/RTLLM/deepseek/deepseek-chat-v3-0324:free/t5/adder_32bit.sv:76: error: Index C[5] is out of range.
+/home/sid/projects/llm_verilog/RTLLM/deepseek/deepseek-chat-v3-0324:free/t5/adder_32bit.sv:76: error: Index C[5] is out of range.
+/home/sid/projects/llm_verilog/RTLLM/deepseek/deepseek-chat-v3-0324:free/t5/adder_32bit.sv:76: error: Index C[5] is out of range.
+/home/sid/projects/llm_verilog/RTLLM/deepseek/deepseek-chat-v3-0324:free/t5/adder_32bit.sv:56: error: Index C[5] is out of range.
+10 error(s) during elaboration.
+  adder_pipe_64bit
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Adder/adder_pipe_64bit/testbench.v:66: error: parameter `DATA_WIDTH` not found in `tb_adder64.u_pip_add64`.
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Adder/adder_pipe_64bit/testbench.v:67: error: parameter `STG_WIDTH` not found in `tb_adder64.u_pip_add64`.
+3 error(s) during elaboration.
+TIMEOUT (1 modules):
+----------------------------------------
+  serial2parallel
+    Simulation Error: Simulation timed out after 1 seconds
+
+================================================================================
+
+DETAILED RESULTS - t3
+================================================================================
+RTL Directory: /home/sid/projects/llm_verilog/RTLLM/deepseek/deepseek-chat-v3-0324:free/t3
+Total Modules Tested: 50
+Passed: 29, Failed: 13, Compile Errors: 7, Simulation Errors: 0, Timeouts: 1
+Success Rate: 58.0%
+
+TEST PASSED (29 modules):
+----------------------------------------
+  adder_8bit
+  sub_64bit
+  multi_pipe_4bit
+  ROM
+  div_16bit
+  counter_12
+  fsm
+  freq_div
+  pe
+  JC_counter
+  edge_detect
+  width_8to16
+  comparator_4bit
+  accu
+  square_wave
+  multi_8bit
+  RAM
+  multi_16bit
+  right_shifter
+  fixed_point_substractor
+  calendar
+  adder_32bit
+  up_down_counter
+  instr_reg
+  adder_16bit
+  fixed_point_adder
+  comparator_3bit
+  adder_bcd
+  synchronizer
+TEST FAILED (13 modules):
+----------------------------------------
+  barrel_shifter
+    Simulation Output: =========== Test completed with           1 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/barrel_shifter/testbench.v:31: $finish called at 80 (1s)
+  freq_divbyfrac
+    Simulation Output: Failed at          0: clk=1, clk_div=0 (expected           1)
+Failed at          1: clk=0, clk_div=0 (expected           1)
+Failed at          2: clk=1, clk_div=0 (expected           1)
+Failed at          4: clk=1, clk_div=1 (expected           0)
+Failed at          5: clk=0, clk_div=1 (expected           0)
+Failed at          6: clk=1, clk_div=1 (expected           0)
+Failed at         10: clk=1, clk_div=1 (expected           0)
+Failed at         11: clk=0, clk_div=1 (expected           0)
+Failed at         12: clk=1, clk_div=1 (expected           0)
+Failed at         13: clk=0, clk_div=1 (expected           0)
+Failed at         17: clk=0, clk_div=1 (expected           0)
+Failed at         18: clk=1, clk_div=1 (expected           0)
+Failed at         19: clk=0, clk_div=1 (expected           0)
+=========== Test completed with          13/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyfrac/testbench.v:27: $finish called at 130000 (1ps)
+  parallel2serial
+    Simulation Output: ===========Test completed with          97 /100 failures===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/parallel2serial/testbench.v:63: $finish called at 10005 (1ns)
+  LIFObuffer
+    Simulation Output: =========== Test completed with           1/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/LIFO/LIFObuffer/testbench.v:70: $finish called at 265000 (1ps)
+  freq_divbyodd
+    Simulation Output: Failed at          1: clk=1, clk_div=0 (expected           1)
+Failed at          2: clk=0, clk_div=0 (expected           1)
+Failed at          3: clk=1, clk_div=0 (expected           1)
+Failed at          4: clk=0, clk_div=0 (expected           1)
+Failed at          5: clk=1, clk_div=0 (expected           1)
+Failed at          9: clk=1, clk_div=1 (expected           0)
+Failed at         10: clk=0, clk_div=1 (expected           0)
+Failed at         16: clk=0, clk_div=1 (expected           0)
+Failed at         17: clk=1, clk_div=1 (expected           0)
+Failed at         18: clk=0, clk_div=1 (expected           0)
+Failed at         19: clk=1, clk_div=1 (expected           0)
+=========== Test completed with          11/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyodd/testbench.v:27: $finish called at 130000 (1ps)
+  multi_booth_8bit
+    Simulation Output: =========== Failed ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Multiplier/multi_booth_8bit/testbench.v:71: $finish called at 1900 (1ns)
+  signal_generator
+    Simulation Output: ===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Signal generation/signal_generator/testbench.v:39: $finish called at 1010 (1s)
+  float_multi
+    Simulation Output: =========== Test completed with           X/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Other/float_multi/testbench.v:35: $finish called at 243 (1s)
+  pulse_detect
+    Simulation Output: ===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/pulse_detect/testbench.v:43: $finish called at 148 (1ns)
+  multi_pipe_8bit
+    Simulation Output: ===========Test completed with         100 /100 failures===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Multiplier/multi_pipe_8bit/testbench.v:79: $finish called at 68201 (1ns)
+  traffic_light
+    Simulation Output: At time                   40, clock =   7, red = 1, yellow = 0, green = 0
+At time                  140, clock = 253, red = 0, yellow = 0, green = 1
+At time                  740, clock = 193, red = 0, yellow = 0, green = 1
+At time                  890, clock = 178, red = 0, yellow = 0, green = 1
+At time                  920, clock = 175, red = 0, yellow = 0, green = 1
+At time                  930, clock =  10, red = 0, yellow = 0, green = 1
+===========Failed===========          1
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/traffic_light/testbench.v:78: $finish called at 930 (1ns)
+  alu
+    Simulation Output: WARNING: /home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/alu/testbench.v:43: $readmemh(reference.dat): Not enough words in the file for the requested range [0:31].
+===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/alu/testbench.v:86: $finish called at 175000 (1ps)
+  clkgenerator
+    Simulation Output: =========== Test completed with          20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/clkgenerator/testbench.v:29: $finish called at 100 (1s)
+COMPILE ERROR (7 modules):
+----------------------------------------
+  asyn_fifo
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/FIFO/asyn_fifo/testbench.v:102: sorry: break statements not supported.
+  radix2_div
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Divider/radix2_div/testbench.v:14: error: port ``res_ready'' is not a port of uut.
+/home/sid/projects/llm_verilog/RTLLM/deepseek/deepseek-chat-v3-0324:free/t3/radix2_div.sv:50: error: sub_result is not a valid l-value in radix2_div_tb.uut.
+/home/sid/projects/llm_verilog/RTLLM/deepseek/deepseek-chat-v3-0324:free/t3/radix2_div.sv:19:      : sub_result is declared here as wire.
+/home/sid/projects/llm_verilog/RTLLM/deepseek/deepseek-chat-v3-0324:free/t3/radix2_div.sv:51: error: carry_out is not a valid l-value in radix2_div_tb.uut.
+/home/sid/projects/llm_verilog/RTLLM/deepseek/deepseek-chat-v3-0324:free/t3/radix2_div.sv:18:      : carry_out is declared here as wire.
+3 error(s) during elaboration.
+  sequence_detector
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Control/Finite State Machine/sequence_detector/testbench.v:8: error: port ``rst_n'' is not a port of dut.
+1 error(s) during elaboration.
+  ring_counter
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Control/Counter/ring_counter/testbench.v:20: sorry: Assignment to an entire array or to an array slice is not yet supported.
+Elaboration failed
+  LFSR
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:6: warning: Port 1 (clk) of LFSR expects 1 bits, got 4.
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:6:        : Pruning 3 high bits of the expression.
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:6: warning: Port 3 (out) of LFSR expects 4 bits, got 1.
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:6:        : Padding 3 high bits of the port.
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:11: error: rst_tb Unable to assign to unresolved wires.
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:14: error: rst_tb Unable to assign to unresolved wires.
+2 error(s) during elaboration.
+  freq_divbyeven
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyeven/testbench.v:10: error: Unknown module type: freq_divbyeven
+2 error(s) during elaboration.
+*** These modules were missing:
+        freq_divbyeven referenced 1 times.
+***
+  adder_pipe_64bit
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Adder/adder_pipe_64bit/testbench.v:66: error: parameter `DATA_WIDTH` not found in `tb_adder64.u_pip_add64`.
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Adder/adder_pipe_64bit/testbench.v:67: error: parameter `STG_WIDTH` not found in `tb_adder64.u_pip_add64`.
+3 error(s) during elaboration.
+TIMEOUT (1 modules):
+----------------------------------------
+  serial2parallel
+    Simulation Error: Simulation timed out after 1 seconds
+
+================================================================================
+
+DETAILED RESULTS - t1
+================================================================================
+RTL Directory: /home/sid/projects/llm_verilog/RTLLM/deepseek/deepseek-chat-v3-0324:free/t1
+Total Modules Tested: 50
+Passed: 28, Failed: 14, Compile Errors: 7, Simulation Errors: 0, Timeouts: 1
+Success Rate: 56.0%
+
+TEST PASSED (28 modules):
+----------------------------------------
+  adder_8bit
+  sub_64bit
+  multi_pipe_4bit
+  ROM
+  div_16bit
+  counter_12
+  freq_div
+  pe
+  JC_counter
+  edge_detect
+  width_8to16
+  comparator_4bit
+  accu
+  square_wave
+  multi_8bit
+  RAM
+  multi_16bit
+  float_multi
+  right_shifter
+  calendar
+  adder_32bit
+  up_down_counter
+  instr_reg
+  adder_16bit
+  fixed_point_adder
+  comparator_3bit
+  adder_bcd
+  synchronizer
+TEST FAILED (14 modules):
+----------------------------------------
+  barrel_shifter
+    Simulation Output: =========== Test completed with           1 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/barrel_shifter/testbench.v:31: $finish called at 80 (1s)
+  fsm
+    Simulation Output: ===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Control/Finite State Machine/fsm/testbench.v:65: $finish called at 158 (1ns)
+  freq_divbyfrac
+    Simulation Output: Failed at          0: clk=1, clk_div=0 (expected           1)
+Failed at          3: clk=0, clk_div=1 (expected           0)
+Failed at          4: clk=1, clk_div=1 (expected           0)
+Failed at          5: clk=0, clk_div=1 (expected           0)
+Failed at          6: clk=1, clk_div=1 (expected           0)
+Failed at         10: clk=1, clk_div=1 (expected           0)
+Failed at         11: clk=0, clk_div=1 (expected           0)
+Failed at         12: clk=1, clk_div=1 (expected           0)
+Failed at         13: clk=0, clk_div=1 (expected           0)
+Failed at         14: clk=1, clk_div=0 (expected           1)
+Failed at         17: clk=0, clk_div=1 (expected           0)
+Failed at         18: clk=1, clk_div=1 (expected           0)
+Failed at         19: clk=0, clk_div=1 (expected           0)
+=========== Test completed with          13/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyfrac/testbench.v:27: $finish called at 130000 (1ps)
+  parallel2serial
+    Simulation Output: ===========Test completed with          97 /100 failures===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/parallel2serial/testbench.v:63: $finish called at 10005 (1ns)
+  LIFObuffer
+    Simulation Output: =========== Test completed with           1/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/LIFO/LIFObuffer/testbench.v:70: $finish called at 265000 (1ps)
+  freq_divbyodd
+    Simulation Output: Failed at          1: clk=1, clk_div=0 (expected           1)
+Failed at          2: clk=0, clk_div=0 (expected           1)
+Failed at          3: clk=1, clk_div=0 (expected           1)
+Failed at          4: clk=0, clk_div=0 (expected           1)
+Failed at          5: clk=1, clk_div=0 (expected           1)
+Failed at          9: clk=1, clk_div=1 (expected           0)
+Failed at         10: clk=0, clk_div=1 (expected           0)
+Failed at         16: clk=0, clk_div=1 (expected           0)
+Failed at         17: clk=1, clk_div=1 (expected           0)
+Failed at         18: clk=0, clk_div=1 (expected           0)
+Failed at         19: clk=1, clk_div=1 (expected           0)
+=========== Test completed with          11/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyodd/testbench.v:27: $finish called at 130000 (1ps)
+  multi_booth_8bit
+    Simulation Output: =========== Failed ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Multiplier/multi_booth_8bit/testbench.v:71: $finish called at 1900 (1ns)
+  signal_generator
+    Simulation Output: ===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Signal generation/signal_generator/testbench.v:39: $finish called at 1010 (1s)
+  pulse_detect
+    Simulation Output: ===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/pulse_detect/testbench.v:43: $finish called at 148 (1ns)
+  multi_pipe_8bit
+    Simulation Output: ===========Test completed with         100 /100 failures===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Multiplier/multi_pipe_8bit/testbench.v:79: $finish called at 68201 (1ns)
+  fixed_point_substractor
+    Simulation Output: Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+Test failed: a = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, b = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx, c = 00000000000000000000000000000000, expected_result = xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+=========== Test completed with         100 /100 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Other/fixed_point_substractor/testbench.v:73: $finish called at 1000000 (1ps)
+  traffic_light
+    Simulation Output: At time                   40, clock =   9, red = 1, yellow = 0, green = 0
+At time                  140, clock = 255, red = 1, yellow = 0, green = 0
+At time                  740, clock =   1, red = 0, yellow = 0, green = 1
+At time                  890, clock =   5, red = 1, yellow = 0, green = 0
+At time                  920, clock =   2, red = 1, yellow = 0, green = 0
+At time                  930, clock =   1, red = 1, yellow = 0, green = 0
+===========Failed===========          3
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/traffic_light/testbench.v:78: $finish called at 930 (1ns)
+  alu
+    Simulation Output: WARNING: /home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/alu/testbench.v:43: $readmemh(reference.dat): Not enough words in the file for the requested range [0:31].
+===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/alu/testbench.v:86: $finish called at 175000 (1ps)
+  clkgenerator
+    Simulation Output: =========== Test completed with          20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/clkgenerator/testbench.v:29: $finish called at 100 (1s)
+COMPILE ERROR (7 modules):
+----------------------------------------
+  asyn_fifo
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/FIFO/asyn_fifo/testbench.v:102: sorry: break statements not supported.
+  radix2_div
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Divider/radix2_div/testbench.v:14: error: port ``res_ready'' is not a port of uut.
+1 error(s) during elaboration.
+  sequence_detector
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Control/Finite State Machine/sequence_detector/testbench.v:8: error: port ``rst_n'' is not a port of dut.
+1 error(s) during elaboration.
+  ring_counter
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Control/Counter/ring_counter/testbench.v:20: sorry: Assignment to an entire array or to an array slice is not yet supported.
+Elaboration failed
+  LFSR
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:6: warning: Port 1 (clk) of LFSR expects 1 bits, got 4.
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:6:        : Pruning 3 high bits of the expression.
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:6: warning: Port 3 (out) of LFSR expects 4 bits, got 1.
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:6:        : Padding 3 high bits of the port.
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:11: error: rst_tb Unable to assign to unresolved wires.
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:14: error: rst_tb Unable to assign to unresolved wires.
+2 error(s) during elaboration.
+  freq_divbyeven
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyeven/testbench.v:10: error: Unknown module type: freq_divbyeven
+2 error(s) during elaboration.
+*** These modules were missing:
+        freq_divbyeven referenced 1 times.
+***
+  adder_pipe_64bit
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Adder/adder_pipe_64bit/testbench.v:66: error: parameter `DATA_WIDTH` not found in `tb_adder64.u_pip_add64`.
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Adder/adder_pipe_64bit/testbench.v:67: error: parameter `STG_WIDTH` not found in `tb_adder64.u_pip_add64`.
+3 error(s) during elaboration.
+TIMEOUT (1 modules):
+----------------------------------------
+  serial2parallel
+    Simulation Error: Simulation timed out after 1 seconds
+
+================================================================================
+
+DETAILED RESULTS - t4
+================================================================================
+RTL Directory: /home/sid/projects/llm_verilog/RTLLM/deepseek/deepseek-chat-v3-0324:free/t4
+Total Modules Tested: 50
+Passed: 31, Failed: 11, Compile Errors: 7, Simulation Errors: 0, Timeouts: 1
+Success Rate: 62.0%
+
+TEST PASSED (31 modules):
+----------------------------------------
+  adder_8bit
+  sub_64bit
+  multi_pipe_4bit
+  ROM
+  div_16bit
+  counter_12
+  freq_div
+  pe
+  JC_counter
+  edge_detect
+  width_8to16
+  parallel2serial
+  comparator_4bit
+  LIFObuffer
+  accu
+  square_wave
+  multi_8bit
+  RAM
+  multi_16bit
+  multi_pipe_8bit
+  right_shifter
+  fixed_point_substractor
+  calendar
+  adder_32bit
+  up_down_counter
+  instr_reg
+  adder_16bit
+  fixed_point_adder
+  comparator_3bit
+  adder_bcd
+  synchronizer
+TEST FAILED (11 modules):
+----------------------------------------
+  barrel_shifter
+    Simulation Output: =========== Test completed with           1 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/barrel_shifter/testbench.v:31: $finish called at 80 (1s)
+  fsm
+    Simulation Output: ===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Control/Finite State Machine/fsm/testbench.v:65: $finish called at 158 (1ns)
+  freq_divbyfrac
+    Simulation Output: Failed at          0: clk=1, clk_div=0 (expected           1)
+Failed at          1: clk=0, clk_div=0 (expected           1)
+Failed at          2: clk=1, clk_div=0 (expected           1)
+Failed at          5: clk=0, clk_div=1 (expected           0)
+Failed at          6: clk=1, clk_div=1 (expected           0)
+Failed at         10: clk=1, clk_div=1 (expected           0)
+Failed at         11: clk=0, clk_div=1 (expected           0)
+Failed at         12: clk=1, clk_div=1 (expected           0)
+Failed at         14: clk=1, clk_div=0 (expected           1)
+Failed at         15: clk=0, clk_div=0 (expected           1)
+Failed at         16: clk=1, clk_div=0 (expected           1)
+Failed at         19: clk=0, clk_div=1 (expected           0)
+=========== Test completed with          12/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyfrac/testbench.v:27: $finish called at 130000 (1ps)
+  freq_divbyodd
+    Simulation Output: Failed at          1: clk=1, clk_div=0 (expected           1)
+Failed at          2: clk=0, clk_div=0 (expected           1)
+Failed at          3: clk=1, clk_div=0 (expected           1)
+Failed at          4: clk=0, clk_div=0 (expected           1)
+Failed at          5: clk=1, clk_div=0 (expected           1)
+Failed at          9: clk=1, clk_div=1 (expected           0)
+Failed at         10: clk=0, clk_div=1 (expected           0)
+Failed at         16: clk=0, clk_div=1 (expected           0)
+Failed at         17: clk=1, clk_div=1 (expected           0)
+Failed at         18: clk=0, clk_div=1 (expected           0)
+Failed at         19: clk=1, clk_div=1 (expected           0)
+=========== Test completed with          11/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyodd/testbench.v:27: $finish called at 130000 (1ps)
+  multi_booth_8bit
+    Simulation Output: =========== Failed ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Multiplier/multi_booth_8bit/testbench.v:71: $finish called at 1900 (1ns)
+  signal_generator
+    Simulation Output: ===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Signal generation/signal_generator/testbench.v:39: $finish called at 1010 (1s)
+  float_multi
+    Simulation Output: =========== Test completed with           1/20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Other/float_multi/testbench.v:35: $finish called at 243 (1s)
+  pulse_detect
+    Simulation Output: ===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/pulse_detect/testbench.v:43: $finish called at 148 (1ns)
+  traffic_light
+    Simulation Output: At time                   40, clock =   7, red = 1, yellow = 0, green = 0
+At time                  140, clock = 253, red = 0, yellow = 0, green = 1
+At time                  740, clock = 193, red = 0, yellow = 0, green = 1
+At time                  890, clock = 178, red = 0, yellow = 0, green = 1
+At time                  920, clock = 175, red = 0, yellow = 0, green = 1
+At time                  930, clock =  10, red = 0, yellow = 0, green = 1
+===========Failed===========          1
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Others/traffic_light/testbench.v:78: $finish called at 930 (1ns)
+  alu
+    Simulation Output: WARNING: /home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/alu/testbench.v:43: $readmemh(reference.dat): Not enough words in the file for the requested range [0:31].
+===========Error===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/alu/testbench.v:86: $finish called at 175000 (1ps)
+  clkgenerator
+    Simulation Output: =========== Test completed with          20 failures ===========
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/RISC-V/clkgenerator/testbench.v:29: $finish called at 100 (1s)
+COMPILE ERROR (7 modules):
+----------------------------------------
+  asyn_fifo
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/FIFO/asyn_fifo/testbench.v:102: sorry: break statements not supported.
+  radix2_div
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Divider/radix2_div/testbench.v:14: error: port ``res_ready'' is not a port of uut.
+1 error(s) during elaboration.
+  sequence_detector
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Control/Finite State Machine/sequence_detector/testbench.v:8: error: port ``rst_n'' is not a port of dut.
+1 error(s) during elaboration.
+  ring_counter
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Control/Counter/ring_counter/testbench.v:20: sorry: Assignment to an entire array or to an array slice is not yet supported.
+Elaboration failed
+  LFSR
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:6: warning: Port 1 (clk) of LFSR expects 1 bits, got 4.
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:6:        : Pruning 3 high bits of the expression.
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:6: warning: Port 3 (out) of LFSR expects 4 bits, got 1.
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:6:        : Padding 3 high bits of the port.
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:11: error: rst_tb Unable to assign to unresolved wires.
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Memory/Shifter/LFSR/testbench.v:14: error: rst_tb Unable to assign to unresolved wires.
+2 error(s) during elaboration.
+  freq_divbyeven
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Miscellaneous/Frequency divider/freq_divbyeven/testbench.v:10: error: Unknown module type: freq_divbyeven
+2 error(s) during elaboration.
+*** These modules were missing:
+        freq_divbyeven referenced 1 times.
+***
+  adder_pipe_64bit
+    Compile Error: /home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Adder/adder_pipe_64bit/testbench.v:66: error: parameter `DATA_WIDTH` not found in `tb_adder64.u_pip_add64`.
+/home/sid/projects/llm_verilog/RTLLM/benchmark/Arithmetic/Adder/adder_pipe_64bit/testbench.v:67: error: parameter `STG_WIDTH` not found in `tb_adder64.u_pip_add64`.
+3 error(s) during elaboration.
+TIMEOUT (1 modules):
+----------------------------------------
+  serial2parallel
+    Simulation Error: Simulation timed out after 1 seconds
+
+================================================================================
+
+====================================================================================================
+END OF COMBINED TEST RESULTS
+====================================================================================================
