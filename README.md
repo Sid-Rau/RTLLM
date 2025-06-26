@@ -49,7 +49,7 @@ This enhanced version extends the original RTLLM benchmark with:
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/Sid-Rau/RTLLM.git
 cd RTLLM
 
 # Install Icarus Verilog (required for RTL compilation and simulation)
