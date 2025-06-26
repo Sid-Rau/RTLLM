@@ -1,0 +1,12 @@
+# Requirements for RTLLM project
+
+# Core dependencies for generate_rtl_benchmark.py
+langchain>=0.1.0
+langchain-core>=0.1.0
+langchain-community>=0.1.0
+
+# Core dependencies for run_benchmark.py
+tqdm>=4.64.0
+
+# Visualization (for run_benchmark.py table generation)
+matplotlib>=3.5.0 

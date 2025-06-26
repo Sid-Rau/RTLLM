@@ -2,11 +2,10 @@ import os
 import time
 import argparse
 from typing import Optional
-from datetime import datetime
 from langchain.chat_models import init_chat_model
 from langchain.prompts import PromptTemplate
 from langchain.schema import HumanMessage, SystemMessage
-from run_benchmark import build_benchmark_directory_list, compile_module_stats, pretty_print_module_stats, write_combined_stats_to_log, test_all
+from run_benchmark import build_benchmark_directory_list
 
 # Model/provider configuration
 PROVIDER = "openai"

@@ -1,3 +1,19 @@
+"""
+RTL Benchmark Runner
+
+This script runs benchmarks on generated RTL files and provides comprehensive reporting.
+It includes functionality to:
+- Test RTL files against benchmark testbenches
+- Generate detailed logs of test results
+- Compile statistics across multiple test runs
+- Generate visual table images of overall statistics
+
+Dependencies:
+- iverilog: For RTL compilation and simulation
+- tqdm: For progress bars
+- matplotlib: For table image generation
+"""
+
 import os
 import subprocess
 import signal
@@ -6,6 +22,9 @@ from tqdm import tqdm
 from datetime import datetime
 from typing import List, Dict, Optional, Any, Union
 import argparse
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+from matplotlib.table import Table
 
 # --- Configuration ---
 CATEGORIES = ['Arithmetic', 'Control', 'Memory', 'Miscellaneous']
@@ -414,7 +433,207 @@ def write_combined_stats_to_log(results_list: list[dict], rtl_dirs: list[str], s
     print(f"Combined results written to: {filename}")
     return filename
 
-def run_benchmark(test_dir: str, print_summary: bool = True, print_detailed: bool = True, write_log_file: bool = True, logs_dir: str = "logs") -> dict:
+def generate_overall_stats_table_image(stats: dict, filename_prefix: str, logs_dir: str = "logs") -> str:
+    """
+    Generate a table image of overall statistics and save it to the model's log folder.
+    
+    Args:
+        stats: Dictionary containing module statistics
+        filename_prefix: Prefix for the output filename
+        logs_dir: Directory to save the image
+        
+    Returns:
+        Path to the generated image file
+    """
+    if not stats or "OVERALL" not in stats:
+        print("No overall statistics available for table generation.")
+        return ""
+    
+    overall = stats["OVERALL"]
+    
+    # Create figure and axis
+    fig, ax = plt.subplots(figsize=(12, 8))
+    ax.axis('tight')
+    ax.axis('off')
+    
+    # Prepare data for the table
+    table_data = [
+        ['Metric', 'Value', 'Percentage'],
+        ['Total Runs', f"{overall['runs']:,}", '100%'],
+        ['Test Passed', f"{overall['test_passed']:,}", f"{overall['pass_rate']*100:.1f}%"],
+        ['Test Failed', f"{overall['test_failed']:,}", f"{overall['test_failed']/overall['runs']*100:.1f}%"],
+        ['Compile Errors', f"{overall['compile_error']:,}", f"{overall['compile_error']/overall['runs']*100:.1f}%"],
+        ['Simulation Errors', f"{overall['simulation_error']:,}", f"{overall['simulation_error']/overall['runs']*100:.1f}%"],
+        ['Timeouts', f"{overall['timeout']:,}", f"{overall['timeout']/overall['runs']*100:.1f}%"],
+        ['', '', ''],
+        ['Functional Modules', f"{overall['functional']}/{overall['total_modules']}", f"{overall['functional']/overall['total_modules']*100:.1f}%"],
+        ['Syntax Correct', f"{overall['syntax_correct']}/{overall['total_modules']}", f"{overall['syntax_correct']/overall['total_modules']*100:.1f}%"]
+    ]
+    
+    # Create table
+    table = ax.table(cellText=table_data, cellLoc='center', loc='center')
+    table.auto_set_font_size(False)
+    table.set_fontsize(12)
+    table.scale(1.2, 2)
+    
+    # Style the table
+    for i in range(len(table_data)):
+        for j in range(len(table_data[0])):
+            cell = table[(i, j)]
+            if i == 0:  # Header row
+                cell.set_facecolor('#2E86AB')
+                cell.set_text_props(weight='bold', color='white')
+            elif i == 7:  # Empty row for spacing
+                cell.set_facecolor('#f0f0f0')
+                cell.set_text_props(color='#f0f0f0')
+            else:
+                if j == 1:  # Value column
+                    cell.set_facecolor('#E8F5E8')
+                elif j == 2:  # Percentage column
+                    if i == 2:  # Test Passed row
+                        cell.set_facecolor('#90EE90')  # Light green for passed
+                    elif i in [3, 4, 5]:  # Failed, Compile Error, Simulation Error, Timeout rows
+                        cell.set_facecolor('#FFB6C1')  # Light red for errors
+                    else:
+                        cell.set_facecolor('#F0F8FF')
+                else:  # Metric column
+                    cell.set_facecolor('#f9f9f9')
+            
+            # Add borders
+            cell.set_edgecolor('#CCCCCC')
+            cell.set_linewidth(0.5)
+    
+    # Add title
+    plt.title(f'Overall RTL Benchmark Results - {filename_prefix}\n{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}', 
+              fontsize=16, fontweight='bold', pad=20)
+    
+    # Save the image
+    model_logs_dir = os.path.join(logs_dir, filename_prefix)
+    os.makedirs(model_logs_dir, exist_ok=True)
+    image_path = os.path.join(model_logs_dir, f"{filename_prefix}_overall_stats_table.png")
+    plt.tight_layout()
+    plt.savefig(image_path, dpi=300, bbox_inches='tight', facecolor='white')
+    plt.close()
+    
+    print(f"Overall statistics table image saved to: {image_path}")
+    return image_path
+
+def generate_stats_table_image(stats: dict, filename_prefix: str, logs_dir: str = "logs") -> str:
+    """
+    Generate a table image of per-module statistics and save it to the model's log folder.
+    
+    Args:
+        stats: Dictionary containing module statistics
+        filename_prefix: Prefix for the output filename
+        logs_dir: Directory to save the image
+        
+    Returns:
+        Path to the generated image file
+    """
+    if not stats or "OVERALL" not in stats:
+        print("No statistics available for table generation.")
+        return ""
+    
+    # Remove OVERALL from stats for per-module display
+    module_stats = {k: v for k, v in stats.items() if k != "OVERALL"}
+    if not module_stats:
+        print("No module statistics available for table generation.")
+        return ""
+    
+    # Sort modules by pass rate (descending)
+    sorted_modules = sorted(module_stats.items(), key=lambda x: x[1]['pass_rate'], reverse=True)
+    
+    # Create figure and axis
+    fig, ax = plt.subplots(figsize=(16, max(8, len(module_stats) * 0.4)))
+    ax.axis('tight')
+    ax.axis('off')
+    
+    # Prepare data for the table
+    table_data = [
+        ['Module', 'Runs', 'Passed', 'Failed', 'Compile Err', 'Sim Err', 'Timeout', 'Pass Rate', 'Functional']
+    ]
+    
+    for module_name, module_data in sorted_modules:
+        functional = '✓' if module_data['test_passed'] > 0 else '✗'
+        table_data.append([
+            module_name,
+            str(module_data['runs']),
+            str(module_data['test_passed']),
+            str(module_data['test_failed']),
+            str(module_data['compile_error']),
+            str(module_data['simulation_error']),
+            str(module_data['timeout']),
+            f"{module_data['pass_rate']*100:.1f}%",
+            functional
+        ])
+    
+    # Create table
+    table = ax.table(cellText=table_data, cellLoc='center', loc='center')
+    table.auto_set_font_size(False)
+    table.set_fontsize(10)
+    table.scale(1.0, 1.5)
+    
+    # Style the table
+    for i in range(len(table_data)):
+        for j in range(len(table_data[0])):
+            cell = table[(i, j)]
+            if i == 0:  # Header row
+                cell.set_facecolor('#2E86AB')
+                cell.set_text_props(weight='bold', color='white')
+            else:
+                # Color code based on pass rate
+                pass_rate = module_stats[sorted_modules[i-1][0]]['pass_rate']
+                if pass_rate >= 0.8:
+                    row_color = '#E8F5E8'  # Light green for high pass rate
+                elif pass_rate >= 0.5:
+                    row_color = '#FFF8DC'  # Light yellow for medium pass rate
+                else:
+                    row_color = '#FFE4E1'  # Light red for low pass rate
+                
+                cell.set_facecolor(row_color)
+                
+                # Special styling for pass rate column
+                if j == 7:  # Pass Rate column
+                    if pass_rate >= 0.8:
+                        cell.set_facecolor('#90EE90')  # Green
+                    elif pass_rate >= 0.5:
+                        cell.set_facecolor('#FFD700')  # Gold
+                    else:
+                        cell.set_facecolor('#FFB6C1')  # Light red
+                
+                # Special styling for functional column
+                elif j == 8:  # Functional column
+                    if module_stats[sorted_modules[i-1][0]]['test_passed'] > 0:
+                        cell.set_facecolor('#90EE90')  # Green
+                        cell.set_text_props(weight='bold')
+                    else:
+                        cell.set_facecolor('#FFB6C1')  # Light red
+            
+            # Add borders
+            cell.set_edgecolor('#CCCCCC')
+            cell.set_linewidth(0.5)
+    
+    # Add title with overall stats
+    overall = stats["OVERALL"]
+    title_text = f'Per-Module RTL Benchmark Results - {filename_prefix}\n'
+    title_text += f'Overall: {overall["test_passed"]}/{overall["runs"]} passed ({overall["pass_rate"]*100:.1f}%) | '
+    title_text += f'Functional: {overall["functional"]}/{overall["total_modules"]} modules | '
+    title_text += f'Date: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}'
+    
+    plt.title(title_text, fontsize=14, fontweight='bold', pad=20)
+    
+    # Save the image
+    model_logs_dir = os.path.join(logs_dir, filename_prefix)
+    os.makedirs(model_logs_dir, exist_ok=True)
+    image_path = os.path.join(model_logs_dir, f"{filename_prefix}_per_module_stats_table.png")
+    plt.tight_layout()
+    plt.savefig(image_path, dpi=300, bbox_inches='tight', facecolor='white')
+    plt.close()
+    
+    print(f"Per-module statistics table image saved to: {image_path}")
+    return image_path
+
+def run_benchmark(test_dir: str, print_summary: bool = True, print_detailed: bool = True, write_log_file: bool = True, logs_dir: str = "logs", generate_overall_table: bool = True, generate_per_module_table: bool = True) -> tuple[list[dict], dict]:
     result_list = []
     rtl_dirs = []
     folder_name = os.path.basename(test_dir.rstrip('/'))
@@ -428,17 +647,44 @@ def run_benchmark(test_dir: str, print_summary: bool = True, print_detailed: boo
             result_list.append(result)
     if not result_list:
         print("No valid test results found.")
-        return {}
+        return [], {}
     stats = compile_module_stats(result_list)
     pretty_print_module_stats(stats)
     write_combined_stats_to_log(result_list, rtl_dirs, stats, filename_prefix=folder_name, logs_dir=logs_dir)
-    return stats
+    
+    # Generate statistics tables based on options
+    if generate_overall_table:
+        generate_overall_stats_table_image(stats, folder_name, logs_dir)
+    if generate_per_module_table:
+        generate_stats_table_image(stats, folder_name, logs_dir)
+    
+    return result_list, stats
 
 def main(args: list[str]):
     parser = argparse.ArgumentParser(description="Run RTL benchmark and write logs grouped by model.")
     parser.add_argument("test_dir", help="Directory containing generated RTL attempts (t1, t2, ...)")
+    parser.add_argument("--no-overall-table", action="store_true", help="Skip generation of overall statistics table")
+    parser.add_argument("--no-per-module-table", action="store_true", help="Skip generation of per-module statistics table")
+    parser.add_argument("--no-logs", action="store_true", help="Skip writing log files")
+    parser.add_argument("--no-printing", action="store_true", help="Skip printing results to console")
+    parser.add_argument("--detailed", action="store_true", help="Print detailed results for each module")
     parsed = parser.parse_args(args)
-    run_benchmark(os.path.join(os.getcwd(), parsed.test_dir), print_summary=True, print_detailed=False, write_log_file=True)
+    
+    generate_overall_table = not parsed.no_overall_table
+    generate_per_module_table = not parsed.no_per_module_table
+    write_log_file = not parsed.no_logs
+    print_summary = not parsed.no_printing
+    print_detailed = not parsed.no_printing and parsed.detailed
+    
+    run_benchmark(
+        os.path.join(os.getcwd(), parsed.test_dir), 
+        print_summary=print_summary, 
+        print_detailed=print_detailed, 
+        write_log_file=write_log_file,
+        generate_overall_table=generate_overall_table,
+        generate_per_module_table=generate_per_module_table
+    )
+
 
 if __name__ == "__main__":
     main(sys.argv[1:])
