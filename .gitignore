@@ -1,3 +1,33 @@
 openai_api_key.txt
 __pycache__/
 venv/
+
+# Virtual environment
+venv/
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Log files (optional - uncomment if you don't want logs tracked)
+# logs/
+
+# Generated RTL files (optional - uncomment if you don't want generated files tracked)
+# generated_rtl/
+# gpt-4o/
+# gpt-4o-mini/
+# _chatgpt4/
